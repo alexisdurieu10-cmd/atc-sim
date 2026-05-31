@@ -222,9 +222,9 @@ const SCENARIO_5_STEPS = [
     message:
       'AURIOL Tower, FMATZ, Transall, from ORLEANS via Morgon, airfield estimated in 5 minutes, for a touch and go, then back to ORLEANS via Saint-Amour',
     expectedResponse:
-      'F-TZ, runway 27 in use, wind 250°/10 kt, QNH 1020, join right hand downwind runway 27 via overhead tower, report overhead tower',
+      'F-TZ, runway 27 in use, wind 250°/10 kt, QNH 1020, join right hand downwind runway 27 via overhead tower, traffic in downwind DR400, arrival from Julienas Cessna 172, report overhead tower',
     teaching:
-      "F-TZ arrive depuis Morgon (Sud) → vertical tour obligatoire. Le QNH est donné pour le réglage altimétrique. Strip rouge+bleu (toucher suivi d'un retour à Orléans = tour de piste unique). Pilote anglais — on répond en anglais.",
+      "F-TZ arrive depuis Morgon (Sud) → vertical tour obligatoire. À l'intégration, informer F-TZ des trafics : F-XN (DR400) déjà en vent arrière, et F-VH (Cessna 172 de Julienas) qui rejoint le vent arrière. Le QNH est donné pour le réglage altimétrique. Pilote anglais — on répond en anglais.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 180, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 680, y: 55, label: 'F-VH', heading: 225 },
@@ -254,9 +254,9 @@ const SCENARIO_5_STEPS = [
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
     message: 'F-TZ, overhead tower',
     expectedResponse:
-      'F-TZ, traffic from Julienas joining downwind, Cessna 172, and departure traffic towards Saint-Amour, DA42, report downwind',
+      'F-TZ, traffic in downwind DR400, traffic from Julienas joining downwind, Cessna 172, report downwind',
     teaching:
-      "F-TZ passe le vertical tour. On l'informe de F-VH (Cessna 172 de Julienas, en vent arrière) et de F-NC (DA42 au départ vers Saint-Amour, encore sur fréquence). Deux informations dans un seul message. On demande le rappel vent arrière.",
+      "F-TZ passe le vertical tour. On l'informe de F-XN (DR400, déjà en vent arrière devant lui — le plus important) et de F-VH (Cessna 172 de Julienas, qui intègre le vent arrière). F-NC (DA42 au départ) est encore sur fréquence mais n'affecte pas le circuit. Rappel vent arrière.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 350, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
@@ -376,9 +376,9 @@ const SCENARIO_5_STEPS = [
     speaker: { role: 'PILOTE', callsign: 'F-ML', color: 'transit' },
     message:
       'AURIOL Tower, FGHML, Tobago, transit from DIJON to NICE via North, 3000 ft QNH, over airfield estimated in 5 minutes, exit via Fleurie',
-    expectedResponse: 'F-ML, runway 27 in use, QNH 1020, report overhead airfield',
+    expectedResponse: 'F-ML, runway 27 in use, QNH 1020, traffic in circuit Transall and Cessna 172, report overhead airfield',
     teaching:
-      "Transit VFR : pas de clairance d'atterrissage. On donne la piste en service et le QNH (altimétrie). Pas d'instruction de vent — le transit ne se pose pas. Le transit à 3000 ft QNH ne conflifte pas avec le circuit (1400 ft QNH). On demande le rappel vertical aérodrome.",
+      "Transit VFR : on donne la piste en service, le QNH, et les trafics en circuit pour la conscience de situation — même si F-ML est à 3000 ft QNH et le circuit à 1400 ft (pas de conflit d'altitude). On informe : F-TZ (Transall) et F-VH (Cessna 172) en vent arrière. Rappel vertical aérodrome.",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 550, y: 100, label: 'F-TZ', heading: 90 },
@@ -410,9 +410,9 @@ const SCENARIO_5_STEPS = [
     message:
       'AURIOL Tour, FBXYH, Cessna 172, provenance RODEZ via le Sud-Ouest, aérodrome estimé dans 5 minutes, pour atterrissage',
     expectedResponse:
-      'F-YH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, rappelez vertical tour — F-YH, trafic du Nord vers vertical, Tobago',
+      'F-YH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, trafic en tour de piste Transall et Cessna 172, trafic du Nord vers vertical Tobago, rappelez vertical tour',
     teaching:
-      "F-YH arrive du Sud-Ouest → vertical tour obligatoire. F-ML (transit Tobago, venant du Nord) converge également vers le vertical aérodrome : info trafic réciproque obligatoire dans les deux sens. Le message peut être scindé en deux (livret 6). Il faut aussi informer F-ML (en anglais) : « F-ML, traffic from the South-West joining overhead, Cessna 172 ».",
+      "F-YH arrive du Sud-Ouest → vertical tour obligatoire. Informer F-YH de tous les trafics : F-TZ (Transall) et F-VH (Cessna 172) en vent arrière, et F-ML (Tobago) qui converge vers le vertical depuis le Nord. Réciprocité : informer F-ML en anglais « F-ML, traffic from the South-West joining overhead, Cessna 172 », et informer F-VH et F-TZ : « F-VH / F-TZ, trafic du Sud-Ouest vers vertical, Cessna 172 ».",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 570, y: 100, label: 'F-TZ', heading: 90 },
