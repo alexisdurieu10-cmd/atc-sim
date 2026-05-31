@@ -1,31 +1,4 @@
-import React, { useState } from 'react';
-import {
-  Plane,
-  Truck,
-  Clock,
-  Wind,
-  ChevronRight,
-  Eye,
-  RotateCcw,
-  Radio,
-  Lightbulb,
-  Info,
-  CheckCircle2,
-  ArrowLeft,
-  Shuffle,
-  AlertTriangle,
-  Layers,
-} from 'lucide-react';
-
-const COLORS = {
-  departure: '#ef4444',
-  arrival: '#3b82f6',
-  circuit: '#a855f7',
-  transit: '#94a3b8',
-  vehicle: '#f59e0b',
-};
-
-const SCENARIO_5_STEPS = [
+const SCENARIO_6_STEPS = [
   {
     id: 1,
     time: '08:20:00',
@@ -404,8 +377,25 @@ const SCENARIO_5_STEPS = [
     ],
     showPattern: true,
   },
+
   {
     id: 26,
+    time: '08:52:05',
+    speaker: { role: 'PILOTE', callsign: 'F-GS', color: 'arrival' },
+    message: 'AURIOL Tour, FBVGS, Cessna 172, provenance LYON via le Sud-Est, aérodrome estimé dans 5 minutes, pour atterrissage',
+    expectedResponse: 'F-GS, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, trafic en vent arrière Cessna 172 et transit Tobago, rappelez vertical tour',
+    teaching: "F-GS arrive du Sud-Est → vertical tour obligatoire. F-VH (Cessna 172) est en vent arrière et F-ML (Tobago) est en transit à 3000 ft. Double info trafic. Strip bleu.",
+    aircraft: [
+      { id: 'F-VH', type: 'arrival', x: 280, y: 100, label: 'F-VH', heading: 90 },
+      { id: 'F-TZ', type: 'circuit', x: 570, y: 100, label: 'F-TZ', heading: 90 },
+      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-ML', type: 'transit', x: 370, y: 155, label: 'F-ML', heading: 180 },
+      { id: 'F-YH', type: 'arrival', x: 70, y: 375, label: 'F-YH', heading: 45 },
+      { id: 'F-GS', type: 'arrival', x: 700, y: 380, label: 'F-GS', heading: 315 },
+    ],
+    showPattern: true,
+  },  {
+    id: 27,
     time: '08:52:30',
     speaker: { role: 'PILOTE', callsign: 'F-YH', color: 'arrival' },
     message:
@@ -423,7 +413,7 @@ const SCENARIO_5_STEPS = [
     ],
   },
   {
-    id: 27,
+    id: 28,
     time: '08:52:50',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, vent arrière main droite piste 27',
@@ -439,8 +429,25 @@ const SCENARIO_5_STEPS = [
     ],
     showPattern: true,
   },
+
   {
-    id: 28,
+    id: 29,
+    time: '08:52:55',
+    speaker: { role: 'PILOTE', callsign: 'F-GS', color: 'arrival' },
+    message: 'F-GS, vertical tour',
+    expectedResponse: 'F-GS, numéro 3, suivez un Cessna 172 en vent arrière, rappelez vent arrière',
+    teaching: "F-TZ (Transall, #1) est en finale. F-VH (Cessna 172, #2) est en vent arrière. F-GS est #3. Trois appareils en circuit — séquencement 3 avions.",
+    aircraft: [
+      { id: 'F-VH', type: 'arrival', x: 340, y: 100, label: 'F-VH', heading: 90 },
+      { id: 'F-TZ', type: 'circuit', x: 605, y: 132, label: 'F-TZ', heading: 270 },
+      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-ML', type: 'transit', x: 370, y: 235, label: 'F-ML', heading: 180 },
+      { id: 'F-YH', type: 'arrival', x: 160, y: 355, label: 'F-YH', heading: 45 },
+      { id: 'F-GS', type: 'arrival', x: 370, y: 275, label: 'F-GS', heading: 0 },
+    ],
+    showPattern: true,
+  },  {
+    id: 30,
     time: '08:53:00',
     speaker: { role: 'PILOTE', callsign: 'F-ML', color: 'transit' },
     message: 'F-ML, overhead airfield',
@@ -456,7 +463,7 @@ const SCENARIO_5_STEPS = [
     ],
   },
   {
-    id: 29,
+    id: 31,
     time: '08:53:30',
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
     message: 'F-TZ, final runway 27 for a touch and go',
@@ -470,8 +477,24 @@ const SCENARIO_5_STEPS = [
       { id: 'F-YH', type: 'arrival', x: 350, y: 270, label: 'F-YH', heading: 0 },
     ],
   },
+
   {
-    id: 30,
+    id: 32,
+    time: '08:53:45',
+    speaker: { role: 'PILOTE', callsign: 'F-GS', color: 'arrival' },
+    message: 'F-GS, vent arrière main droite piste 27',
+    expectedResponse: 'F-GS, numéro 2, suivez un Cessna 172 en base, rappelez finale',
+    teaching: "F-TZ (#1) est loin en finale pour son toucher. F-VH (#2) tourne en base. F-GS est #2 effectif derrière F-VH. Rappelez finale.",
+    aircraft: [
+      { id: 'F-VH', type: 'arrival', x: 430, y: 100, label: 'F-VH', heading: 90 },
+      { id: 'F-TZ', type: 'circuit', x: 605, y: 132, label: 'F-TZ', heading: 270 },
+      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-YH', type: 'arrival', x: 260, y: 305, label: 'F-YH', heading: 45 },
+      { id: 'F-GS', type: 'arrival', x: 175, y: 100, label: 'F-GS', heading: 90 },
+    ],
+    showPattern: true,
+  },  {
+    id: 33,
     time: '08:54:00',
     speaker: { role: 'PILOTE', callsign: 'F-ML', color: 'transit' },
     message: 'F-ML, Fleurie, leaving frequency',
@@ -486,7 +509,7 @@ const SCENARIO_5_STEPS = [
     ],
   },
   {
-    id: 31,
+    id: 34,
     time: '08:54:20',
     speaker: { role: 'PILOTE', callsign: 'F-YH', color: 'arrival' },
     message: 'F-YH, vertical tour',
@@ -502,7 +525,7 @@ const SCENARIO_5_STEPS = [
     showPattern: true,
   },
   {
-    id: 32,
+    id: 35,
     time: '08:55:00',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, finale piste 27',
@@ -517,7 +540,7 @@ const SCENARIO_5_STEPS = [
     ],
   },
   {
-    id: 33,
+    id: 36,
     time: '08:55:30',
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
     message: 'F-TZ, leaving frequency, back to Orléans via Saint-Amour',
@@ -531,7 +554,7 @@ const SCENARIO_5_STEPS = [
     ],
   },
   {
-    id: 34,
+    id: 37,
     time: '08:56:00',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, piste dégagée, demande roulage',
@@ -545,8 +568,21 @@ const SCENARIO_5_STEPS = [
     ],
     showPattern: true,
   },
+
   {
-    id: 35,
+    id: 38,
+    time: '08:56:05',
+    speaker: { role: 'PILOTE', callsign: 'F-GS', color: 'arrival' },
+    message: 'F-GS, finale piste 27',
+    expectedResponse: 'F-GS, piste 27 autorisé atterrissage, vent 250°/10 kt',
+    teaching: "F-VH vient de dégager la piste. F-TZ a quitté la fréquence. F-YH est en vent arrière — aucun conflit. Piste libre, on autorise F-GS.",
+    aircraft: [
+      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-YH', type: 'arrival', x: 430, y: 100, label: 'F-YH', heading: 90 },
+      { id: 'F-GS', type: 'arrival', x: 605, y: 132, label: 'F-GS', heading: 270 },
+    ],
+  },  {
+    id: 39,
     time: '08:57:00',
     speaker: { role: 'PILOTE', callsign: 'F-EP', color: 'departure' },
     message: 'F-EP, prêt, demande remontée piste 27',
@@ -559,8 +595,21 @@ const SCENARIO_5_STEPS = [
     ],
     showPattern: true,
   },
+
   {
-    id: 36,
+    id: 40,
+    time: '08:56:20',
+    speaker: { role: 'PILOTE', callsign: 'F-GS', color: 'arrival' },
+    message: 'F-GS, piste dégagée, demande roulage',
+    expectedResponse: 'F-GS, roulez poste D2',
+    teaching: "F-GS libère la piste. Poste D2 (parking aéroclub). Strip archivé.",
+    aircraft: [
+      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-YH', type: 'arrival', x: 430, y: 100, label: 'F-YH', heading: 90 },
+      { id: 'F-GS', type: 'arrival', x: 250, y: 178, label: 'F-GS', heading: 270 },
+    ],
+  },  {
+    id: 41,
     time: '08:57:30',
     speaker: { role: 'PILOTE', callsign: 'F-YH', color: 'arrival' },
     message: 'F-YH, vent arrière main droite piste 27',
@@ -573,8 +622,22 @@ const SCENARIO_5_STEPS = [
     ],
     showPattern: true,
   },
+
   {
-    id: 37,
+    id: 42,
+    time: '08:56:30',
+    speaker: { role: 'PILOTE', callsign: 'F-DM', color: 'departure' },
+    message: 'AURIOL Tour, FBVDM, Robin DR400, poste C2, destination DIJON via le Nord, demande roulage',
+    expectedResponse: "F-DM, piste 27 en service, vent 250°/10 kt, QNH 1020, roulez point d'attente piste 27",
+    teaching: "F-DM au poste C2. F-EP est déjà au point d'attente. F-DM arrive derrière F-EP. Strip rouge (départ).",
+    aircraft: [
+      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-YH', type: 'arrival', x: 430, y: 100, label: 'F-YH', heading: 90 },
+      { id: 'F-DM', type: 'departure', x: 405, y: 245, label: 'F-DM', heading: 0 },
+    ],
+    showPattern: true,
+  },  {
+    id: 43,
     time: '08:58:30',
     speaker: { role: 'PILOTE', callsign: 'F-YH', color: 'arrival' },
     message: 'F-YH, finale piste 27',
@@ -587,7 +650,7 @@ const SCENARIO_5_STEPS = [
     ],
   },
   {
-    id: 38,
+    id: 44,
     time: '08:59:30',
     speaker: { role: 'PILOTE', callsign: 'F-YH', color: 'arrival' },
     message: 'F-YH, piste dégagée, demande roulage',
@@ -599,8 +662,20 @@ const SCENARIO_5_STEPS = [
       { id: 'F-YH', type: 'arrival', x: 280, y: 178, label: 'F-YH', heading: 270 },
     ],
   },
+
   {
-    id: 39,
+    id: 45,
+    time: '08:59:40',
+    speaker: { role: 'PILOTE', callsign: 'F-DM', color: 'departure' },
+    message: 'F-DM, prêt',
+    expectedResponse: "F-DM, maintenez avant point d'attente piste 27, trafic au départ, BE200",
+    teaching: "F-EP (Beech 200) est en tête et partira en premier. F-DM maintient jusqu'au départ de F-EP.",
+    aircraft: [
+      { id: 'F-EP', type: 'departure', x: 615, y: 132, label: 'F-EP', heading: 270 },
+      { id: 'F-DM', type: 'departure', x: 549, y: 158, label: 'F-DM', heading: 0 },
+    ],
+  },  {
+    id: 46,
     time: '09:00:00',
     speaker: { role: 'PILOTE', callsign: 'F-EP', color: 'departure' },
     message: 'F-EP, prêt',
@@ -612,424 +687,27 @@ const SCENARIO_5_STEPS = [
       { id: 'F-YH', type: 'arrival', x: 350, y: 245, label: 'F-YH', heading: 0 },
     ],
   },
-];
 
-const SCENARIOS = [
   {
-    id: 'scenario_5',
-    title: 'Matinée chargée — 40 min',
-    description:
-      "Scénario long combinant approche directe, laissez-passer, backtrack, remise de gaz, tour de piste, transit et verrou de piste. Pilotes anglais et français.",
-    color: '#8b5cf6',
-    icon: 'layers',
-    setup: { wind: '250°/10 kt', qnh: '1020', rwy: '27' },
-    steps: SCENARIO_5_STEPS,
+    id: 47,
+    time: '09:00:30',
+    speaker: { role: 'PILOTE', callsign: 'F-DM', color: 'departure' },
+    message: 'F-DM, prêt',
+    expectedResponse: 'F-DM, alignez-vous, piste 27 autorisé décollage, vent 250°/10 kt',
+    teaching: "F-EP vient de décoller. Piste libre, aucun trafic en approche. On autorise F-DM.",
+    aircraft: [
+      { id: 'F-EP', type: 'departure', x: 400, y: 132, label: 'F-EP', heading: 270 },
+      { id: 'F-DM', type: 'departure', x: 615, y: 132, label: 'F-DM', heading: 270 },
+    ],
   },
-];
-
-function AirportMap({ aircraft = [], showPattern = false, showSaintAmour = false }) {
-  return (
-    <svg viewBox="0 0 800 420" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-      <g>
-        <circle cx="45" cy="40" r="18" fill="none" stroke="#475569" strokeWidth="0.5" />
-        <text x="45" y="28" textAnchor="middle" fontSize="11" fill="#cbd5e1" fontWeight="500">N</text>
-        <line x1="45" y1="55" x2="45" y2="30" stroke="#cbd5e1" strokeWidth="1.2" />
-      </g>
-
-      {showSaintAmour && (
-        <g>
-          <text x="770" y="45" textAnchor="end" fontSize="10" fill="#64748b">Saint-Amour / Julienas (NE)</text>
-          <line x1="740" y1="51" x2="680" y2="80" stroke="#64748b" strokeWidth="0.4" strokeDasharray="2 2" />
-        </g>
-      )}
-
-      {showPattern && (
-        <g>
-          <rect x="130" y="78" width="420" height="46" fill="none" stroke="#a78bfa" strokeWidth="0.7" strokeDasharray="5 4" />
-          <text x="340" y="72" textAnchor="middle" fontSize="9" fill="#a78bfa">vent arrière main droite piste 27</text>
-          <path d="M 220 101 L 280 101" stroke="#a78bfa" strokeWidth="0.8" fill="none" />
-          <polygon points="278,98 286,101 278,104" fill="#a78bfa" />
-        </g>
-      )}
-
-      <rect x="80" y="120" width="540" height="22" fill="#475569" stroke="#1e293b" strokeWidth="0.5" />
-      <text x="70" y="135" textAnchor="end" fontSize="11" fill="#e2e8f0" fontWeight="600">09</text>
-      <text x="630" y="135" textAnchor="start" fontSize="11" fill="#e2e8f0" fontWeight="600">27</text>
-      {[92, 98, 104].map((x) => (
-        <line key={'l' + x} x1={x} y1="122" x2={x} y2="140" stroke="#cbd5e1" strokeWidth="0.5" />
-      ))}
-      {[596, 602, 608].map((x) => (
-        <line key={'r' + x} x1={x} y1="122" x2={x} y2="140" stroke="#cbd5e1" strokeWidth="0.5" />
-      ))}
-
-      <rect x="546" y="142" width="6" height="38" fill="#334155" />
-      <line x1="540" y1="148" x2="558" y2="148" stroke="#ef4444" strokeWidth="1.5" />
-      <text x="565" y="158" textAnchor="start" fontSize="8" fill="#94a3b8">H2</text>
-
-      <rect x="120" y="178" width="430" height="4" fill="#334155" />
-
-      <rect x="280" y="200" width="180" height="48" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="3" />
-      <text x="370" y="217" textAnchor="middle" fontSize="9" fill="#94a3b8">Parking principal</text>
-      <text x="300" y="238" textAnchor="middle" fontSize="8" fill="#64748b">A2</text>
-      <text x="340" y="238" textAnchor="middle" fontSize="8" fill="#64748b">B1</text>
-      <text x="380" y="238" textAnchor="middle" fontSize="8" fill="#64748b">C1</text>
-
-      <rect x="180" y="200" width="60" height="48" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="3" />
-      <text x="210" y="217" textAnchor="middle" fontSize="9" fill="#94a3b8">Aéroclub D</text>
-      <text x="210" y="236" textAnchor="middle" fontSize="8" fill="#64748b">D1 D2</text>
-
-      <rect x="490" y="200" width="50" height="28" fill="#7c2d12" fillOpacity="0.35" stroke="#d97706" strokeWidth="0.5" rx="2" />
-      <text x="515" y="218" textAnchor="middle" fontSize="8" fill="#fcd34d">SSLIA</text>
-
-      <circle cx="370" cy="265" r="4" fill="#475569" />
-      <text x="382" y="269" textAnchor="start" fontSize="8" fill="#94a3b8">TWR</text>
-
-      <rect x="540" y="85" width="50" height="22" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="2" />
-      <text x="565" y="100" textAnchor="middle" fontSize="8" fill="#94a3b8">Local tech.</text>
-
-      {aircraft.map((ac) => (
-        <g
-          key={ac.id}
-          style={{ transition: 'transform 1500ms cubic-bezier(0.4, 0, 0.2, 1)' }}
-          transform={'translate(' + ac.x + ', ' + ac.y + ')'}
-        >
-          {ac.type === 'vehicle' ? (
-            <rect x="-7" y="-5" width="14" height="10" fill={COLORS.vehicle} stroke="#92400e" strokeWidth="0.5" rx="1" />
-          ) : (
-            <polygon
-              points="0,-9 6,6 0,3 -6,6"
-              fill={COLORS[ac.type]}
-              stroke="#0f172a"
-              strokeWidth="0.6"
-              transform={'rotate(' + (ac.heading || 0) + ')'}
-            />
-          )}
-          <text x="0" y="-14" textAnchor="middle" fontSize="10" fill={COLORS[ac.type]} fontWeight="600">
-            {ac.label}
-          </text>
-        </g>
-      ))}
-    </svg>
-  );
-}
-
-function getIconForScenario(iconName) {
-  switch (iconName) {
-    case 'plane':
-      return Plane;
-    case 'shuffle':
-      return Shuffle;
-    case 'truck':
-      return Truck;
-    case 'alert':
-      return AlertTriangle;
-    default:
-      return Layers;
-  }
-}
-
-function ScenarioMenu({ onSelect }) {
-  return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8">
-      <div className="max-w-4xl mx-auto space-y-8">
-        <header className="space-y-2">
-          <div className="flex items-center gap-3">
-            <Radio className="w-7 h-7 text-amber-400" />
-            <h1 className="text-2xl font-semibold tracking-wide">AURIOL TWR · Simulateur</h1>
-          </div>
-          <p className="text-sm text-slate-400">
-            Choisis un scénario. Chacun te présente une situation extraite des livrets BASIC TWR avec carte interactive,
-            corrections et notes pédagogiques.
-          </p>
-        </header>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {SCENARIOS.map((scenario, idx) => {
-            const Icon = getIconForScenario(scenario.icon);
-            return (
-              <button
-                key={scenario.id}
-                onClick={() => onSelect(idx)}
-                className="text-left bg-slate-800 border border-slate-700 rounded-lg p-5 hover:border-amber-400/40 hover:bg-slate-800/80 transition-colors"
-              >
-                <div className="flex items-start gap-3">
-                  <div
-                    className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center border"
-                    style={{ backgroundColor: scenario.color + '20', borderColor: scenario.color + '60' }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: scenario.color }} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2 mb-1">
-                      <h2 className="font-semibold text-slate-100 truncate">{scenario.title}</h2>
-                      <span
-                        className="text-xs px-2 py-0.5 rounded font-medium flex-shrink-0"
-                        style={{ backgroundColor: scenario.color + '20', color: scenario.color }}
-                      >
-                        Scénario {idx + 1}/{SCENARIOS.length}
-                      </span>
-                    </div>
-                    <p className="text-xs text-slate-400 leading-relaxed mb-3">{scenario.description}</p>
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-slate-500">
-                      <span>RWY {scenario.setup.rwy}</span>
-                      <span>{scenario.setup.wind}</span>
-                      <span>QNH {scenario.setup.qnh}</span>
-                      <span className="ml-auto">{scenario.steps.length} étapes</span>
-                    </div>
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="text-xs text-slate-500 text-center pt-4 border-t border-slate-800">
-          Simulateur d'entraînement BASIC TWR — basé sur les livrets ENAC. Aérodrome fictif d'AURIOL (LFVA), fréquence
-          119.000 MHz.
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function ATCSimulator() {
-  const [selectedScenarioIndex, setSelectedScenarioIndex] = useState(null);
-  const [step, setStep] = useState(0);
-  const [userResponse, setUserResponse] = useState('');
-  const [revealed, setRevealed] = useState(false);
-
-  if (selectedScenarioIndex === null) {
-    return (
-      <ScenarioMenu
-        onSelect={(idx) => {
-          setSelectedScenarioIndex(idx);
-          setStep(0);
-          setUserResponse('');
-          setRevealed(false);
-        }}
-      />
-    );
-  }
-
-  const scenario = SCENARIOS[selectedScenarioIndex];
-  const steps = scenario.steps;
-  const current = steps[step];
-  const isLast = step === steps.length - 1;
-  const needsResponse = current.expectedResponse !== null;
-
-  const handleReveal = () => setRevealed(true);
-  const handleNext = () => {
-    if (!isLast) {
-      setStep(step + 1);
-      setUserResponse('');
-      setRevealed(false);
-    }
-  };
-  const handleReset = () => {
-    setStep(0);
-    setUserResponse('');
-    setRevealed(false);
-  };
-  const handleBackToMenu = () => {
-    setSelectedScenarioIndex(null);
-    setStep(0);
-    setUserResponse('');
-    setRevealed(false);
-  };
-
-  const speakerIsSecu = current.speaker.role === 'SECU';
-
-  return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-6">
-      <div className="max-w-5xl mx-auto space-y-4">
-        <header className="flex flex-wrap items-center justify-between gap-3 p-4 bg-slate-800 rounded-lg border border-slate-700">
-          <div className="flex items-center gap-2.5">
-            <button
-              onClick={handleBackToMenu}
-              className="text-slate-400 hover:text-slate-200 transition-colors p-1 -ml-1"
-              aria-label="Retour au menu"
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-            <Radio className="w-5 h-5 text-amber-400" />
-            <div>
-              <h1 className="text-base font-semibold tracking-wide">AURIOL TWR</h1>
-              <p className="text-xs text-slate-400">{scenario.title}</p>
-            </div>
-          </div>
-          <div className="flex flex-wrap items-center gap-4 text-xs">
-            <div className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-slate-500" />
-              <span className="font-mono text-amber-300">{current.time}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Wind className="w-3.5 h-3.5 text-slate-500" />
-              <span className="font-mono">{scenario.setup.wind}</span>
-            </div>
-            <div className="font-mono">
-              <span className="text-slate-500">RWY </span>
-              <span className="text-amber-300 font-semibold">{scenario.setup.rwy}</span>
-            </div>
-            <div className="font-mono">
-              <span className="text-slate-500">QNH </span>
-              <span className="text-amber-300 font-semibold">{scenario.setup.qnh}</span>
-            </div>
-          </div>
-        </header>
-
-        <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
-          <AirportMap
-            aircraft={current.aircraft}
-            showPattern={current.showPattern}
-            showSaintAmour={current.showSaintAmour}
-          />
-        </div>
-
-        <div className="flex items-center gap-3 text-xs">
-          <span className="text-slate-500 font-mono">
-            {String(step + 1).padStart(2, '0')} / {String(steps.length).padStart(2, '0')}
-          </span>
-          <div className="flex-1 h-1 bg-slate-800 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-amber-400 transition-all duration-700 ease-out"
-              style={{ width: ((step + 1) / steps.length) * 100 + '%' }}
-            />
-          </div>
-        </div>
-
-        <div className="space-y-3">
-          {current.speaker.role === 'INFO' ? (
-            <div className="flex items-start gap-3 bg-slate-800/40 border border-slate-700 border-dashed rounded-lg p-3.5">
-              <Info className="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-slate-300 leading-relaxed">{current.message}</p>
-            </div>
-          ) : (
-            <div className="flex gap-3">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-slate-800 border border-slate-700">
-                {speakerIsSecu ? (
-                  <Truck className="w-5 h-5" style={{ color: COLORS.vehicle }} />
-                ) : (
-                  <Plane className="w-5 h-5" style={{ color: COLORS[current.speaker.color] }} />
-                )}
-              </div>
-              <div className="flex-1 bg-slate-800 border border-slate-700 rounded-lg p-3">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span
-                    className="text-xs font-semibold uppercase tracking-wider"
-                    style={{ color: COLORS[current.speaker.color] }}
-                  >
-                    {current.speaker.role} · {current.speaker.callsign}
-                  </span>
-                  <span className="text-xs text-slate-500 font-mono">{current.time}</span>
-                </div>
-                <p className="text-slate-100 italic">« {current.message} »</p>
-              </div>
-            </div>
-          )}
-
-          {needsResponse && (
-            <div className="space-y-2">
-              <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider block">
-                Ta réponse (optionnelle)
-              </label>
-              <textarea
-                value={userResponse}
-                onChange={(e) => setUserResponse(e.target.value)}
-                placeholder="Formule ta réponse de contrôleur..."
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 text-sm focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30 resize-none placeholder:text-slate-600"
-                rows={3}
-                disabled={revealed}
-              />
-            </div>
-          )}
-
-          <div className="flex flex-wrap gap-2">
-            {needsResponse && !revealed && (
-              <button
-                onClick={handleReveal}
-                className="flex items-center gap-2 px-4 py-2 bg-amber-500/15 border border-amber-500/40 text-amber-300 rounded-lg hover:bg-amber-500/25 transition-colors text-sm font-medium"
-              >
-                <Eye className="w-4 h-4" />
-                Voir la correction
-              </button>
-            )}
-            {(revealed || !needsResponse) && !isLast && (
-              <button
-                onClick={handleNext}
-                className="flex items-center gap-2 px-4 py-2 bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 rounded-lg hover:bg-emerald-500/25 transition-colors text-sm font-medium"
-              >
-                Étape suivante
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            )}
-            {isLast && (revealed || !needsResponse) && (
-              <>
-                <button
-                  onClick={handleReset}
-                  className="flex items-center gap-2 px-4 py-2 bg-slate-700 border border-slate-600 text-slate-200 rounded-lg hover:bg-slate-600 transition-colors text-sm font-medium"
-                >
-                  <RotateCcw className="w-4 h-4" />
-                  Recommencer
-                </button>
-                <button
-                  onClick={handleBackToMenu}
-                  className="flex items-center gap-2 px-4 py-2 bg-slate-700 border border-slate-600 text-slate-200 rounded-lg hover:bg-slate-600 transition-colors text-sm font-medium"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  Choisir un autre scénario
-                </button>
-              </>
-            )}
-          </div>
-
-          {revealed && needsResponse && (
-            <div className="space-y-3 mt-4">
-              <div className="flex gap-3">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-amber-500/10 border border-amber-500/40">
-                  <Radio className="w-5 h-5 text-amber-400" />
-                </div>
-                <div className="flex-1 bg-amber-500/5 border border-amber-500/30 rounded-lg p-3">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-amber-400">AURIOL Tour</span>
-                    <span className="text-xs text-slate-500">Réponse attendue</span>
-                  </div>
-                  <p className="text-slate-100">« {current.expectedResponse} »</p>
-                </div>
-              </div>
-
-              {current.teaching && (
-                <div className="flex gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-emerald-500/10 border border-emerald-500/30">
-                    <Lightbulb className="w-5 h-5 text-emerald-400" />
-                  </div>
-                  <div className="flex-1 bg-emerald-500/5 border border-emerald-500/20 rounded-lg p-3">
-                    <div className="text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1">
-                      Note pédagogique
-                    </div>
-                    <p className="text-sm text-slate-300 leading-relaxed">{current.teaching}</p>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {isLast && (revealed || !needsResponse) && (
-            <div className="mt-6 p-6 bg-slate-800 border border-emerald-500/30 rounded-lg text-center space-y-2">
-              <CheckCircle2 className="w-8 h-8 text-emerald-400 mx-auto" />
-              <h2 className="text-lg font-semibold">Scénario terminé</h2>
-              <p className="text-sm text-slate-400">
-                Tu as géré « {scenario.title} ». Recommence pour t'entraîner sur la fluidité, ou choisis un autre
-                scénario pour varier les situations.
-              </p>
-            </div>
-          )}
-        </div>
-
-        <div className="text-xs text-slate-500 text-center pt-4 border-t border-slate-800">
-          Lis le message, formule mentalement (ou tape) ta réponse, puis vérifie la correction et la note pédagogique
-          avant de passer à la suite.
-        </div>
-      </div>
-    </div>
-  );
-}
+  {
+    id: 48,
+    time: '09:01:30',
+    speaker: { role: 'PILOTE', callsign: 'F-DM', color: 'departure' },
+    message: 'F-DM, je quitte la fréquence, bonjour',
+    expectedResponse: 'F-DM, roger, au revoir',
+    teaching: "F-DM quitte la fréquence pour Dijon via le Nord. Accusé de réception, heure notée, strip archivé.",
+    aircraft: [
+      { id: 'F-DM', type: 'departure', x: 200, y: 100, label: 'F-DM', heading: 315 },
+    ],
+  },];
