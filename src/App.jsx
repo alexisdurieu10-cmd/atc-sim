@@ -620,7 +620,6 @@ const SCENARIOS = [
     title: 'Matinée chargée — 40 min',
     description:
       "Scénario long combinant approche directe, laissez-passer, backtrack, remise de gaz, tour de piste, transit et verrou de piste. Pilotes anglais et français.",
-    difficulty: 'Expert',
     color: '#8b5cf6',
     icon: 'layers',
     setup: { wind: '250°/10 kt', qnh: '1020', rwy: '27' },
@@ -767,7 +766,7 @@ function ScenarioMenu({ onSelect }) {
                         className="text-xs px-2 py-0.5 rounded font-medium flex-shrink-0"
                         style={{ backgroundColor: scenario.color + '20', color: scenario.color }}
                       >
-                        {scenario.difficulty}
+                        Scénario {idx + 1}/{SCENARIOS.length}
                       </span>
                     </div>
                     <p className="text-xs text-slate-400 leading-relaxed mb-3">{scenario.description}</p>
