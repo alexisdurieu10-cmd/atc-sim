@@ -93,7 +93,7 @@ const SCENARIO_5_STEPS = [
       "F-EN est en longue finale approche directe. Piste libre (F-NC et F-XN encore au sol). On autorise l'atterrissage et on redonne le vent. La piste est occupée dès la transmission de cette clairance.",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 650, y: 132, label: 'F-EN', heading: 270 },
-      { id: 'F-NC', type: 'departure', x: 490, y: 180, label: 'F-NC', heading: 90 },
+      { id: 'F-NC', type: 'departure', x: 360, y: 180, label: 'F-NC', heading: 90 },
       { id: 'F-XN', type: 'circuit', x: 430, y: 245, label: 'F-XN', heading: 0 },
     ],
   },
