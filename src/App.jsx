@@ -209,8 +209,8 @@ const SCENARIO_5_STEPS = [
     teaching:
       "F-XN vient de décoller et a dépassé l'extrémité de piste — piste libre. F-NC est en vent arrière. Pas de conflit : traversée autorisée.",
     aircraft: [
-      { id: 'F-NC', type: 'departure', x: 40, y: 110, label: 'F-NC', heading: 270 },
-      { id: 'F-XN', type: 'circuit', x: 180, y: 132, label: 'F-XN', heading: 270 },
+      { id: 'F-NC', type: 'departure', x: 210, y: 100, label: 'F-NC', heading: 90 },
+      { id: 'F-XN', type: 'circuit', x: 40, y: 110, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 600, y: 80, label: 'F-VH', heading: 225 },
       { id: 'SECU', type: 'vehicle', x: 383, y: 170, label: 'SÉCU' },
     ],
@@ -461,7 +461,7 @@ const SCENARIO_5_STEPS = [
     message: 'F-TZ, final runway 27 for a touch and go',
     expectedResponse: 'F-TZ, runway 27 cleared touch and go, wind 250°/10 kt',
     teaching:
-      "Piste libre. On autorise le toucher du Transall. On note précisément l'heure du lever des roues (hh:mm:ss) en anticipation d'un possible délai de turbulence de sillage : F-VH (C172, cat. L) suit F-TZ (Transall, cat. M) → délai minimum 2 minutes si F-VH décolle après F-TZ. Pour l'atterrissage, vérifier que la piste est dégagée de la turbulence.",
+      "Piste libre. On autorise le toucher du Transall. On note précisément l'heure du lever des roues (hh:mm:ss) : F-VH (C172, cat. L) suit F-TZ (Transall, cat. M) → si F-VH atterrit dans le sillage du Transall sur le même axe, un délai de 3 minutes s'applique. Ici les trajectoires divergeront (F-TZ repart vers le Nord, F-VH atterrit vers l'Ouest) — voir étape suivante.",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 380, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 605, y: 132, label: 'F-TZ', heading: 270 },
@@ -481,7 +481,7 @@ const SCENARIO_5_STEPS = [
       { id: 'F-VH', type: 'arrival', x: 430, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 300, y: 132, label: 'F-TZ', heading: 270 },
       { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
-      { id: 'F-YH', type: 'arrival', x: 370, y: 260, label: 'F-YH', heading: 0 },
+      { id: 'F-YH', type: 'arrival', x: 340, y: 295, label: 'F-YH', heading: 30 },
     ],
   },
   {
