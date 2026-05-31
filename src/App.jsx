@@ -93,7 +93,7 @@ const SCENARIO_5_STEPS = [
       "F-EN est en longue finale approche directe. Piste libre (F-NC et F-XN encore au sol). On autorise l'atterrissage et on redonne le vent. La piste est occupée dès la transmission de cette clairance.",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 650, y: 132, label: 'F-EN', heading: 270 },
-      { id: 'F-NC', type: 'departure', x: 490, y: 195, label: 'F-NC', heading: 270 },
+      { id: 'F-NC', type: 'departure', x: 490, y: 180, label: 'F-NC', heading: 90 },
       { id: 'F-XN', type: 'circuit', x: 430, y: 245, label: 'F-XN', heading: 0 },
     ],
   },
@@ -134,7 +134,7 @@ const SCENARIO_5_STEPS = [
     teaching:
       "F-EN a libéré la piste — on lui attribue le poste A4 (TBM700 au parking principal). Strip de F-EN passe sous la barrette (roulage).",
     aircraft: [
-      { id: 'F-EN', type: 'arrival', x: 230, y: 178, label: 'F-EN', heading: 270 },
+      { id: 'F-EN', type: 'arrival', x: 250, y: 180, label: 'F-EN', heading: 90 },
       { id: 'F-NC', type: 'departure', x: 615, y: 132, label: 'F-NC', heading: 270 },
       { id: 'F-XN', type: 'circuit', x: 549, y: 158, label: 'F-XN', heading: 0 },
     ],
@@ -336,7 +336,7 @@ const SCENARIO_5_STEPS = [
       { id: 'F-XN', type: 'circuit', x: 130, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
       { id: 'F-TZ', type: 'circuit', x: 420, y: 100, label: 'F-TZ', heading: 90 },
-      { id: 'F-EP', type: 'departure', x: 440, y: 195, label: 'F-EP', heading: 90 },
+      { id: 'F-EP', type: 'departure', x: 440, y: 180, label: 'F-EP', heading: 90 },
     ],
     showPattern: true,
   },
@@ -666,10 +666,16 @@ function AirportMap({ aircraft = [], showPattern = false, showSaintAmour = false
       <line x1="540" y1="148" x2="558" y2="148" stroke="#ef4444" strokeWidth="1.5" />
       <text x="565" y="158" textAnchor="start" fontSize="8" fill="#94a3b8">H2</text>
 
-      <rect x="107" y="142" width="13" height="36" fill="#334155" />
+      <rect x="107" y="142" width="13" height="40" fill="#334155" />
       <text x="95" y="165" textAnchor="end" fontSize="8" fill="#94a3b8">W1</text>
 
-      <rect x="120" y="178" width="430" height="4" fill="#334155" />
+      <rect x="232" y="142" width="12" height="36" fill="#334155" />
+      <text x="252" y="162" textAnchor="start" fontSize="8" fill="#94a3b8">W2</text>
+
+      <rect x="107" y="178" width="443" height="4" fill="#334155" />
+
+      <rect x="113" y="182" width="12" height="18" fill="#334155" />
+      <rect x="360" y="182" width="12" height="18" fill="#334155" />
 
       <rect x="280" y="200" width="180" height="48" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="3" />
       <text x="370" y="217" textAnchor="middle" fontSize="9" fill="#94a3b8">Parking principal</text>
