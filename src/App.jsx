@@ -107,8 +107,8 @@ const SCENARIO_5_STEPS = [
     teaching: null,
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 320, y: 132, label: 'F-EN', heading: 270 },
-      { id: 'F-NC', type: 'departure', x: 549, y: 158, label: 'F-NC', heading: 0 },
-      { id: 'F-XN', type: 'circuit', x: 549, y: 174, label: 'F-XN', heading: 0 },
+      { id: 'F-NC', type: 'departure', x: 383, y: 158, label: 'F-NC', heading: 0 },
+      { id: 'F-XN', type: 'circuit', x: 383, y: 174, label: 'F-XN', heading: 0 },
     ],
   },
   {
@@ -121,8 +121,8 @@ const SCENARIO_5_STEPS = [
       "F-NC demande un backtrack pour utiliser toute la piste. On autorise remontée + alignement + ATTENTE — pas encore de décollage car F-EN est encore sur la piste. Strip de F-NC placé sur la barrette piste.",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 250, y: 132, label: 'F-EN', heading: 270 },
-      { id: 'F-NC', type: 'departure', x: 549, y: 158, label: 'F-NC', heading: 0 },
-      { id: 'F-XN', type: 'circuit', x: 549, y: 174, label: 'F-XN', heading: 0 },
+      { id: 'F-NC', type: 'departure', x: 383, y: 158, label: 'F-NC', heading: 0 },
+      { id: 'F-XN', type: 'circuit', x: 383, y: 174, label: 'F-XN', heading: 0 },
     ],
   },
   {
@@ -136,7 +136,7 @@ const SCENARIO_5_STEPS = [
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 160, y: 180, label: 'F-EN', heading: 90 },
       { id: 'F-NC', type: 'departure', x: 615, y: 132, label: 'F-NC', heading: 270 },
-      { id: 'F-XN', type: 'circuit', x: 549, y: 158, label: 'F-XN', heading: 0 },
+      { id: 'F-XN', type: 'circuit', x: 383, y: 158, label: 'F-XN', heading: 0 },
     ],
   },
   {
@@ -151,7 +151,7 @@ const SCENARIO_5_STEPS = [
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 210, y: 245, label: 'F-EN', heading: 0 },
       { id: 'F-NC', type: 'departure', x: 615, y: 132, label: 'F-NC', heading: 270 },
-      { id: 'F-XN', type: 'circuit', x: 549, y: 132, label: 'F-XN', heading: 270 },
+      { id: 'F-XN', type: 'circuit', x: 383, y: 132, label: 'F-XN', heading: 270 },
     ],
   },
   {
@@ -182,7 +182,7 @@ const SCENARIO_5_STEPS = [
       { id: 'F-NC', type: 'departure', x: 540, y: 132, label: 'F-NC', heading: 270 },
       { id: 'F-XN', type: 'circuit', x: 360, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 740, y: 55, label: 'F-VH', heading: 225 },
-      { id: 'SECU', type: 'vehicle', x: 549, y: 195, label: 'SÉCU' },
+      { id: 'SECU', type: 'vehicle', x: 383, y: 195, label: 'SÉCU' },
     ],
   },
   {
@@ -198,7 +198,7 @@ const SCENARIO_5_STEPS = [
       { id: 'F-NC', type: 'departure', x: 615, y: 132, label: 'F-NC', heading: 270 },
       { id: 'F-XN', type: 'circuit', x: 220, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 680, y: 70, label: 'F-VH', heading: 225 },
-      { id: 'SECU', type: 'vehicle', x: 549, y: 158, label: 'SÉCU' },
+      { id: 'SECU', type: 'vehicle', x: 383, y: 158, label: 'SÉCU' },
     ],
   },
   {
@@ -213,7 +213,7 @@ const SCENARIO_5_STEPS = [
       { id: 'F-NC', type: 'departure', x: 500, y: 132, label: 'F-NC', heading: 270 },
       { id: 'F-XN', type: 'circuit', x: 180, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 600, y: 80, label: 'F-VH', heading: 225 },
-      { id: 'SECU', type: 'vehicle', x: 549, y: 158, label: 'SÉCU' },
+      { id: 'SECU', type: 'vehicle', x: 383, y: 158, label: 'SÉCU' },
     ],
   },
   {
@@ -230,7 +230,7 @@ const SCENARIO_5_STEPS = [
       { id: 'F-XN', type: 'circuit', x: 180, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 340, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 370, y: 390, label: 'F-TZ', heading: 0 },
-      { id: 'SECU', type: 'vehicle', x: 549, y: 95, label: 'SÉCU' },
+      { id: 'SECU', type: 'vehicle', x: 383, y: 95, label: 'SÉCU' },
     ],
   },
   {
@@ -352,7 +352,7 @@ const SCENARIO_5_STEPS = [
       { id: 'F-XN', type: 'circuit', x: 95, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
       { id: 'F-TZ', type: 'circuit', x: 460, y: 100, label: 'F-TZ', heading: 90 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
     ],
     showPattern: true,
   },
@@ -368,7 +368,7 @@ const SCENARIO_5_STEPS = [
       { id: 'F-XN', type: 'circuit', x: 80, y: 105, label: 'F-XN', heading: 315 },
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
       { id: 'F-TZ', type: 'circuit', x: 490, y: 100, label: 'F-TZ', heading: 90 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
     ],
   },
   {
@@ -383,7 +383,7 @@ const SCENARIO_5_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 550, y: 100, label: 'F-TZ', heading: 90 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-ML', type: 'transit', x: 370, y: 35, label: 'F-ML', heading: 180 },
     ],
     showPattern: true,
@@ -399,7 +399,7 @@ const SCENARIO_5_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 175, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 570, y: 100, label: 'F-TZ', heading: 90 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-ML', type: 'transit', x: 370, y: 155, label: 'F-ML', heading: 180 },
     ],
     showPattern: true,
@@ -417,7 +417,7 @@ const SCENARIO_5_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 570, y: 100, label: 'F-TZ', heading: 90 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-ML', type: 'transit', x: 370, y: 185, label: 'F-ML', heading: 180 },
       { id: 'F-YH', type: 'arrival', x: 70, y: 375, label: 'F-YH', heading: 45 },
     ],
@@ -433,7 +433,7 @@ const SCENARIO_5_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 280, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 605, y: 132, label: 'F-TZ', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-ML', type: 'transit', x: 370, y: 235, label: 'F-ML', heading: 180 },
       { id: 'F-YH', type: 'arrival', x: 160, y: 355, label: 'F-YH', heading: 45 },
     ],
@@ -450,7 +450,7 @@ const SCENARIO_5_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 320, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 605, y: 132, label: 'F-TZ', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-ML', type: 'transit', x: 370, y: 260, label: 'F-ML', heading: 180 },
       { id: 'F-YH', type: 'arrival', x: 260, y: 305, label: 'F-YH', heading: 45 },
     ],
@@ -466,7 +466,7 @@ const SCENARIO_5_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 380, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 605, y: 132, label: 'F-TZ', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 350, y: 270, label: 'F-YH', heading: 0 },
     ],
   },
@@ -481,7 +481,7 @@ const SCENARIO_5_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 430, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 300, y: 132, label: 'F-TZ', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 370, y: 260, label: 'F-YH', heading: 0 },
     ],
   },
@@ -496,7 +496,7 @@ const SCENARIO_5_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 460, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 175, y: 132, label: 'F-TZ', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 370, y: 260, label: 'F-YH', heading: 0 },
     ],
     showPattern: true,
@@ -512,7 +512,7 @@ const SCENARIO_5_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
       { id: 'F-TZ', type: 'circuit', x: 130, y: 85, label: 'F-TZ', heading: 45 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 175, y: 100, label: 'F-YH', heading: 90 },
     ],
   },
@@ -526,7 +526,7 @@ const SCENARIO_5_STEPS = [
       "F-TZ a accompli son toucher-roulé-décollage et quitte la fréquence pour rentrer à Orléans via Saint-Amour (NE). Strip archivé avec heure de dernier contact.",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 340, y: 178, label: 'F-VH', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 280, y: 100, label: 'F-YH', heading: 90 },
     ],
   },
@@ -540,7 +540,7 @@ const SCENARIO_5_STEPS = [
       "F-VH libère la piste. On lui attribue le poste D1 (parking aéroclub). Note Livret 2 : le parking D n'est pas visible depuis la tour — si le pilote avait demandé lui-même « parking D », on n'aurait pas à lui désigner de poste spécifique.",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 250, y: 178, label: 'F-VH', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 380, y: 100, label: 'F-YH', heading: 90 },
     ],
     showPattern: true,
@@ -554,7 +554,7 @@ const SCENARIO_5_STEPS = [
     teaching:
       "Verrou de piste piste 27 pour une remontée : la piste est verrouillée dès que l'arrivée passe le travers tour en vent arrière. F-YH est en vent arrière et a dépassé le travers tour → on maintient F-EP au point d'attente avec l'info trafic.",
     aircraft: [
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 430, y: 100, label: 'F-YH', heading: 90 },
     ],
     showPattern: true,
@@ -568,7 +568,7 @@ const SCENARIO_5_STEPS = [
     teaching:
       "F-YH est seul dans le circuit. Numéro 1, rappel en finale. F-EP reste au point d'attente — le verrou reste actif tant que F-YH n'a pas dégagé la piste.",
     aircraft: [
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 480, y: 100, label: 'F-YH', heading: 90 },
     ],
     showPattern: true,
@@ -582,7 +582,7 @@ const SCENARIO_5_STEPS = [
     teaching:
       "F-YH est en finale. Piste libre. Atterrissage autorisé. F-EP reste maintenu — on attend que F-YH atterrisse et dégage la piste avant d'autoriser la remontée.",
     aircraft: [
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 605, y: 132, label: 'F-YH', heading: 270 },
     ],
   },
@@ -595,7 +595,7 @@ const SCENARIO_5_STEPS = [
     teaching:
       "F-YH a libéré la piste — poste C3 attribué (C172 au parking principal). La piste est maintenant disponible pour F-EP. On peut enchaîner immédiatement avec la clairance de remontée.",
     aircraft: [
-      { id: 'F-EP', type: 'departure', x: 549, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 280, y: 178, label: 'F-YH', heading: 270 },
     ],
   },
@@ -662,9 +662,9 @@ function AirportMap({ aircraft = [], showPattern = false, showSaintAmour = false
         <line key={'r' + x} x1={x} y1="122" x2={x} y2="140" stroke="#cbd5e1" strokeWidth="0.5" />
       ))}
 
-      <rect x="546" y="142" width="6" height="38" fill="#334155" />
-      <line x1="540" y1="148" x2="558" y2="148" stroke="#ef4444" strokeWidth="1.5" />
-      <text x="565" y="158" textAnchor="start" fontSize="8" fill="#94a3b8">H2</text>
+      <rect x="380" y="142" width="6" height="38" fill="#334155" />
+      <line x1="374" y1="148" x2="392" y2="148" stroke="#ef4444" strokeWidth="1.5" />
+      <text x="397" y="158" textAnchor="start" fontSize="8" fill="#94a3b8">H2</text>
 
       <rect x="107" y="142" width="13" height="58" fill="#334155" />
       <text x="95" y="165" textAnchor="end" fontSize="8" fill="#94a3b8">W1</text>
@@ -690,8 +690,8 @@ function AirportMap({ aircraft = [], showPattern = false, showSaintAmour = false
       <circle cx="370" cy="265" r="4" fill="#475569" />
       <text x="382" y="269" textAnchor="start" fontSize="8" fill="#94a3b8">TWR</text>
 
-      <rect x="540" y="85" width="50" height="22" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="2" />
-      <text x="565" y="100" textAnchor="middle" fontSize="8" fill="#94a3b8">Local tech.</text>
+      <rect x="374" y="85" width="50" height="22" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="2" />
+      <text x="399" y="100" textAnchor="middle" fontSize="8" fill="#94a3b8">Local tech.</text>
 
       {aircraft.map((ac) => (
         <g
