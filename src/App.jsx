@@ -417,9 +417,9 @@ const SCENARIO_5_STEPS = [
     time: '08:38:00',
     speaker: { role: 'PILOTE', callsign: 'F-NC', color: 'departure' },
     message: 'AURIOL Tower, FGANC, DA42, stand A2, to TOUSSUS-LE-NOBLE via Saint-Amour, request taxi',
-    expectedResponse: "F-NC, piste 27 en service, vent 250°/10 kt, QNH 1020, roulez point d'attente piste 27",
+    expectedResponse: "F-NC, runway 27 in use, wind 250°/10 kt, QNH 1020, taxi holding point runway 27",
     teaching:
-      "Appel en anglais — on répond toujours en français à LFVA (langue de travail). Clairance de roulage standard : piste en service, vent, QNH, instruction. Strip rouge (départ). FGANC part vers LFPN via Saint-Amour (NE).",
+      "Appel en anglais — on répond en anglais. Clairance de roulage standard : piste en service, vent, QNH, instruction. Strip rouge (départ). FGANC part vers LFPN via Saint-Amour (NE).",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 700, y: 132, label: 'F-EN', heading: 270 },
       { id: 'F-NC', type: 'departure', x: 350, y: 245, label: 'F-NC', heading: 0 },
@@ -473,8 +473,8 @@ const SCENARIO_5_STEPS = [
     id: 7,
     time: '08:42:30',
     speaker: { role: 'PILOTE', callsign: 'F-NC', color: 'departure' },
-    message: 'F-NC, prêt, demande remontée piste 27',
-    expectedResponse: 'F-NC, remontez piste 27, alignez-vous et attendez',
+    message: 'F-NC, ready, request backtrack runway 27',
+    expectedResponse: 'F-NC, backtrack runway 27, line up and wait',
     teaching:
       "F-NC demande un backtrack pour utiliser toute la piste. On autorise remontée + alignement + ATTENTE — pas encore de décollage car F-EN est encore sur la piste. Strip de F-NC placé sur la barrette piste.",
     aircraft: [
@@ -501,11 +501,11 @@ const SCENARIO_5_STEPS = [
     id: 9,
     time: '08:43:30',
     speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'circuit' },
-    message: 'F-XN, ready, request departure from intersection',
+    message: "F-XN, prêt, demande départ de l'intersection",
     expectedResponse:
       'F-XN, alignez-vous, piste 27 autorisé décollage, vent 250°/10 kt, rappelez vent arrière main droite piste 27',
     teaching:
-      "F-XN demande le départ depuis l'intersection H2 (pas de remontée). F-NC est aligné au seuil 27 et attend. F-EN a libéré la piste → pas de conflit. F-XN part en premier depuis H2. Le rappel vent arrière est obligatoire pour un tour de piste. On répond en français même si le pilote parle anglais.",
+      "F-XN demande le départ depuis l'intersection H2 (pas de remontée). F-NC est aligné au seuil 27 et attend. F-EN a libéré la piste → pas de conflit. F-XN part en premier depuis H2. Le rappel vent arrière est obligatoire pour un tour de piste.",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 210, y: 245, label: 'F-EN', heading: 0 },
       { id: 'F-NC', type: 'departure', x: 615, y: 132, label: 'F-NC', heading: 270 },
@@ -547,9 +547,9 @@ const SCENARIO_5_STEPS = [
     id: 12,
     time: '08:45:00',
     speaker: { role: 'PILOTE', callsign: 'F-NC', color: 'departure' },
-    message: 'F-NC, prêt',
+    message: 'F-NC, ready',
     expectedResponse:
-      'F-NC, trafic au départ vers vent arrière, DR400 et trafic de Julienas vers vent arrière, Cessna 172, piste 27 autorisé décollage, vent 250°/10 kt',
+      'F-NC, departure traffic joining downwind, DR400, and traffic from Julienas joining downwind, Cessna 172, runway 27 cleared for takeoff, wind 250°/10 kt',
     teaching:
       "F-XN (DR400) est en montée initiale vers vent arrière, et F-VH (C172 depuis Julienas) rejoint le vent arrière — deux trafics vers la même zone. On informe F-NC des deux avant la clairance. Ordre : infos trafic → autorisation → vent.",
     aircraft: [
@@ -581,9 +581,9 @@ const SCENARIO_5_STEPS = [
     message:
       'AURIOL Tower, FMATZ, Transall, from ORLEANS via Morgon, airfield estimated in 5 minutes, for a touch and go, then back to ORLEANS via Saint-Amour',
     expectedResponse:
-      'F-TZ, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, rappelez vertical tour',
+      'F-TZ, runway 27 in use, wind 250°/10 kt, QNH 1020, join right hand downwind runway 27 via overhead tower, report overhead tower',
     teaching:
-      "F-TZ arrive depuis Morgon (Sud) → vertical tour obligatoire. Le QNH est donné pour le réglage altimétrique. Strip rouge+bleu (toucher suivi d'un retour à Orléans = tour de piste unique). On répond en français.",
+      "F-TZ arrive depuis Morgon (Sud) → vertical tour obligatoire. Le QNH est donné pour le réglage altimétrique. Strip rouge+bleu (toucher suivi d'un retour à Orléans = tour de piste unique). Pilote anglais — on répond en anglais.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 180, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 340, y: 100, label: 'F-VH', heading: 90 },
@@ -611,9 +611,9 @@ const SCENARIO_5_STEPS = [
     id: 16,
     time: '08:47:00',
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
-    message: 'F-TZ, vertical tour',
+    message: 'F-TZ, overhead tower',
     expectedResponse:
-      'F-TZ, trafic de Julienas vers vent arrière, Cessna 172 et trafic au départ vers Saint-Amour, DA 42, rappelez vent arrière',
+      'F-TZ, traffic from Julienas joining downwind, Cessna 172, and departure traffic towards Saint-Amour, DA42, report downwind',
     teaching:
       "F-TZ passe le vertical tour. On l'informe de F-VH (Cessna 172 de Julienas, en vent arrière) et de F-NC (DA42 au départ vers Saint-Amour, encore sur fréquence). Deux informations dans un seul message. On demande le rappel vent arrière.",
     aircraft: [
@@ -642,8 +642,8 @@ const SCENARIO_5_STEPS = [
     id: 18,
     time: '08:48:00',
     speaker: { role: 'PILOTE', callsign: 'F-NC', color: 'departure' },
-    message: 'F-NC, leaving frequency, good bye',
-    expectedResponse: 'F-NC, roger, au revoir',
+    message: 'F-NC, leaving frequency, goodbye',
+    expectedResponse: 'F-NC, roger, goodbye',
     teaching:
       "F-NC quitte la fréquence pour rejoindre Toussus-le-Noble. On accuse réception sobrement. On note l'heure de dernier contact sur le strip puis on l'archive.",
     aircraft: [
@@ -702,8 +702,8 @@ const SCENARIO_5_STEPS = [
     id: 22,
     time: '08:50:30',
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
-    message: 'F-TZ, vent arrière main droite piste 27',
-    expectedResponse: 'F-TZ, numéro 2, suivez un Cessna 172 en courte finale, rappelez finale',
+    message: 'F-TZ, right hand downwind runway 27',
+    expectedResponse: 'F-TZ, number 2, follow a Cessna 172 on short final, report final',
     teaching:
       "F-TZ (Transall) entre en vent arrière. F-VH (Cessna 172) est en courte finale. On séquence F-TZ en n°2 derrière F-VH et on demande le rappel finale. Attention : F-XN est encore sur la piste — la situation va évoluer.",
     aircraft: [
@@ -735,7 +735,7 @@ const SCENARIO_5_STEPS = [
     speaker: { role: 'PILOTE', callsign: 'F-ML', color: 'transit' },
     message:
       'AURIOL Tower, FGHML, Tobago, transit from DIJON to NICE via North, 3000 ft QNH, over airfield estimated in 5 minutes, exit via Fleurie',
-    expectedResponse: 'F-ML, piste 27 en service, QNH 1020, rappelez vertical aérodrome',
+    expectedResponse: 'F-ML, runway 27 in use, QNH 1020, report overhead airfield',
     teaching:
       "Transit VFR : pas de clairance d'atterrissage. On donne la piste en service et le QNH (altimétrie). Pas d'instruction de vent — le transit ne se pose pas. Le transit à 3000 ft QNH ne conflifte pas avec le circuit (1400 ft QNH). On demande le rappel vertical aérodrome.",
     aircraft: [
@@ -771,7 +771,7 @@ const SCENARIO_5_STEPS = [
     expectedResponse:
       'F-YH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, rappelez vertical tour — F-YH, trafic du Nord vers vertical, Tobago',
     teaching:
-      "F-YH arrive du Sud-Ouest → vertical tour obligatoire. F-ML (transit Tobago, venant du Nord) converge également vers le vertical aérodrome : info trafic réciproque obligatoire dans les deux sens. Le message peut être scindé en deux (livret 6). Il faut aussi informer F-ML : « F-ML, trafic du Sud-Ouest vers vertical, Cessna 172 ».",
+      "F-YH arrive du Sud-Ouest → vertical tour obligatoire. F-ML (transit Tobago, venant du Nord) converge également vers le vertical aérodrome : info trafic réciproque obligatoire dans les deux sens. Le message peut être scindé en deux (livret 6). Il faut aussi informer F-ML (en anglais) : « F-ML, traffic from the South-West joining overhead, Cessna 172 ».",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 570, y: 100, label: 'F-TZ', heading: 90 },
@@ -801,8 +801,8 @@ const SCENARIO_5_STEPS = [
     id: 28,
     time: '08:53:00',
     speaker: { role: 'PILOTE', callsign: 'F-ML', color: 'transit' },
-    message: 'F-ML, vertical aérodrome',
-    expectedResponse: 'F-ML, rappelez Fleurie',
+    message: 'F-ML, overhead airfield',
+    expectedResponse: 'F-ML, report Fleurie',
     teaching:
       "F-ML passe le vertical aérodrome à 3000 ft. On lui demande de rappeler en passant à Fleurie (son prochain point VFR sur la route vers Nice). Ce report marque la fin de sa traversée de la zone.",
     aircraft: [
@@ -817,8 +817,8 @@ const SCENARIO_5_STEPS = [
     id: 29,
     time: '08:53:30',
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
-    message: 'F-TZ, finale piste 27 pour un toucher',
-    expectedResponse: 'F-TZ, piste 27 autorisé toucher, vent 250°/10 kt',
+    message: 'F-TZ, final runway 27 for a touch and go',
+    expectedResponse: 'F-TZ, runway 27 cleared touch and go, wind 250°/10 kt',
     teaching:
       "Piste libre. On autorise le toucher du Transall. On note précisément l'heure du lever des roues (hh:mm:ss) en anticipation d'un possible délai de turbulence de sillage : F-VH (C172, cat. L) suit F-TZ (Transall, cat. M) → délai minimum 2 minutes si F-VH décolle après F-TZ. Pour l'atterrissage, vérifier que la piste est dégagée de la turbulence.",
     aircraft: [
@@ -832,8 +832,8 @@ const SCENARIO_5_STEPS = [
     id: 30,
     time: '08:54:00',
     speaker: { role: 'PILOTE', callsign: 'F-ML', color: 'transit' },
-    message: 'F-ML, Fleurie, je quitte la fréquence',
-    expectedResponse: 'F-ML, roger, au revoir',
+    message: 'F-ML, Fleurie, leaving frequency',
+    expectedResponse: 'F-ML, roger, goodbye',
     teaching:
       "F-ML passe Fleurie et quitte la fréquence pour contacter l'organisme suivant. Accusé de réception, heure de dernier contact notée, strip archivé.",
     aircraft: [
@@ -878,8 +878,8 @@ const SCENARIO_5_STEPS = [
     id: 33,
     time: '08:55:30',
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
-    message: 'F-TZ, je quitte la fréquence, retour Orléans via Saint-Amour',
-    expectedResponse: 'F-TZ, roger, au revoir',
+    message: 'F-TZ, leaving frequency, back to Orléans via Saint-Amour',
+    expectedResponse: 'F-TZ, roger, goodbye',
     teaching:
       "F-TZ a accompli son toucher-roulé-décollage et quitte la fréquence pour rentrer à Orléans via Saint-Amour (NE). Strip archivé avec heure de dernier contact.",
     aircraft: [
@@ -907,7 +907,7 @@ const SCENARIO_5_STEPS = [
     id: 35,
     time: '08:57:00',
     speaker: { role: 'PILOTE', callsign: 'F-EP', color: 'departure' },
-    message: 'F-EP, ready for departure, request backtrack runway 27',
+    message: 'F-EP, prêt, demande remontée piste 27',
     expectedResponse: "F-EP, maintenez avant point d'attente piste 27, Cessna 172 en vent arrière",
     teaching:
       "Verrou de piste piste 27 pour une remontée : la piste est verrouillée dès que l'arrivée passe le travers tour en vent arrière. F-YH est en vent arrière et a dépassé le travers tour → on maintient F-EP au point d'attente avec l'info trafic.",
