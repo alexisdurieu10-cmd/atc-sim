@@ -142,16 +142,15 @@ const SCENARIO_5_STEPS = [
   {
     id: 9,
     time: '08:43:30',
-    speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'circuit' },
-    message: "F-XN, prêt, demande départ de l'intersection",
-    expectedResponse:
-      'F-XN, alignez-vous, piste 27 autorisé décollage, vent 250°/10 kt, rappelez vent arrière main droite piste 27',
+    speaker: { role: 'PILOTE', callsign: 'F-NC', color: 'departure' },
+    message: 'F-NC, ready',
+    expectedResponse: 'F-NC, runway 27 cleared for takeoff, wind 250°/10 kt',
     teaching:
-      "F-XN demande le départ depuis l'intersection H2 (pas de remontée). F-NC est aligné au seuil 27 et attend. F-EN a libéré la piste → pas de conflit. F-XN part en premier depuis H2. Le rappel vent arrière est obligatoire pour un tour de piste.",
+      "F-EN a libéré la piste. F-NC est aligné au seuil 27 après backtrack. Piste libre, aucun trafic en approche → clairance décollage. F-XN attend au point d'attente H2.",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 210, y: 245, label: 'F-EN', heading: 0 },
       { id: 'F-NC', type: 'departure', x: 615, y: 132, label: 'F-NC', heading: 270 },
-      { id: 'F-XN', type: 'circuit', x: 383, y: 132, label: 'F-XN', heading: 270 },
+      { id: 'F-XN', type: 'circuit', x: 383, y: 158, label: 'F-XN', heading: 0 },
     ],
   },
   {
@@ -161,10 +160,10 @@ const SCENARIO_5_STEPS = [
     message: 'AURIOL Tour, SÉCURITÉ, demande à procéder du SSLIA au local technique',
     expectedResponse: "SÉCURITÉ, procédez point d'attente piste 27",
     teaching:
-      "Piste 27 en service → « point d'attente piste 27 ». Si piste 09 en service, on dirait « point d'attente intersection H2 » (pour ne citer que la piste en service et éviter toute confusion). F-XN décolle en ce moment — SÉCURITÉ doit attendre au point d'attente avant de traverser.",
+      "Piste 27 en service → « point d'attente piste 27 ». F-NC décolle en ce moment — piste occupée. F-XN va démarrer sa remontée une fois la piste libre. SÉCURITÉ doit attendre.",
     aircraft: [
-      { id: 'F-NC', type: 'departure', x: 615, y: 132, label: 'F-NC', heading: 270 },
-      { id: 'F-XN', type: 'circuit', x: 480, y: 132, label: 'F-XN', heading: 270 },
+      { id: 'F-NC', type: 'departure', x: 480, y: 132, label: 'F-NC', heading: 270 },
+      { id: 'F-XN', type: 'circuit', x: 383, y: 158, label: 'F-XN', heading: 0 },
       { id: 'SECU', type: 'vehicle', x: 515, y: 215, label: 'SÉCU' },
     ],
   },
@@ -175,12 +174,12 @@ const SCENARIO_5_STEPS = [
     message:
       'AURIOL Tour, FNMVH, Cessna 172, provenance RENNES via Julienas, aérodrome estimé dans 5 minutes, pour atterrissage',
     expectedResponse:
-      'F-VH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27, trafic au départ vers vent arrière, DR400, rappelez vent arrière',
+      'F-VH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27, trafic au départ vers vent arrière, DA42, rappelez vent arrière',
     teaching:
-      "F-VH arrive de Julienas (Nord) → intégration directe en vent arrière main droite, pas de vertical tour. On informe du trafic (DR400 = F-XN en montée initiale vers vent arrière). Strip bleu (arrivée).",
+      "F-VH arrive de Julienas (Nord) → intégration directe en vent arrière main droite, pas de vertical tour. On informe du trafic (DA42 = F-NC en montée initiale). F-XN est en remontée sur la piste. Strip bleu (arrivée).",
     aircraft: [
-      { id: 'F-NC', type: 'departure', x: 540, y: 132, label: 'F-NC', heading: 270 },
-      { id: 'F-XN', type: 'circuit', x: 360, y: 132, label: 'F-XN', heading: 270 },
+      { id: 'F-NC', type: 'departure', x: 40, y: 110, label: 'F-NC', heading: 270 },
+      { id: 'F-XN', type: 'circuit', x: 540, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 740, y: 55, label: 'F-VH', heading: 225 },
       { id: 'SECU', type: 'vehicle', x: 440, y: 180, label: 'SÉCU' },
     ],
@@ -188,15 +187,15 @@ const SCENARIO_5_STEPS = [
   {
     id: 12,
     time: '08:45:00',
-    speaker: { role: 'PILOTE', callsign: 'F-NC', color: 'departure' },
-    message: 'F-NC, ready',
+    speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'circuit' },
+    message: 'F-XN, prêt',
     expectedResponse:
-      'F-NC, departure traffic joining downwind, DR400, and traffic from Julienas joining downwind, Cessna 172, runway 27 cleared for takeoff, wind 250°/10 kt',
+      'F-XN, trafic au départ vers vent arrière, DA42, et trafic de Julienas vers vent arrière, Cessna 172, piste 27 autorisé décollage, vent 250°/10 kt, rappelez vent arrière main droite piste 27',
     teaching:
-      "F-XN (DR400) est en montée initiale vers vent arrière, et F-VH (C172 depuis Julienas) rejoint le vent arrière — deux trafics vers la même zone. On informe F-NC des deux avant la clairance. Ordre : infos trafic → autorisation → vent.",
+      "F-NC (DA42) est en montée initiale vers vent arrière, et F-VH (C172 depuis Julienas) rejoint le vent arrière — deux trafics. On informe F-XN des deux avant la clairance. Ordre : infos trafic → autorisation → vent.",
     aircraft: [
-      { id: 'F-NC', type: 'departure', x: 615, y: 132, label: 'F-NC', heading: 270 },
-      { id: 'F-XN', type: 'circuit', x: 220, y: 132, label: 'F-XN', heading: 270 },
+      { id: 'F-NC', type: 'departure', x: 150, y: 100, label: 'F-NC', heading: 90 },
+      { id: 'F-XN', type: 'circuit', x: 615, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 680, y: 70, label: 'F-VH', heading: 225 },
       { id: 'SECU', type: 'vehicle', x: 383, y: 158, label: 'SÉCU' },
     ],
@@ -208,7 +207,7 @@ const SCENARIO_5_STEPS = [
     message: 'SÉCURITÉ, demande traversée piste 27',
     expectedResponse: 'SÉCURITÉ, traversez piste 27',
     teaching:
-      "F-NC vient de décoller et a dépassé l'extrémité de piste — piste libre. F-XN est loin en montée initiale. Pas de conflit : traversée autorisée. La priorité avait été donnée au décollage de F-NC avant la traversée de SÉCURITÉ.",
+      "F-XN vient de décoller et a dépassé l'extrémité de piste — piste libre. F-NC est en vent arrière. Pas de conflit : traversée autorisée.",
     aircraft: [
       { id: 'F-NC', type: 'departure', x: 40, y: 110, label: 'F-NC', heading: 270 },
       { id: 'F-XN', type: 'circuit', x: 180, y: 132, label: 'F-XN', heading: 270 },
