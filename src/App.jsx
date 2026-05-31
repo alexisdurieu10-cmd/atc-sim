@@ -192,7 +192,7 @@ const SCENARIO_5_STEPS = [
     expectedResponse:
       'F-XN, trafic au départ vers vent arrière, DA42, et trafic de Julienas vers vent arrière, Cessna 172, piste 27 autorisé décollage, vent 250°/10 kt, rappelez vent arrière main droite piste 27',
     teaching:
-      "F-NC (DA42) est en montée initiale vers vent arrière, et F-VH (C172 depuis Julienas) rejoint le vent arrière — deux trafics. On informe F-XN des deux avant la clairance. Ordre : infos trafic → autorisation → vent.",
+      "F-NC (DA42) est en montée initiale vers vent arrière, et F-VH (C172 depuis Julienas) rejoint le vent arrière — deux trafics. On informe F-XN des deux avant la clairance. Ordre : infos trafic → autorisation → vent. Réciprocité : informer F-VH du départ de F-XN (DR400 en tour de piste) : « F-VH, trafic au départ, DR400, tour de piste ».",
     aircraft: [
       { id: 'F-NC', type: 'departure', x: 150, y: 100, label: 'F-NC', heading: 90 },
       { id: 'F-XN', type: 'circuit', x: 615, y: 132, label: 'F-XN', heading: 270 },
@@ -256,7 +256,7 @@ const SCENARIO_5_STEPS = [
     expectedResponse:
       'F-TZ, traffic in downwind DR400, traffic from Julienas joining downwind, Cessna 172, report downwind',
     teaching:
-      "F-TZ passe le vertical tour. On l'informe de F-XN (DR400, déjà en vent arrière devant lui — le plus important) et de F-VH (Cessna 172 de Julienas, qui intègre le vent arrière). F-NC (DA42 au départ) est encore sur fréquence mais n'affecte pas le circuit. Rappel vent arrière.",
+      "F-TZ passe le vertical tour. On l'informe de F-XN (DR400, déjà en vent arrière devant lui — le plus important) et de F-VH (Cessna 172 de Julienas, qui intègre le vent arrière). Réciprocité : informer F-XN et F-VH de l'intégration du Transall derrière eux : « F-XN / F-VH, trafic en vent arrière, Transall ».",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 350, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
@@ -362,7 +362,7 @@ const SCENARIO_5_STEPS = [
     message: 'F-VH, courte finale',
     expectedResponse: 'F-VH, remettez les gaz, rappelez vent arrière piste 27',
     teaching:
-      "F-XN n'a pas encore franchi l'extrémité de piste — piste toujours occupée. On commande la remise de gaz. F-VH perd son numéro d'ordre au passage du seuil de piste. L'heure de remise de gaz est notée avec une flèche sur le strip. F-TZ devient de facto n°1.",
+      "F-XN n'a pas encore franchi l'extrémité de piste — piste toujours occupée. On commande la remise de gaz. F-VH perd son numéro d'ordre au passage du seuil de piste. L'heure de remise de gaz est notée avec une flèche sur le strip. F-TZ devient de facto n°1 : informer F-TZ immédiatement : « F-TZ, Cessna 172 remise de gaz, you are number 1, report final ».",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 80, y: 105, label: 'F-XN', heading: 315 },
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
