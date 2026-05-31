@@ -210,10 +210,10 @@ const SCENARIO_5_STEPS = [
     teaching:
       "F-NC vient de décoller et a dépassé l'extrémité de piste — piste libre. F-XN est loin en montée initiale. Pas de conflit : traversée autorisée. La priorité avait été donnée au décollage de F-NC avant la traversée de SÉCURITÉ.",
     aircraft: [
-      { id: 'F-NC', type: 'departure', x: 500, y: 132, label: 'F-NC', heading: 270 },
+      { id: 'F-NC', type: 'departure', x: 40, y: 110, label: 'F-NC', heading: 270 },
       { id: 'F-XN', type: 'circuit', x: 180, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 600, y: 80, label: 'F-VH', heading: 225 },
-      { id: 'SECU', type: 'vehicle', x: 383, y: 158, label: 'SÉCU' },
+      { id: 'SECU', type: 'vehicle', x: 383, y: 170, label: 'SÉCU' },
     ],
   },
   {
@@ -228,7 +228,7 @@ const SCENARIO_5_STEPS = [
       "F-TZ arrive depuis Morgon (Sud) → vertical tour obligatoire. Le QNH est donné pour le réglage altimétrique. Strip rouge+bleu (toucher suivi d'un retour à Orléans = tour de piste unique). Pilote anglais — on répond en anglais.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 180, y: 100, label: 'F-XN', heading: 90 },
-      { id: 'F-VH', type: 'arrival', x: 340, y: 100, label: 'F-VH', heading: 90 },
+      { id: 'F-VH', type: 'arrival', x: 680, y: 55, label: 'F-VH', heading: 225 },
       { id: 'F-TZ', type: 'circuit', x: 370, y: 390, label: 'F-TZ', heading: 0 },
       { id: 'SECU', type: 'vehicle', x: 383, y: 95, label: 'SÉCU' },
     ],
@@ -244,7 +244,7 @@ const SCENARIO_5_STEPS = [
       "F-XN est seul dans le circuit (F-TZ est encore en route). F-VH (Cessna 172 de Julienas) arrive vers le vent arrière — information de trafic donnée à F-XN. Numéro 1, rappel en finale.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 260, y: 100, label: 'F-XN', heading: 90 },
-      { id: 'F-VH', type: 'arrival', x: 380, y: 100, label: 'F-VH', heading: 90 },
+      { id: 'F-VH', type: 'arrival', x: 560, y: 55, label: 'F-VH', heading: 225 },
       { id: 'F-TZ', type: 'circuit', x: 370, y: 320, label: 'F-TZ', heading: 0 },
     ],
     showPattern: true,
@@ -260,7 +260,7 @@ const SCENARIO_5_STEPS = [
       "F-TZ passe le vertical tour. On l'informe de F-VH (Cessna 172 de Julienas, en vent arrière) et de F-NC (DA42 au départ vers Saint-Amour, encore sur fréquence). Deux informations dans un seul message. On demande le rappel vent arrière.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 350, y: 100, label: 'F-XN', heading: 90 },
-      { id: 'F-VH', type: 'arrival', x: 450, y: 100, label: 'F-VH', heading: 90 },
+      { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 370, y: 260, label: 'F-TZ', heading: 0 },
     ],
     showPattern: true,
