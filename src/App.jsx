@@ -666,6 +666,9 @@ function AirportMap({ aircraft = [], showPattern = false, showSaintAmour = false
       <line x1="540" y1="148" x2="558" y2="148" stroke="#ef4444" strokeWidth="1.5" />
       <text x="565" y="158" textAnchor="start" fontSize="8" fill="#94a3b8">H2</text>
 
+      <rect x="107" y="142" width="13" height="36" fill="#334155" />
+      <text x="95" y="165" textAnchor="end" fontSize="8" fill="#94a3b8">W1</text>
+
       <rect x="120" y="178" width="430" height="4" fill="#334155" />
 
       <rect x="280" y="200" width="180" height="48" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="3" />
