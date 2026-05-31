@@ -426,9 +426,9 @@ const SCENARIO_5_STEPS = [
     time: '08:52:50',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, vent arrière main droite piste 27',
-    expectedResponse: 'F-VH, numéro 2, suivez un Transall en finale, rappelez finale',
+    expectedResponse: 'F-VH, numéro 2, suivez un Transall en finale, trafic du Sud-Ouest vers vertical, Cessna 172, rappelez finale',
     teaching:
-      "F-VH a effectué sa remise de gaz et a rejoint le vent arrière. F-TZ (Transall) est en finale. On séquence F-VH en n°2 derrière le Transall. Le transit F-ML (3000 ft) ne conflifte pas avec le circuit (1400 ft).",
+      "F-VH a effectué sa remise de gaz et a rejoint le vent arrière. F-TZ (Transall) est en finale → F-VH est n°2. F-YH (Cessna 172 depuis le Sud-Ouest) converge vers le vertical : info trafic donnée à F-VH pour qu'elle sache qu'un avion intégrera derrière elle.",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 280, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 605, y: 132, label: 'F-TZ', heading: 270 },
@@ -489,9 +489,9 @@ const SCENARIO_5_STEPS = [
     time: '08:54:20',
     speaker: { role: 'PILOTE', callsign: 'F-YH', color: 'arrival' },
     message: 'F-YH, vertical tour',
-    expectedResponse: 'F-YH, rappelez vent arrière',
+    expectedResponse: 'F-YH, trafic en vent arrière, Cessna 172, rappelez vent arrière',
     teaching:
-      "F-YH passe le vertical tour après son arrivée par le Sud-Ouest. Il va rejoindre le vent arrière main droite piste 27. On demande simplement le rappel vent arrière — il sera séquencé derrière F-VH.",
+      "F-YH passe le vertical tour. F-VH (Cessna 172) est en vent arrière devant lui — info trafic obligatoire pour le séquencement à venir. F-YH sera numéro 2 derrière F-VH ; le numéro sera donné au rappel vent arrière.",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 460, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 175, y: 132, label: 'F-TZ', heading: 270 },
