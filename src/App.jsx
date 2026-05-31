@@ -182,7 +182,7 @@ const SCENARIO_5_STEPS = [
       { id: 'F-NC', type: 'departure', x: 540, y: 132, label: 'F-NC', heading: 270 },
       { id: 'F-XN', type: 'circuit', x: 360, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 740, y: 55, label: 'F-VH', heading: 225 },
-      { id: 'SECU', type: 'vehicle', x: 383, y: 195, label: 'SÉCU' },
+      { id: 'SECU', type: 'vehicle', x: 440, y: 180, label: 'SÉCU' },
     ],
   },
   {
