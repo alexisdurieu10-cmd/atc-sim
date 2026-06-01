@@ -25,7 +25,7 @@ const COLORS = {
   vehicle: '#f59e0b',
 };
 
-const SCENARIO_5_STEPS = [
+const SCENARIO_1_STEPS = [
   {
     id: 1,
     time: '08:20:00',
@@ -190,9 +190,9 @@ const SCENARIO_5_STEPS = [
     speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'circuit' },
     message: 'F-XN, prêt',
     expectedResponse:
-      'F-XN, trafic au départ vers vent arrière, DA42, et trafic de Julienas vers vent arrière, Cessna 172, piste 27 autorisé décollage, vent 250°/10 kt, rappelez vent arrière main droite piste 27',
+      'F-XN, trafic au départ vers vent arrière, DA42, piste 27 autorisé décollage, vent 250°/10 kt, rappelez vent arrière main droite piste 27',
     teaching:
-      "F-NC (DA42) est en montée initiale vers vent arrière, et F-VH (C172 depuis Julienas) rejoint le vent arrière — deux trafics. On informe F-XN des deux avant la clairance. Ordre : infos trafic → autorisation → vent. Réciprocité : informer F-VH du départ de F-XN (DR400 en tour de piste) : « F-VH, trafic au départ, DR400, tour de piste ».",
+      "F-NC (DA42) est en montée initiale vers vent arrière — on l'indique à F-XN avant la clairance. Ordre : info trafic → autorisation → vent.",
     aircraft: [
       { id: 'F-NC', type: 'departure', x: 150, y: 100, label: 'F-NC', heading: 90 },
       { id: 'F-XN', type: 'circuit', x: 615, y: 132, label: 'F-XN', heading: 270 },
@@ -222,9 +222,9 @@ const SCENARIO_5_STEPS = [
     message:
       'AURIOL Tower, FMATZ, Transall, from ORLEANS via Morgon, airfield estimated in 5 minutes, for a touch and go, then back to ORLEANS via Saint-Amour',
     expectedResponse:
-      'F-TZ, runway 27 in use, wind 250°/10 kt, QNH 1020, join right hand downwind runway 27 via overhead tower, traffic in downwind DR400, arrival from Julienas Cessna 172, report overhead tower',
+      'F-TZ, runway 27 in use, wind 250°/10 kt, QNH 1020, join right hand downwind runway 27 via overhead tower, report overhead tower',
     teaching:
-      "F-TZ arrive depuis Morgon (Sud) → vertical tour obligatoire. À l'intégration, informer F-TZ des trafics : F-XN (DR400) déjà en vent arrière, et F-VH (Cessna 172 de Julienas) qui rejoint le vent arrière. Le QNH est donné pour le réglage altimétrique. Pilote anglais — on répond en anglais.",
+      "F-TZ arrive depuis Morgon (Sud) → vertical tour obligatoire. Le QNH est donné pour le réglage altimétrique. Strip rouge+bleu (toucher suivi d'un retour à Orléans). Pilote anglais — on répond en anglais.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 180, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 680, y: 55, label: 'F-VH', heading: 225 },
@@ -238,9 +238,9 @@ const SCENARIO_5_STEPS = [
     speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'circuit' },
     message: 'F-XN, vent arrière main droite piste 27',
     expectedResponse:
-      "F-XN, numéro 1, rappelez finale piste 27, trafic de Julienas vers vent arrière, Cessna 172",
+      "F-XN, numéro 1, rappelez finale piste 27",
     teaching:
-      "F-XN est seul dans le circuit (F-TZ est encore en route). F-VH (Cessna 172 de Julienas) arrive vers le vent arrière — information de trafic donnée à F-XN. Numéro 1, rappel en finale.",
+      "F-XN est seul dans le circuit. Numéro 1, rappel en finale.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 260, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 560, y: 55, label: 'F-VH', heading: 225 },
@@ -254,9 +254,9 @@ const SCENARIO_5_STEPS = [
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
     message: 'F-TZ, overhead tower',
     expectedResponse:
-      'F-TZ, traffic in downwind DR400, traffic from Julienas joining downwind, Cessna 172, report downwind',
+      'F-TZ, report downwind',
     teaching:
-      "F-TZ passe le vertical tour. On l'informe de F-XN (DR400, déjà en vent arrière devant lui — le plus important) et de F-VH (Cessna 172 de Julienas, qui intègre le vent arrière). Réciprocité : informer F-XN et F-VH de l'intégration du Transall derrière eux : « F-XN / F-VH, trafic en vent arrière, Transall ».",
+      "F-TZ passe le vertical tour. On demande le rappel vent arrière — F-TZ sera séquencé à son rappel.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 350, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
@@ -376,9 +376,9 @@ const SCENARIO_5_STEPS = [
     speaker: { role: 'PILOTE', callsign: 'F-ML', color: 'transit' },
     message:
       'AURIOL Tower, FGHML, Tobago, transit from DIJON to NICE via North, 3000 ft QNH, over airfield estimated in 5 minutes, exit via Fleurie',
-    expectedResponse: 'F-ML, runway 27 in use, QNH 1020, traffic in circuit Transall and Cessna 172, report overhead airfield',
+    expectedResponse: 'F-ML, runway 27 in use, QNH 1020, report overhead airfield',
     teaching:
-      "Transit VFR : on donne la piste en service, le QNH, et les trafics en circuit pour la conscience de situation — même si F-ML est à 3000 ft QNH et le circuit à 1400 ft (pas de conflit d'altitude). On informe : F-TZ (Transall) et F-VH (Cessna 172) en vent arrière. Rappel vertical aérodrome.",
+      "Transit VFR : on donne la piste en service et le QNH (altimétrie). F-ML est à 3000 ft QNH, le circuit à 1400 ft — pas de conflit d'altitude. Rappel vertical aérodrome.",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 550, y: 100, label: 'F-TZ', heading: 90 },
@@ -410,9 +410,9 @@ const SCENARIO_5_STEPS = [
     message:
       'AURIOL Tour, FBXYH, Cessna 172, provenance RODEZ via le Sud-Ouest, aérodrome estimé dans 5 minutes, pour atterrissage',
     expectedResponse:
-      'F-YH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, trafic en tour de piste Transall et Cessna 172, trafic du Nord vers vertical Tobago, rappelez vertical tour',
+      'F-YH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, trafic du Nord vers vertical Tobago, rappelez vertical tour',
     teaching:
-      "F-YH arrive du Sud-Ouest → vertical tour obligatoire. Informer F-YH de tous les trafics : F-TZ (Transall) et F-VH (Cessna 172) en vent arrière, et F-ML (Tobago) qui converge vers le vertical depuis le Nord. Réciprocité : informer F-ML en anglais « F-ML, traffic from the South-West joining overhead, Cessna 172 », et informer F-VH et F-TZ : « F-VH / F-TZ, trafic du Sud-Ouest vers vertical, Cessna 172 ».",
+      "F-YH arrive du Sud-Ouest → vertical tour obligatoire. F-ML (Tobago) converge vers le vertical depuis le Nord — info trafic donnée. Strip bleu (arrivée).",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 570, y: 100, label: 'F-TZ', heading: 90 },
@@ -426,9 +426,9 @@ const SCENARIO_5_STEPS = [
     time: '08:52:50',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, vent arrière main droite piste 27',
-    expectedResponse: 'F-VH, numéro 2, suivez un Transall en finale, trafic du Sud-Ouest vers vertical, Cessna 172, rappelez finale',
+    expectedResponse: 'F-VH, numéro 2, suivez un Transall en finale, rappelez finale',
     teaching:
-      "F-VH a effectué sa remise de gaz et a rejoint le vent arrière. F-TZ (Transall) est en finale → F-VH est n°2. F-YH (Cessna 172 depuis le Sud-Ouest) converge vers le vertical : info trafic donnée à F-VH pour qu'elle sache qu'un avion intégrera derrière elle.",
+      "F-VH a effectué sa remise de gaz et a rejoint le vent arrière. F-TZ (Transall) est en finale → F-VH est n°2. Séquencement : numéro, suivre, rappel finale.",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 280, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 605, y: 132, label: 'F-TZ', heading: 270 },
@@ -615,83 +615,121 @@ const SCENARIO_5_STEPS = [
 
 const SCENARIOS = [
   {
-    id: 'scenario_5',
+    id: 'scenario_1',
     title: 'Matinée chargée — 40 min',
     description:
       "Scénario long combinant approche directe, laissez-passer, backtrack, remise de gaz, tour de piste, transit et verrou de piste. Pilotes anglais et français.",
     color: '#8b5cf6',
     icon: 'layers',
     setup: { wind: '250°/10 kt', qnh: '1020', rwy: '27' },
-    steps: SCENARIO_5_STEPS,
+    steps: SCENARIO_1_STEPS,
   },
 ];
 
-function AirportMap({ aircraft = [], showPattern = false, showSaintAmour = false }) {
+function AirportMap({ aircraft = [], showPattern = false }) {
   return (
     <svg viewBox="0 0 800 420" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+
+      {/* Rose des vents — cercle + lettre N + flèche nord */}
       <g>
         <circle cx="45" cy="40" r="18" fill="none" stroke="#475569" strokeWidth="0.5" />
         <text x="45" y="28" textAnchor="middle" fontSize="11" fill="#cbd5e1" fontWeight="500">N</text>
         <line x1="45" y1="55" x2="45" y2="30" stroke="#cbd5e1" strokeWidth="1.2" />
       </g>
 
-      {showSaintAmour && (
-        <g>
-          <text x="770" y="45" textAnchor="end" fontSize="10" fill="#64748b">Saint-Amour / Julienas (NE)</text>
-          <line x1="740" y1="51" x2="680" y2="80" stroke="#64748b" strokeWidth="0.4" strokeDasharray="2 2" />
-        </g>
-      )}
-
+      {/* Tour de piste main droite piste 27 — rectangle en pointillés au nord de la piste (y=78→120).
+          La flèche indique le sens de circulation en vent arrière : cap 090° (est → ouest vu du sol = droite sur la carte). */}
       {showPattern && (
         <g>
-          <rect x="130" y="78" width="420" height="46" fill="none" stroke="#a78bfa" strokeWidth="0.7" strokeDasharray="5 4" />
+          <rect x="130" y="78" width="420" height="42" fill="none" stroke="#a78bfa" strokeWidth="0.7" strokeDasharray="5 4" />
           <text x="340" y="72" textAnchor="middle" fontSize="9" fill="#a78bfa">vent arrière main droite piste 27</text>
+          {/* Flèche de sens : les avions volent vers l'est en vent arrière (cap 090°) */}
           <path d="M 220 101 L 280 101" stroke="#a78bfa" strokeWidth="0.8" fill="none" />
           <polygon points="278,98 286,101 278,104" fill="#a78bfa" />
         </g>
       )}
 
-      <rect x="80" y="120" width="540" height="22" fill="#475569" stroke="#1e293b" strokeWidth="0.5" />
-      <text x="70" y="135" textAnchor="end" fontSize="11" fill="#e2e8f0" fontWeight="600">09</text>
-      <text x="630" y="135" textAnchor="start" fontSize="11" fill="#e2e8f0" fontWeight="600">27</text>
-      {[92, 98, 104].map((x) => (
-        <line key={'l' + x} x1={x} y1="122" x2={x} y2="140" stroke="#cbd5e1" strokeWidth="0.5" />
-      ))}
-      {[596, 602, 608].map((x) => (
-        <line key={'r' + x} x1={x} y1="122" x2={x} y2="140" stroke="#cbd5e1" strokeWidth="0.5" />
-      ))}
+      {/* Piste 09/27 — rectangle gris, seuil 09 à l'ouest (x=80), seuil 27 à l'est (x=620).
+          Les avions atterrissent cap 270° (vers l'ouest) sur piste 27, approche depuis l'est. */}
+      <g>
+        <rect x="80" y="120" width="540" height="22" fill="#475569" stroke="#1e293b" strokeWidth="0.5" />
+        {/* Numéros de piste aux deux seuils */}
+        <text x="70" y="135" textAnchor="end" fontSize="11" fill="#e2e8f0" fontWeight="600">09</text>
+        <text x="630" y="135" textAnchor="start" fontSize="11" fill="#e2e8f0" fontWeight="600">27</text>
+        {/* Marques de seuil côté 09 — 3 barres verticales */}
+        {[92, 98, 104].map((x) => (
+          <line key={'l' + x} x1={x} y1="122" x2={x} y2="140" stroke="#cbd5e1" strokeWidth="0.5" />
+        ))}
+        {/* Marques de seuil côté 27 — 3 barres verticales */}
+        {[596, 602, 608].map((x) => (
+          <line key={'r' + x} x1={x} y1="122" x2={x} y2="140" stroke="#cbd5e1" strokeWidth="0.5" />
+        ))}
+      </g>
 
-      <rect x="380" y="142" width="6" height="38" fill="#334155" />
-      <line x1="374" y1="148" x2="392" y2="148" stroke="#ef4444" strokeWidth="1.5" />
-      <text x="397" y="158" textAnchor="start" fontSize="8" fill="#94a3b8">H2</text>
+      {/* Taxiway H2 — intersection au milieu de la piste (x≈383).
+          Le rect représente la voie de liaison piste↔voie principale.
+          La ligne rouge est le point d'attente piste 27 (arrêt avant d'entrer sur la piste).
+          Largeur du rect alignée sur la ligne de point d'attente (x=374→392). */}
+      <g>
+        <rect x="374" y="142" width="18" height="38" fill="#334155" />
+        <line x1="374" y1="148" x2="392" y2="148" stroke="#ef4444" strokeWidth="1.5" />
+        <text x="397" y="158" textAnchor="start" fontSize="8" fill="#94a3b8">H2</text>
+      </g>
 
-      <rect x="107" y="142" width="13" height="58" fill="#334155" />
-      <text x="95" y="165" textAnchor="end" fontSize="8" fill="#94a3b8">W1</text>
+      {/* Bretelle W1 — voie de sortie côté seuil 09 (extrémité ouest, x=107).
+          Relie la piste à la voie de circulation principale. */}
+      <g>
+        <rect x="107" y="142" width="13" height="58" fill="#334155" />
+        <text x="95" y="165" textAnchor="end" fontSize="8" fill="#94a3b8">W1</text>
+      </g>
 
+      {/* Voie de circulation principale — axe horizontal (y=178) reliant W1 (x=107) au point d'attente piste 27 (x=550) */}
       <rect x="107" y="178" width="443" height="4" fill="#334155" />
 
-      <rect x="197" y="182" width="12" height="18" fill="#334155" />
-      <rect x="360" y="182" width="12" height="18" fill="#334155" />
+      {/* Raccordements voie de circulation → zones de stationnement et SSLIA */}
+      <rect x="197" y="182" width="12" height="18" fill="#334155" /> {/* vers aéroclub D */}
+      <rect x="360" y="182" width="12" height="18" fill="#334155" /> {/* vers parking principal */}
+      <rect x="510" y="182" width="12" height="18" fill="#334155" /> {/* vers SSLIA — accès véhicules de secours */}
 
-      <rect x="280" y="200" width="180" height="48" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="3" />
-      <text x="370" y="217" textAnchor="middle" fontSize="9" fill="#94a3b8">Parking principal</text>
-      <text x="300" y="238" textAnchor="middle" fontSize="8" fill="#64748b">A2</text>
-      <text x="340" y="238" textAnchor="middle" fontSize="8" fill="#64748b">B1</text>
-      <text x="380" y="238" textAnchor="middle" fontSize="8" fill="#64748b">C1</text>
+      {/* Parking principal — postes A, B, C au sud de la piste.
+          Labels illustratifs : d'autres postes existent (A4, B2, C2, C3) mais ne sont pas tous tracés. */}
+      <g>
+        <rect x="280" y="200" width="180" height="48" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="3" />
+        <text x="370" y="217" textAnchor="middle" fontSize="9" fill="#94a3b8">Parking principal</text>
+        <text x="300" y="238" textAnchor="middle" fontSize="8" fill="#64748b">A2</text>
+        <text x="340" y="238" textAnchor="middle" fontSize="8" fill="#64748b">B1</text>
+        <text x="380" y="238" textAnchor="middle" fontSize="8" fill="#64748b">C1</text>
+      </g>
 
-      <rect x="180" y="200" width="60" height="48" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="3" />
-      <text x="210" y="217" textAnchor="middle" fontSize="9" fill="#94a3b8">Aéroclub D</text>
-      <text x="210" y="236" textAnchor="middle" fontSize="8" fill="#64748b">D1 D2</text>
+      {/* Parking aéroclub D — postes D1, D2. Non visible depuis la tour (bâtiment interposé). */}
+      <g>
+        <rect x="180" y="200" width="60" height="48" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="3" />
+        <text x="210" y="217" textAnchor="middle" fontSize="9" fill="#94a3b8">Aéroclub D</text>
+        <text x="210" y="236" textAnchor="middle" fontSize="8" fill="#64748b">D1 D2</text>
+      </g>
 
-      <rect x="490" y="200" width="50" height="28" fill="#7c2d12" fillOpacity="0.35" stroke="#d97706" strokeWidth="0.5" rx="2" />
-      <text x="515" y="218" textAnchor="middle" fontSize="8" fill="#fcd34d">SSLIA</text>
+      {/* SSLIA — service de sauvetage et lutte contre l'incendie.
+          Les véhicules SÉCU en partent et traversent la piste via H2 pour atteindre le local technique. */}
+      <g>
+        <rect x="490" y="200" width="50" height="28" fill="#7c2d12" fillOpacity="0.35" stroke="#d97706" strokeWidth="0.5" rx="2" />
+        <text x="515" y="218" textAnchor="middle" fontSize="8" fill="#fcd34d">SSLIA</text>
+      </g>
 
-      <circle cx="370" cy="265" r="4" fill="#475569" />
-      <text x="382" y="269" textAnchor="start" fontSize="8" fill="#94a3b8">TWR</text>
+      {/* Tour de contrôle — point de référence au sud de la piste */}
+      <g>
+        <circle cx="370" cy="265" r="4" fill="#475569" />
+        <text x="382" y="269" textAnchor="start" fontSize="8" fill="#94a3b8">TWR</text>
+      </g>
 
-      <rect x="374" y="85" width="50" height="22" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="2" />
-      <text x="399" y="100" textAnchor="middle" fontSize="8" fill="#94a3b8">Local tech.</text>
+      {/* Local technique — bâtiment au nord de la piste.
+          SÉCU y accède depuis le SSLIA en traversant la piste (autorisation de traversée requise). */}
+      <g>
+        <rect x="374" y="85" width="50" height="22" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="2" />
+        <text x="399" y="100" textAnchor="middle" fontSize="8" fill="#94a3b8">Local tech.</text>
+      </g>
 
+      {/* Aéronefs et véhicules — triangle orienté selon le cap pour les avions, rectangle pour les véhicules.
+          Le triangle pointe vers le haut (nord) quand heading=0, et pivote dans le sens horaire. */}
       {aircraft.map((ac) => (
         <g
           key={ac.id}
@@ -699,8 +737,10 @@ function AirportMap({ aircraft = [], showPattern = false, showSaintAmour = false
           transform={'translate(' + ac.x + ', ' + ac.y + ')'}
         >
           {ac.type === 'vehicle' ? (
+            /* Véhicule — petit rectangle (pas de cap) */
             <rect x="-7" y="-5" width="14" height="10" fill={COLORS.vehicle} stroke="#92400e" strokeWidth="0.5" rx="1" />
           ) : (
+            /* Avion — triangle en forme de flèche, pivoté selon le cap */
             <polygon
               points="0,-9 6,6 0,3 -6,6"
               fill={COLORS[ac.type]}
@@ -886,7 +926,6 @@ export default function ATCSimulator() {
           <AirportMap
             aircraft={current.aircraft}
             showPattern={current.showPattern}
-            showSaintAmour={current.showSaintAmour}
           />
         </div>
 
