@@ -686,24 +686,24 @@ function AirportMap({ aircraft = [], showPattern = false }) {
           La ligne rouge est le point d'attente piste 27 (arrêt avant d'entrer sur la piste).
           Largeur du rect alignée sur la ligne de point d'attente (x=374→392). */}
       <g>
-        <rect x="374" y="142" width="18" height="38" fill="#334155" />
-        <line x1="364" y1="148" x2="392" y2="148" stroke="#ef4444" strokeWidth="1.5" />
+        <rect x="365" y="142" width="16" height="38" fill="#334155" />
+        <line x1="365" y1="148" x2="381" y2="148" stroke="#ef4444" strokeWidth="1.5" />
         <text x="387" y="158" textAnchor="start" fontSize="8" fill="#94a3b8">H2</text>
       </g>
 
-      {/* Bretelle W1 — voie de sortie côté seuil 09 (extrémité ouest, x=107).
+      {/* Bretelle E1 — voie de sortie côté seuil 09 (extrémité ouest, x=107).
           Relie la piste à la voie de circulation principale. */}
       <g>
-        <rect x="87" y="142" width="13" height="48" fill="#334155" />
+        <rect x="91" y="142" width="13" height="40" fill="#334155" />
         <text x="75" y="165" textAnchor="end" fontSize="8" fill="#94a3b8">E1</text>
       </g>
 
       {/* Voie de circulation principale — axe horizontal (y=178) reliant E1 (x=107) au point d'attente piste 27 (x=550) */}
-      <rect x="107" y="178" width="443" height="4" fill="#334155" />
+      <rect x="100" y="178" width="422" height="4" fill="#334155" />
 
       {/* Raccordements voie de circulation → zones de stationnement et SSLIA */}
-      <rect x="197" y="182" width="12" height="18" fill="#334155" /> {/* vers aéroclub D */}
-      <rect x="360" y="182" width="12" height="18" fill="#334155" /> {/* vers parking principal */}
+      <rect x="205" y="182" width="12" height="18" fill="#334155" /> {/* vers aéroclub D */}
+      <rect x="365" y="182" width="16" height="18" fill="#334155" /> {/* vers parking principal */}
       <rect x="510" y="182" width="12" height="18" fill="#334155" /> {/* vers SSLIA — accès véhicules de secours */}
 
       {/* Parking principal — postes A, B, C au sud de la piste.
