@@ -209,7 +209,7 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-NC', type: 'departure', x: 40, y: 110, label: 'F-NC', heading: 270 },
       { id: 'F-XN', type: 'circuit', x: 540, y: 132, label: 'F-XN', heading: 270 },
-      { id: 'F-VH', type: 'arrival', x: 740, y: 55, label: 'F-VH', heading: 225 },
+      { id: 'F-VH', type: 'arrival', x: 120, y: 50, label: 'F-VH', heading: 135 },
       { id: 'SECU', type: 'vehicle', x: 440, y: 180, label: 'SÉCU' },
     ],
   },
@@ -218,15 +218,15 @@ const SCENARIO_1_STEPS = [
     time: '08:45:00',
     speaker: { role: 'INFO' },
     message:
-      "F-XN est aligné au seuil 27 après remontée complète, en attente. F-NC (DA42) s'éloigne en montée initiale. La piste est libre — c'est à la tour d'initier la clairance décollage.",
+      "F-XN est aligné au seuil 27 après remontée complète, en attente. F-NC (DA42) s'éloigne en montée initiale. F-VH (C172 de Julienas) s'approche depuis le Nord-Ouest vers le vent arrière. La piste est libre — c'est à la tour d'initier la clairance décollage.",
     expectedResponse:
-      'F-XN, trafic au départ vers vent arrière, DA42, piste 27 autorisé décollage, vent 250°/10 kt, rappelez vent arrière main droite piste 27',
+      'F-XN, trafic de Julienas vers vent arrière, Cessna 172, trafic au départ vers vent arrière, DA42, piste 27 autorisé décollage, vent 250°/10 kt, rappelez vent arrière main droite piste 27 — puis : F-VH, trafic DR400 au départ vers vent arrière',
     teaching:
-      "Après un « alignez-vous, attendez », la tour initie la clairance. On signale DA42 en montée initiale (départ, non circuit). Ordre : info trafic → autorisation → vent.",
+      "Après « alignez-vous, attendez », la tour initie la clairance dès que la piste est libre. Tous les trafics conflictuels sont signalés : DA42 en montée initiale ET Cessna 172 (F-VH de Julienas) entrant en vent arrière depuis le NW — leurs trajectoires se croisent au NW. Info réciproque obligatoire : donner aussi à F-VH le trafic DR400 au départ. Ordre : infos trafic → autorisation → vent → rappel.",
     aircraft: [
-      { id: 'F-NC', type: 'departure', x: 150, y: 100, label: 'F-NC', heading: 90 },
+      { id: 'F-NC', type: 'departure', x: 150, y: 100, label: 'F-NC', heading: 315 },
       { id: 'F-XN', type: 'circuit', x: 615, y: 132, label: 'F-XN', heading: 270 },
-      { id: 'F-VH', type: 'arrival', x: 680, y: 70, label: 'F-VH', heading: 225 },
+      { id: 'F-VH', type: 'arrival', x: 155, y: 60, label: 'F-VH', heading: 135 },
       { id: 'SECU', type: 'vehicle', x: 373, y: 158, label: 'SÉCU' },
     ],
   },
@@ -239,9 +239,9 @@ const SCENARIO_1_STEPS = [
     teaching:
       "F-XN vient de décoller et a dépassé l'extrémité de piste — piste libre. F-NC est en vent arrière. Pas de conflit : traversée autorisée.",
     aircraft: [
-      { id: 'F-NC', type: 'departure', x: 210, y: 100, label: 'F-NC', heading: 90 },
+      { id: 'F-NC', type: 'departure', x: 210, y: 100, label: 'F-NC', heading: 315 },
       { id: 'F-XN', type: 'circuit', x: 40, y: 110, label: 'F-XN', heading: 270 },
-      { id: 'F-VH', type: 'arrival', x: 600, y: 80, label: 'F-VH', heading: 225 },
+      { id: 'F-VH', type: 'arrival', x: 190, y: 72, label: 'F-VH', heading: 135 },
       { id: 'SECU', type: 'vehicle', x: 373, y: 170, label: 'SÉCU' },
     ],
   },
@@ -257,7 +257,7 @@ const SCENARIO_1_STEPS = [
       "Première communication — on répond avec le callsign complet (FMATZ). F-TZ arrive depuis Morgon (Sud) → vertical tour obligatoire. Le QNH est donné pour le réglage altimétrique. Strip rouge+bleu. Pilote anglais — on répond en anglais.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 180, y: 100, label: 'F-XN', heading: 90 },
-      { id: 'F-VH', type: 'arrival', x: 680, y: 55, label: 'F-VH', heading: 225 },
+      { id: 'F-VH', type: 'arrival', x: 180, y: 80, label: 'F-VH', heading: 135 },
       { id: 'F-TZ', type: 'circuit', x: 370, y: 390, label: 'F-TZ', heading: 0 },
       { id: 'SECU', type: 'vehicle', x: 373, y: 95, label: 'SÉCU' },
     ],
@@ -273,7 +273,7 @@ const SCENARIO_1_STEPS = [
       "F-XN est seul dans le circuit. Numéro 1, rappel en finale.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 260, y: 100, label: 'F-XN', heading: 90 },
-      { id: 'F-VH', type: 'arrival', x: 560, y: 55, label: 'F-VH', heading: 225 },
+      { id: 'F-VH', type: 'arrival', x: 165, y: 90, label: 'F-VH', heading: 135 },
       { id: 'F-TZ', type: 'circuit', x: 370, y: 320, label: 'F-TZ', heading: 0 },
     ],
     showPattern: true,
@@ -390,9 +390,10 @@ const SCENARIO_1_STEPS = [
     time: '08:50:45',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, courte finale',
-    expectedResponse: 'F-VH, remettez les gaz, rappelez vent arrière piste 27',
+    expectedResponse:
+      'F-VH, remettez les gaz, rappelez vent arrière piste 27 — puis : F-TZ, Cessna 172 remise de gaz, you are number 1, report final',
     teaching:
-      "F-XN n'a pas encore franchi l'extrémité de piste — piste toujours occupée. On commande la remise de gaz. F-VH perd son numéro d'ordre au passage du seuil de piste. L'heure de remise de gaz est notée avec une flèche sur le strip. F-TZ devient de facto n°1 : informer F-TZ immédiatement : « F-TZ, Cessna 172 remise de gaz, you are number 1, report final ».",
+      "F-XN n'a pas encore franchi l'extrémité de piste — piste toujours occupée. On commande la remise de gaz. F-VH perd son numéro au seuil de piste. L'heure RMG est notée avec une flèche (→) sur le strip. F-TZ devient n°1 : on l'informe immédiatement dans la foulée, sans attendre qu'il rappelle.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 80, y: 105, label: 'F-XN', heading: 315 },
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
@@ -440,9 +441,9 @@ const SCENARIO_1_STEPS = [
     message:
       'AURIOL Tour, FBXYH, Cessna 172, provenance RODEZ via le Sud-Ouest, aérodrome estimé dans 5 minutes, pour atterrissage',
     expectedResponse:
-      'FBXYH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, trafic du Nord vers vertical Tobago, rappelez vertical tour',
+      'FBXYH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, trafic du Nord vers vertical Tobago, rappelez vertical tour — puis : F-ML, trafic du Sud-Ouest vers vertical, Cessna 172',
     teaching:
-      "Première communication — on répond avec le callsign complet (FBXYH). F-YH arrive du Sud-Ouest → vertical tour obligatoire. F-ML (Tobago) converge vers le vertical depuis le Nord — info trafic donnée. Strip bleu (arrivée).",
+      "Première communication — callsign complet (FBXYH). F-YH arrive du SW → vertical tour obligatoire. F-ML (Tobago) et F-YH convergent tous deux vers le vertical depuis des directions opposées (livret 6, p.29) : chacun doit être informé de l'autre. Donner l'info à F-YH (déjà dans la réponse) ET la réciproque à F-ML. Strip bleu (arrivée).",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 570, y: 100, label: 'F-TZ', heading: 90 },
