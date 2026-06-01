@@ -17,18 +17,6 @@ import {
   Layers,
 } from 'lucide-react';
 
-const AIRCRAFT = {
-  'F-EN': { full: 'FDVEN',    type: 'TBM7', lang: 'fr', from: 'LFLB', to: 'LFVA'  },
-  'F-NC': { full: 'FGANC',    type: 'DA42', lang: 'en', from: 'LFVA', to: 'LFPN'  },
-  'F-XN': { full: 'FBVXN',    type: 'DR40', lang: 'fr', from: 'LFVA', to: 'LFVA'  },
-  'F-VH': { full: 'FNMVH',    type: 'C172', lang: 'fr', from: 'LFRN', to: 'LFVA'  },
-  'F-TZ': { full: 'FMATZ',    type: 'C160', lang: 'en', from: 'LFOJ', to: 'LFOJ'  },
-  'F-ML': { full: 'FGHML',    type: 'TOBA', lang: 'en', from: 'LFSD', to: 'LFMN'  },
-  'F-YH': { full: 'FBXYH',    type: 'C172', lang: 'fr', from: 'LFCR', to: 'LFVA'  },
-  'F-EP': { full: 'FBVEP',    type: 'BE20', lang: 'fr', from: 'LFVA', to: 'LFGA'  },
-  'SECU': { full: 'SÉCURITÉ', type: 'Véhicule', lang: 'fr', from: null, to: null   },
-};
-
 const COLORS = {
   departure: '#ef4444',
   arrival: '#3b82f6',
@@ -933,7 +921,6 @@ export default function ATCSimulator() {
   };
 
   const speakerIsSecu = current.speaker.role === 'SECU';
-  const speakerAircraftInfo = current.speaker.callsign ? AIRCRAFT[current.speaker.callsign] : null;
   const speakerColor = (() => {
     if (!current.speaker.callsign || !current.aircraft) return COLORS[current.speaker.color];
     const ac = current.aircraft.find(a => a.id === current.speaker.callsign);
@@ -1014,20 +1001,12 @@ export default function ATCSimulator() {
               </div>
               <div className="flex-1 bg-slate-800 border border-slate-700 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-1.5">
-                  <div className="flex flex-col gap-0.5">
-                    <span
-                      className="text-xs font-semibold uppercase tracking-wider"
-                      style={{ color: speakerColor }}
-                    >
-                      {current.speaker.role} · {current.speaker.callsign}
-                    </span>
-                    {speakerAircraftInfo && (
-                      <span className="text-xs text-slate-500 font-mono">
-                        {speakerAircraftInfo.full} · {speakerAircraftInfo.type}
-                        {speakerAircraftInfo.lang === 'en' && <span className="ml-1 text-slate-600">[EN]</span>}
-                      </span>
-                    )}
-                  </div>
+                  <span
+                    className="text-xs font-semibold uppercase tracking-wider"
+                    style={{ color: speakerColor }}
+                  >
+                    {current.speaker.role} · {current.speaker.callsign}
+                  </span>
                   <span className="text-xs text-slate-500 font-mono">{current.time}</span>
                 </div>
                 <p className="text-slate-100 italic">« {current.message} »</p>
