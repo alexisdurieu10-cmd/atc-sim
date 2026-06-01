@@ -894,6 +894,13 @@ export default function ATCSimulator() {
   const needsResponse = current.expectedResponse !== null;
 
   const handleReveal = () => setRevealed(true);
+  const handlePrev = () => {
+    if (step > 0) {
+      setStep(step - 1);
+      setUserResponse('');
+      setRevealed(false);
+    }
+  };
   const handleNext = () => {
     if (!isLast) {
       setStep(step + 1);
@@ -1024,6 +1031,15 @@ export default function ATCSimulator() {
           )}
 
           <div className="flex flex-wrap gap-2">
+            {step > 0 && (
+              <button
+                onClick={handlePrev}
+                className="flex items-center gap-2 px-4 py-2 bg-slate-700 border border-slate-600 text-slate-400 rounded-lg hover:bg-slate-600 hover:text-slate-200 transition-colors text-sm font-medium"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Étape précédente
+              </button>
+            )}
             {needsResponse && !revealed && (
               <button
                 onClick={handleReveal}
