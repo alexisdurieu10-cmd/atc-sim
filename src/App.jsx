@@ -207,8 +207,8 @@ const SCENARIO_1_STEPS = [
     teaching:
       "Première communication — on répond avec le callsign complet (FNMVH). F-VH arrive de Julienas (Nord) → intégration directe en vent arrière main droite, pas de vertical tour. On informe du trafic (DA42 = F-NC en montée initiale). Strip bleu (arrivée).",
     aircraft: [
-      { id: 'F-NC', type: 'departure', x: 40, y: 110, label: 'F-NC', heading: 270 },
-      { id: 'F-XN', type: 'circuit', x: 540, y: 132, label: 'F-XN', heading: 270 },
+      { id: 'F-NC', type: 'departure', x: 50, y: 110, label: 'F-NC', heading: 270 },
+      { id: 'F-XN', type: 'circuit', x: 540, y: 132, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 120, y: 50, label: 'F-VH', heading: 135 },
       { id: 'SECU', type: 'vehicle', x: 440, y: 180, label: 'SÉCU' },
     ],
@@ -224,7 +224,7 @@ const SCENARIO_1_STEPS = [
     teaching:
       "Après « alignez-vous, attendez », la tour initie la clairance dès que la piste est libre. Tous les trafics conflictuels sont signalés : DA42 en montée initiale ET Cessna 172 (F-VH de Julienas) entrant en vent arrière depuis le NW — leurs trajectoires se croisent au NW. Info réciproque obligatoire : donner aussi à F-VH le trafic DR400 au départ. Ordre : infos trafic → autorisation → vent → rappel.",
     aircraft: [
-      { id: 'F-NC', type: 'departure', x: 150, y: 80, label: 'F-NC', heading: 315 },
+      { id: 'F-NC', type: 'departure', x: 30, y: 80, label: 'F-NC', heading: 315 },
       { id: 'F-XN', type: 'circuit', x: 615, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 155, y: 60, label: 'F-VH', heading: 135 },
       { id: 'SECU', type: 'vehicle', x: 373, y: 158, label: 'SÉCU' },
@@ -239,7 +239,7 @@ const SCENARIO_1_STEPS = [
     teaching:
       "F-XN vient de décoller et a dépassé l'extrémité de piste — piste libre. F-NC est en vent arrière. Pas de conflit : traversée autorisée.",
     aircraft: [
-      { id: 'F-NC', type: 'departure', x: 80, y: 30, label: 'F-NC', heading: 315 },
+      { id: 'F-NC', type: 'departure', x: 10, y: 30, label: 'F-NC', heading: 315 },
       { id: 'F-XN', type: 'circuit', x: 40, y: 110, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 100, y: 30, label: 'F-VH', heading: 135 },
       { id: 'SECU', type: 'vehicle', x: 373, y: 170, label: 'SÉCU' },
@@ -914,6 +914,11 @@ export default function ATCSimulator() {
   };
 
   const speakerIsSecu = current.speaker.role === 'SECU';
+  const speakerColor = (() => {
+    if (!current.speaker.callsign || !current.aircraft) return COLORS[current.speaker.color];
+    const ac = current.aircraft.find(a => a.id === current.speaker.callsign);
+    return ac ? COLORS[ac.type] : COLORS[current.speaker.color];
+  })();
 
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-6">
@@ -984,14 +989,14 @@ export default function ATCSimulator() {
                 {speakerIsSecu ? (
                   <Truck className="w-5 h-5" style={{ color: COLORS.vehicle }} />
                 ) : (
-                  <Plane className="w-5 h-5" style={{ color: COLORS[current.speaker.color] }} />
+                  <Plane className="w-5 h-5" style={{ color: speakerColor }} />
                 )}
               </div>
               <div className="flex-1 bg-slate-800 border border-slate-700 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-1.5">
                   <span
                     className="text-xs font-semibold uppercase tracking-wider"
-                    style={{ color: COLORS[current.speaker.color] }}
+                    style={{ color: speakerColor }}
                   >
                     {current.speaker.role} · {current.speaker.callsign}
                   </span>
