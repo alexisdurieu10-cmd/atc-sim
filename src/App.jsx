@@ -88,13 +88,27 @@ const SCENARIO_1_STEPS = [
     time: '08:39:30',
     speaker: { role: 'PILOTE', callsign: 'F-EN', color: 'arrival' },
     message: 'F-EN, longue finale piste 27',
-    expectedResponse: 'F-EN, piste 27 autorisé atterrissage, vent 250°/10 kt',
+    expectedResponse: 'F-EN, numéro 1, rappelez finale piste 27',
     teaching:
-      "F-EN est en longue finale approche directe. Piste libre (F-NC et F-XN encore au sol). On autorise l'atterrissage et on redonne le vent. La piste est occupée dès la transmission de cette clairance.",
+      "F-EN est en longue finale approche directe. On donne le numéro d'ordre (n°1, piste libre) et on demande le rappel finale — la clairance d'atterrissage sera donnée à ce rappel.",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 650, y: 132, label: 'F-EN', heading: 270 },
       { id: 'F-NC', type: 'departure', x: 360, y: 180, label: 'F-NC', heading: 90 },
       { id: 'F-XN', type: 'circuit', x: 430, y: 245, label: 'F-XN', heading: 0 },
+    ],
+  },
+  {
+    id: 5,
+    time: '08:41:00',
+    speaker: { role: 'PILOTE', callsign: 'F-EN', color: 'arrival' },
+    message: 'F-EN, finale piste 27',
+    expectedResponse: 'F-EN, piste 27 autorisé atterrissage, vent 250°/10 kt',
+    teaching:
+      "F-EN est en finale. Piste libre — F-NC et F-XN encore au sol. On autorise l'atterrissage et on redonne le vent. La piste est occupée dès cette clairance.",
+    aircraft: [
+      { id: 'F-EN', type: 'arrival', x: 625, y: 132, label: 'F-EN', heading: 270 },
+      { id: 'F-NC', type: 'departure', x: 383, y: 158, label: 'F-NC', heading: 0 },
+      { id: 'F-XN', type: 'circuit', x: 410, y: 230, label: 'F-XN', heading: 0 },
     ],
   },
   {
@@ -142,11 +156,12 @@ const SCENARIO_1_STEPS = [
   {
     id: 9,
     time: '08:43:30',
-    speaker: { role: 'PILOTE', callsign: 'F-NC', color: 'departure' },
-    message: 'F-NC, ready',
+    speaker: { role: 'INFO' },
+    message:
+      "F-EN vient de dégager la piste. F-NC est aligné au seuil 27 après backtrack, en attente. F-XN attend au point d'attente H2. La piste est libre — c'est à la tour d'initier la clairance décollage.",
     expectedResponse: 'F-NC, runway 27 cleared for takeoff, wind 250°/10 kt',
     teaching:
-      "F-EN a libéré la piste. F-NC est aligné au seuil 27 après backtrack. Piste libre, aucun trafic en approche → clairance décollage. F-XN attend au point d'attente H2.",
+      "Après un « line up and wait », l'avion aligné ne rappelle pas — la tour prend l'initiative dès que la piste est libre. Aucun trafic en approche → clairance décollage immédiate.",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 210, y: 245, label: 'F-EN', heading: 0 },
       { id: 'F-NC', type: 'departure', x: 615, y: 132, label: 'F-NC', heading: 270 },
@@ -672,18 +687,18 @@ function AirportMap({ aircraft = [], showPattern = false }) {
           Largeur du rect alignée sur la ligne de point d'attente (x=374→392). */}
       <g>
         <rect x="374" y="142" width="18" height="38" fill="#334155" />
-        <line x1="374" y1="148" x2="392" y2="148" stroke="#ef4444" strokeWidth="1.5" />
-        <text x="397" y="158" textAnchor="start" fontSize="8" fill="#94a3b8">H2</text>
+        <line x1="364" y1="148" x2="392" y2="148" stroke="#ef4444" strokeWidth="1.5" />
+        <text x="387" y="158" textAnchor="start" fontSize="8" fill="#94a3b8">H2</text>
       </g>
 
       {/* Bretelle W1 — voie de sortie côté seuil 09 (extrémité ouest, x=107).
           Relie la piste à la voie de circulation principale. */}
       <g>
-        <rect x="107" y="142" width="13" height="58" fill="#334155" />
-        <text x="95" y="165" textAnchor="end" fontSize="8" fill="#94a3b8">W1</text>
+        <rect x="87" y="142" width="13" height="48" fill="#334155" />
+        <text x="75" y="165" textAnchor="end" fontSize="8" fill="#94a3b8">E1</text>
       </g>
 
-      {/* Voie de circulation principale — axe horizontal (y=178) reliant W1 (x=107) au point d'attente piste 27 (x=550) */}
+      {/* Voie de circulation principale — axe horizontal (y=178) reliant E1 (x=107) au point d'attente piste 27 (x=550) */}
       <rect x="107" y="178" width="443" height="4" fill="#334155" />
 
       {/* Raccordements voie de circulation → zones de stationnement et SSLIA */}
@@ -704,8 +719,8 @@ function AirportMap({ aircraft = [], showPattern = false }) {
       {/* Parking aéroclub D — postes D1, D2. Non visible depuis la tour (bâtiment interposé). */}
       <g>
         <rect x="180" y="200" width="60" height="48" fill="#1e293b" stroke="#475569" strokeWidth="0.4" rx="3" />
-        <text x="210" y="217" textAnchor="middle" fontSize="9" fill="#94a3b8">Aéroclub D</text>
-        <text x="210" y="236" textAnchor="middle" fontSize="8" fill="#64748b">D1 D2</text>
+        <text x="210" y="217" textAnchor="middle" fontSize="9" fill="#94a3b8">Aéroclub</text>
+        <text x="210" y="236" textAnchor="middle" fontSize="8" fill="#64748b">D</text>
       </g>
 
       {/* SSLIA — service de sauvetage et lutte contre l'incendie.
