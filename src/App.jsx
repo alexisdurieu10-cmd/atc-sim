@@ -209,7 +209,7 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-NC', type: 'departure', x: 50, y: 110, label: 'F-NC', heading: 270 },
       { id: 'F-XN', type: 'circuit', x: 540, y: 132, label: 'F-XN', heading: 90 },
-      { id: 'F-VH', type: 'arrival', x: 120, y: 50, label: 'F-VH', heading: 135 },
+      { id: 'F-VH', type: 'arrival', x: 50, y: 20, label: 'F-VH', heading: 135 },
       { id: 'SECU', type: 'vehicle', x: 440, y: 180, label: 'SÉCU' },
     ],
   },
@@ -237,7 +237,7 @@ const SCENARIO_1_STEPS = [
     message: 'SÉCURITÉ, demande traversée piste 27',
     expectedResponse: 'SÉCURITÉ, traversez piste 27',
     teaching:
-      "F-XN vient de décoller et a dépassé l'extrémité de piste — piste libre. F-NC est en vent arrière. Pas de conflit : traversée autorisée.",
+      "F-XN vient de décoller et a dépassé l'extrémité de piste — piste libre. F-NC est en départ vers Saint-Amour. Pas de conflit : traversée autorisée.",
     aircraft: [
       { id: 'F-NC', type: 'departure', x: 10, y: 30, label: 'F-NC', heading: 315 },
       { id: 'F-XN', type: 'circuit', x: 40, y: 110, label: 'F-XN', heading: 270 },
@@ -474,9 +474,9 @@ const SCENARIO_1_STEPS = [
     time: '08:53:00',
     speaker: { role: 'PILOTE', callsign: 'F-ML', color: 'transit' },
     message: 'F-ML, overhead airfield',
-    expectedResponse: 'F-ML, report Fleurie',
+    expectedResponse: 'F-ML, roger',
     teaching:
-      "F-ML passe le vertical aérodrome à 3000 ft. On lui demande de rappeler en passant à Fleurie (son prochain point VFR sur la route vers Nice). Ce report marque la fin de sa traversée de la zone.",
+      "F-ML passe le vertical aérodrome à 3000 ft. On accuse réception. Le pilote rappellera de lui-même en quittant la zone (standard VFR) — step suivant.",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 320, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 605, y: 132, label: 'F-TZ', heading: 270 },
