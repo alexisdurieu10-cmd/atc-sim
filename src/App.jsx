@@ -256,7 +256,7 @@ const SCENARIO_1_STEPS = [
     teaching:
       "Première communication — on répond avec le callsign complet (GBATZ). G-TZ arrive depuis Morgon (Sud) → vertical tour obligatoire. Le QNH est donné pour le réglage altimétrique. Strip rouge+bleu. Pilote anglais — on répond en anglais.",
     aircraft: [
-      { id: 'F-XN', type: 'circuit', x: 100, y: 100, label: 'F-XN', heading: 90 },
+      { id: 'F-XN', type: 'circuit', x: 70, y: 85, label: 'F-XN', heading: 0 },
       { id: 'F-VH', type: 'arrival', x: 150, y: 50, label: 'F-VH', heading: 135 },
       { id: 'G-TZ', type: 'arrival', x: 370, y: 390, label: 'G-TZ', heading: 0 },
       { id: 'SECU', type: 'vehicle', x: 373, y: 95, label: 'SÉCU' },
@@ -289,7 +289,7 @@ const SCENARIO_1_STEPS = [
       "G-TZ passe le vertical — il n'est pas encore dans le circuit (vent montant puis vent arrière à venir). F-VH (C172 de Julienas) approche depuis le NW : leurs trajectoires se croisent dans le secteur NW. Info trafic obligatoire dans les deux sens (livret 4). Le numéro d'ordre sera donné à son rappel vent arrière.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 350, y: 100, label: 'F-XN', heading: 90 },
-      { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
+      { id: 'F-VH', type: 'arrival', x: 185, y: 96, label: 'F-VH', heading: 135 },
       { id: 'G-TZ', type: 'arrival', x: 370, y: 260, label: 'G-TZ', heading: 0 },
     ],
     showPattern: true,
@@ -305,7 +305,7 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 430, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 270, y: 100, label: 'F-VH', heading: 90 },
-      { id: 'G-TZ', type: 'circuit', x: 155, y: 100, label: 'G-TZ', heading: 90 },
+      { id: 'G-TZ', type: 'arrival', x: 310, y: 225, label: 'G-TZ', heading: 315 },
     ],
     showPattern: true,
   },
@@ -320,7 +320,7 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 490, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 330, y: 100, label: 'F-VH', heading: 90 },
-      { id: 'G-TZ', type: 'circuit', x: 175, y: 100, label: 'G-TZ', heading: 90 },
+      { id: 'G-TZ', type: 'arrival', x: 200, y: 175, label: 'G-TZ', heading: 315 },
     ],
     showPattern: true,
   },
@@ -335,7 +335,7 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 350, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
-      { id: 'G-TZ', type: 'circuit', x: 290, y: 100, label: 'G-TZ', heading: 90 },
+      { id: 'G-TZ', type: 'arrival', x: 100, y: 130, label: 'G-TZ', heading: 0 },
     ],
   },
   {
@@ -349,7 +349,7 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 280, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
-      { id: 'G-TZ', type: 'circuit', x: 350, y: 100, label: 'G-TZ', heading: 90 },
+      { id: 'G-TZ', type: 'arrival', x: 100, y: 108, label: 'G-TZ', heading: 0 },
       { id: 'F-EP', type: 'departure', x: 320, y: 245, label: 'F-EP', heading: 0 },
     ],
   },
@@ -543,7 +543,7 @@ const SCENARIO_1_STEPS = [
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
       { id: 'G-TZ', type: 'circuit', x: 130, y: 50, label: 'G-TZ', heading: 45 },
       { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
-      { id: 'F-YH', type: 'arrival', x: 175, y: 100, label: 'F-YH', heading: 90 },
+      { id: 'F-YH', type: 'arrival', x: 290, y: 220, label: 'F-YH', heading: 315 },
     ],
   },
   {
@@ -557,7 +557,7 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 140, y: 180, label: 'F-VH', heading: 90 },
       { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
-      { id: 'F-YH', type: 'arrival', x: 280, y: 100, label: 'F-YH', heading: 90 },
+      { id: 'F-YH', type: 'arrival', x: 185, y: 165, label: 'F-YH', heading: 315 },
     ],
   },
   {
