@@ -44,10 +44,10 @@ const SCENARIO_1_STEPS = [
     id: 2,
     time: '08:35:00',
     speaker: { role: 'PILOTE', callsign: 'F-EN', color: 'arrival' },
-    message: 'AURIOL Tour, F-EN, demande approche directe piste 27',
-    expectedResponse: 'F-EN, exécutez approche directe piste 27, rappelez longue finale',
+    message: 'AURIOL Tour, FDVEN, demande approche directe piste 27',
+    expectedResponse: 'FDVEN, exécutez approche directe piste 27, rappelez longue finale',
     teaching:
-      "F-EN (TBM7) arrive de l'est via Penent. Approche directe autorisée sur demande du pilote. On demande le rappel longue finale pour suivre sa progression. Strip bleu (arrivée).",
+      "Première communication — pilote et contrôleur utilisent le callsign complet (FDVEN). F-EN (TBM7) arrive de l'est via Penent. Approche directe autorisée sur demande du pilote. On demande le rappel longue finale. Strip bleu (arrivée).",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 730, y: 132, label: 'F-EN', heading: 270 },
       { id: 'F-NC', type: 'departure', x: 350, y: 245, label: 'F-NC', heading: 0 },
@@ -59,9 +59,9 @@ const SCENARIO_1_STEPS = [
     time: '08:38:00',
     speaker: { role: 'PILOTE', callsign: 'F-NC', color: 'departure' },
     message: 'AURIOL Tower, FGANC, DA42, stand A2, to TOUSSUS-LE-NOBLE via Saint-Amour, request taxi',
-    expectedResponse: "F-NC, runway 27 in use, wind 250°/10 kt, QNH 1020, taxi holding point runway 27",
+    expectedResponse: "FGANC, runway 27 in use, wind 250°/10 kt, QNH 1020, taxi holding point runway 27",
     teaching:
-      "Appel en anglais — on répond en anglais. Clairance de roulage standard : piste en service, vent, QNH, instruction. Strip rouge (départ). FGANC part vers LFPN via Saint-Amour (NE).",
+      "Première communication — on répond avec le callsign complet (FGANC). Appel en anglais — on répond en anglais. Clairance de roulage standard : piste en service, vent, QNH, instruction. Strip rouge (départ).",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 700, y: 132, label: 'F-EN', heading: 270 },
       { id: 'F-NC', type: 'departure', x: 350, y: 245, label: 'F-NC', heading: 0 },
@@ -74,9 +74,9 @@ const SCENARIO_1_STEPS = [
     speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'circuit' },
     message: 'AURIOL Tour, FBVXN, DR400, poste C1, demande roulage pour un tour de piste',
     expectedResponse:
-      "F-XN, piste 27 en service, vent 250°/10 kt, QNH 1020, laissez passer le DA42 du parking principal vers le point d'attente piste 27, puis roulez point d'attente piste 27",
+      "FBVXN, piste 27 en service, vent 250°/10 kt, QNH 1020, laissez passer le DA42 du parking principal vers le point d'attente piste 27, puis roulez point d'attente piste 27",
     teaching:
-      "F-NC (A2) et F-XN (C1) convergent vers le même point d'attente. F-NC ayant appelé en premier, il est prioritaire. « Laissez passer » prescrit l'ordre de roulage. Strip rouge+bleu (tour de piste).",
+      "Première communication — on répond avec le callsign complet (FBVXN). F-NC (A2) et F-XN (C1) convergent vers le même point d'attente. F-NC ayant appelé en premier, il est prioritaire. « Laissez passer » prescrit l'ordre de roulage. Strip rouge+bleu (tour de piste).",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 670, y: 132, label: 'F-EN', heading: 270 },
       { id: 'F-NC', type: 'departure', x: 360, y: 245, label: 'F-NC', heading: 0 },
@@ -93,12 +93,12 @@ const SCENARIO_1_STEPS = [
       "F-EN est en longue finale approche directe. On donne le numéro d'ordre (n°1, piste libre) et on demande le rappel finale — la clairance d'atterrissage sera donnée à ce rappel.",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 650, y: 132, label: 'F-EN', heading: 270 },
-      { id: 'F-NC', type: 'departure', x: 360, y: 180, label: 'F-NC', heading: 90 },
-      { id: 'F-XN', type: 'circuit', x: 430, y: 245, label: 'F-XN', heading: 0 },
+      { id: 'F-NC', type: 'departure', x: 373, y: 188, label: 'F-NC', heading: 0 },
+      { id: 'F-XN', type: 'circuit', x: 405, y: 225, label: 'F-XN', heading: 0 },
     ],
   },
   {
-    id: 5,
+    id: 6,
     time: '08:41:00',
     speaker: { role: 'PILOTE', callsign: 'F-EN', color: 'arrival' },
     message: 'F-EN, finale piste 27',
@@ -107,12 +107,12 @@ const SCENARIO_1_STEPS = [
       "F-EN est en finale. Piste libre — F-NC et F-XN encore au sol. On autorise l'atterrissage et on redonne le vent. La piste est occupée dès cette clairance.",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 625, y: 132, label: 'F-EN', heading: 270 },
-      { id: 'F-NC', type: 'departure', x: 383, y: 158, label: 'F-NC', heading: 0 },
-      { id: 'F-XN', type: 'circuit', x: 410, y: 230, label: 'F-XN', heading: 0 },
+      { id: 'F-NC', type: 'departure', x: 373, y: 158, label: 'F-NC', heading: 0 },
+      { id: 'F-XN', type: 'circuit', x: 373, y: 210, label: 'F-XN', heading: 0 },
     ],
   },
   {
-    id: 6,
+    id: 7,
     time: '08:42:20',
     speaker: { role: 'INFO' },
     message:
@@ -121,12 +121,12 @@ const SCENARIO_1_STEPS = [
     teaching: null,
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 320, y: 132, label: 'F-EN', heading: 270 },
-      { id: 'F-NC', type: 'departure', x: 383, y: 158, label: 'F-NC', heading: 0 },
-      { id: 'F-XN', type: 'circuit', x: 383, y: 174, label: 'F-XN', heading: 0 },
+      { id: 'F-NC', type: 'departure', x: 373, y: 158, label: 'F-NC', heading: 0 },
+      { id: 'F-XN', type: 'circuit', x: 373, y: 174, label: 'F-XN', heading: 0 },
     ],
   },
   {
-    id: 7,
+    id: 8,
     time: '08:42:30',
     speaker: { role: 'PILOTE', callsign: 'F-NC', color: 'departure' },
     message: 'F-NC, ready, request backtrack runway 27',
@@ -135,12 +135,12 @@ const SCENARIO_1_STEPS = [
       "F-NC demande un backtrack pour utiliser toute la piste. On autorise remontée + alignement + ATTENTE — pas encore de décollage car F-EN est encore sur la piste. Strip de F-NC placé sur la barrette piste.",
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 250, y: 132, label: 'F-EN', heading: 270 },
-      { id: 'F-NC', type: 'departure', x: 383, y: 158, label: 'F-NC', heading: 0 },
-      { id: 'F-XN', type: 'circuit', x: 383, y: 174, label: 'F-XN', heading: 0 },
+      { id: 'F-NC', type: 'departure', x: 373, y: 158, label: 'F-NC', heading: 0 },
+      { id: 'F-XN', type: 'circuit', x: 373, y: 174, label: 'F-XN', heading: 0 },
     ],
   },
   {
-    id: 8,
+    id: 9,
     time: '08:43:00',
     speaker: { role: 'PILOTE', callsign: 'F-EN', color: 'arrival' },
     message: 'F-EN, piste dégagée, demande roulage pour le parking',
@@ -148,13 +148,13 @@ const SCENARIO_1_STEPS = [
     teaching:
       "F-EN a libéré la piste — on lui attribue le poste A4 (TBM700 au parking principal). Strip de F-EN passe sous la barrette (roulage).",
     aircraft: [
-      { id: 'F-EN', type: 'arrival', x: 160, y: 180, label: 'F-EN', heading: 90 },
+      { id: 'F-EN', type: 'arrival', x: 97, y: 160, label: 'F-EN', heading: 180 },
       { id: 'F-NC', type: 'departure', x: 615, y: 132, label: 'F-NC', heading: 270 },
-      { id: 'F-XN', type: 'circuit', x: 383, y: 158, label: 'F-XN', heading: 0 },
+      { id: 'F-XN', type: 'circuit', x: 373, y: 158, label: 'F-XN', heading: 0 },
     ],
   },
   {
-    id: 9,
+    id: 10,
     time: '08:43:30',
     speaker: { role: 'INFO' },
     message:
@@ -165,11 +165,11 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-EN', type: 'arrival', x: 210, y: 245, label: 'F-EN', heading: 0 },
       { id: 'F-NC', type: 'departure', x: 615, y: 132, label: 'F-NC', heading: 270 },
-      { id: 'F-XN', type: 'circuit', x: 383, y: 158, label: 'F-XN', heading: 0 },
+      { id: 'F-XN', type: 'circuit', x: 373, y: 158, label: 'F-XN', heading: 0 },
     ],
   },
   {
-    id: 10,
+    id: 11,
     time: '08:44:00',
     speaker: { role: 'SECU', callsign: 'SÉCURITÉ', color: 'vehicle' },
     message: 'AURIOL Tour, SÉCURITÉ, demande à procéder du SSLIA au local technique',
@@ -178,20 +178,34 @@ const SCENARIO_1_STEPS = [
       "Piste 27 en service → « point d'attente piste 27 ». F-NC décolle en ce moment — piste occupée. F-XN va démarrer sa remontée une fois la piste libre. SÉCURITÉ doit attendre.",
     aircraft: [
       { id: 'F-NC', type: 'departure', x: 480, y: 132, label: 'F-NC', heading: 270 },
-      { id: 'F-XN', type: 'circuit', x: 383, y: 158, label: 'F-XN', heading: 0 },
+      { id: 'F-XN', type: 'circuit', x: 373, y: 158, label: 'F-XN', heading: 0 },
       { id: 'SECU', type: 'vehicle', x: 515, y: 215, label: 'SÉCU' },
     ],
   },
   {
-    id: 11,
+    id: 12,
+    time: '08:44:10',
+    speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'circuit' },
+    message: 'F-XN, prêt, demande remontée piste 27',
+    expectedResponse: 'F-XN, remontez piste 27, alignez-vous, attendez',
+    teaching:
+      "F-NC vient de franchir l'extrémité de piste — piste libre. F-XN peut remonter et s'aligner. On donne « attendez » car DA42 est encore en montée initiale et SÉCU est en transit. Strip de F-XN placé sur la barrette piste.",
+    aircraft: [
+      { id: 'F-NC', type: 'departure', x: 480, y: 132, label: 'F-NC', heading: 270 },
+      { id: 'F-XN', type: 'circuit', x: 373, y: 158, label: 'F-XN', heading: 0 },
+      { id: 'SECU', type: 'vehicle', x: 460, y: 195, label: 'SÉCU' },
+    ],
+  },
+  {
+    id: 13,
     time: '08:44:30',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message:
       'AURIOL Tour, FNMVH, Cessna 172, provenance RENNES via Julienas, aérodrome estimé dans 5 minutes, pour atterrissage',
     expectedResponse:
-      'F-VH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27, trafic au départ vers vent arrière, DA42, rappelez vent arrière',
+      'FNMVH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27, trafic au départ vers vent arrière, DA42, rappelez vent arrière',
     teaching:
-      "F-VH arrive de Julienas (Nord) → intégration directe en vent arrière main droite, pas de vertical tour. On informe du trafic (DA42 = F-NC en montée initiale). F-XN est en remontée sur la piste. Strip bleu (arrivée).",
+      "Première communication — on répond avec le callsign complet (FNMVH). F-VH arrive de Julienas (Nord) → intégration directe en vent arrière main droite, pas de vertical tour. On informe du trafic (DA42 = F-NC en montée initiale). Strip bleu (arrivée).",
     aircraft: [
       { id: 'F-NC', type: 'departure', x: 40, y: 110, label: 'F-NC', heading: 270 },
       { id: 'F-XN', type: 'circuit', x: 540, y: 132, label: 'F-XN', heading: 270 },
@@ -200,23 +214,24 @@ const SCENARIO_1_STEPS = [
     ],
   },
   {
-    id: 12,
+    id: 14,
     time: '08:45:00',
-    speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'circuit' },
-    message: 'F-XN, prêt',
+    speaker: { role: 'INFO' },
+    message:
+      "F-XN est aligné au seuil 27 après remontée complète, en attente. F-NC (DA42) s'éloigne en montée initiale. La piste est libre — c'est à la tour d'initier la clairance décollage.",
     expectedResponse:
       'F-XN, trafic au départ vers vent arrière, DA42, piste 27 autorisé décollage, vent 250°/10 kt, rappelez vent arrière main droite piste 27',
     teaching:
-      "F-NC (DA42) est en montée initiale vers vent arrière — on l'indique à F-XN avant la clairance. Ordre : info trafic → autorisation → vent.",
+      "Après un « alignez-vous, attendez », la tour initie la clairance. On signale DA42 en montée initiale (départ, non circuit). Ordre : info trafic → autorisation → vent.",
     aircraft: [
       { id: 'F-NC', type: 'departure', x: 150, y: 100, label: 'F-NC', heading: 90 },
       { id: 'F-XN', type: 'circuit', x: 615, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 680, y: 70, label: 'F-VH', heading: 225 },
-      { id: 'SECU', type: 'vehicle', x: 383, y: 158, label: 'SÉCU' },
+      { id: 'SECU', type: 'vehicle', x: 373, y: 158, label: 'SÉCU' },
     ],
   },
   {
-    id: 13,
+    id: 15,
     time: '08:45:30',
     speaker: { role: 'SECU', callsign: 'SÉCURITÉ', color: 'vehicle' },
     message: 'SÉCURITÉ, demande traversée piste 27',
@@ -227,28 +242,28 @@ const SCENARIO_1_STEPS = [
       { id: 'F-NC', type: 'departure', x: 210, y: 100, label: 'F-NC', heading: 90 },
       { id: 'F-XN', type: 'circuit', x: 40, y: 110, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 600, y: 80, label: 'F-VH', heading: 225 },
-      { id: 'SECU', type: 'vehicle', x: 383, y: 170, label: 'SÉCU' },
+      { id: 'SECU', type: 'vehicle', x: 373, y: 170, label: 'SÉCU' },
     ],
   },
   {
-    id: 14,
+    id: 16,
     time: '08:46:00',
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
     message:
       'AURIOL Tower, FMATZ, Transall, from ORLEANS via Morgon, airfield estimated in 5 minutes, for a touch and go, then back to ORLEANS via Saint-Amour',
     expectedResponse:
-      'F-TZ, runway 27 in use, wind 250°/10 kt, QNH 1020, join right hand downwind runway 27 via overhead tower, report overhead tower',
+      'FMATZ, runway 27 in use, wind 250°/10 kt, QNH 1020, join right hand downwind runway 27 via overhead tower, report overhead tower',
     teaching:
-      "F-TZ arrive depuis Morgon (Sud) → vertical tour obligatoire. Le QNH est donné pour le réglage altimétrique. Strip rouge+bleu (toucher suivi d'un retour à Orléans). Pilote anglais — on répond en anglais.",
+      "Première communication — on répond avec le callsign complet (FMATZ). F-TZ arrive depuis Morgon (Sud) → vertical tour obligatoire. Le QNH est donné pour le réglage altimétrique. Strip rouge+bleu. Pilote anglais — on répond en anglais.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 180, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 680, y: 55, label: 'F-VH', heading: 225 },
       { id: 'F-TZ', type: 'circuit', x: 370, y: 390, label: 'F-TZ', heading: 0 },
-      { id: 'SECU', type: 'vehicle', x: 383, y: 95, label: 'SÉCU' },
+      { id: 'SECU', type: 'vehicle', x: 373, y: 95, label: 'SÉCU' },
     ],
   },
   {
-    id: 15,
+    id: 17,
     time: '08:46:30',
     speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'circuit' },
     message: 'F-XN, vent arrière main droite piste 27',
@@ -264,7 +279,7 @@ const SCENARIO_1_STEPS = [
     showPattern: true,
   },
   {
-    id: 16,
+    id: 18,
     time: '08:47:00',
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
     message: 'F-TZ, overhead tower',
@@ -280,7 +295,7 @@ const SCENARIO_1_STEPS = [
     showPattern: true,
   },
   {
-    id: 17,
+    id: 19,
     time: '08:47:30',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, vent arrière main droite piste 27',
@@ -295,7 +310,7 @@ const SCENARIO_1_STEPS = [
     showPattern: true,
   },
   {
-    id: 18,
+    id: 20,
     time: '08:48:00',
     speaker: { role: 'PILOTE', callsign: 'F-NC', color: 'departure' },
     message: 'F-NC, leaving frequency, goodbye',
@@ -310,7 +325,7 @@ const SCENARIO_1_STEPS = [
     showPattern: true,
   },
   {
-    id: 19,
+    id: 21,
     time: '08:49:00',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, finale piste 27',
@@ -324,13 +339,13 @@ const SCENARIO_1_STEPS = [
     ],
   },
   {
-    id: 20,
+    id: 22,
     time: '08:49:30',
     speaker: { role: 'PILOTE', callsign: 'F-EP', color: 'departure' },
     message: 'AURIOL Tour, FBVEP, Beech 200, poste B2, destination COLMAR via Nord-Est, demande roulage',
-    expectedResponse: "F-EP, piste 27 en service, vent 250°/10 kt, QNH 1020, roulez point d'attente piste 27",
+    expectedResponse: "FBVEP, piste 27 en service, vent 250°/10 kt, QNH 1020, roulez point d'attente piste 27",
     teaching:
-      "F-EP (BE20) est au poste B2 — pas de conflit de roulage avec d'autres aéronefs au sol. Clairance de roulage standard. Strip rouge (départ).",
+      "Première communication — on répond avec le callsign complet (FBVEP). F-EP (BE20) est au poste B2 — pas de conflit de roulage. Clairance de roulage standard. Strip rouge (départ).",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 280, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
@@ -339,7 +354,7 @@ const SCENARIO_1_STEPS = [
     ],
   },
   {
-    id: 21,
+    id: 23,
     time: '08:50:00',
     speaker: { role: 'INFO' },
     message:
@@ -355,7 +370,7 @@ const SCENARIO_1_STEPS = [
     showPattern: true,
   },
   {
-    id: 22,
+    id: 24,
     time: '08:50:30',
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
     message: 'F-TZ, right hand downwind runway 27',
@@ -366,12 +381,12 @@ const SCENARIO_1_STEPS = [
       { id: 'F-XN', type: 'circuit', x: 95, y: 132, label: 'F-XN', heading: 270 },
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
       { id: 'F-TZ', type: 'circuit', x: 460, y: 100, label: 'F-TZ', heading: 90 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
     ],
     showPattern: true,
   },
   {
-    id: 23,
+    id: 25,
     time: '08:50:45',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, courte finale',
@@ -382,28 +397,28 @@ const SCENARIO_1_STEPS = [
       { id: 'F-XN', type: 'circuit', x: 80, y: 105, label: 'F-XN', heading: 315 },
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
       { id: 'F-TZ', type: 'circuit', x: 490, y: 100, label: 'F-TZ', heading: 90 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
     ],
   },
   {
-    id: 24,
+    id: 26,
     time: '08:51:30',
     speaker: { role: 'PILOTE', callsign: 'F-ML', color: 'transit' },
     message:
       'AURIOL Tower, FGHML, Tobago, transit from DIJON to NICE via North, 3000 ft QNH, over airfield estimated in 5 minutes, exit via Fleurie',
-    expectedResponse: 'F-ML, runway 27 in use, QNH 1020, report overhead airfield',
+    expectedResponse: 'FGHML, runway 27 in use, QNH 1020, report overhead airfield',
     teaching:
-      "Transit VFR : on donne la piste en service et le QNH (altimétrie). F-ML est à 3000 ft QNH, le circuit à 1400 ft — pas de conflit d'altitude. Rappel vertical aérodrome.",
+      "Première communication — on répond avec le callsign complet (FGHML). Transit VFR : on donne la piste en service et le QNH. F-ML est à 3000 ft QNH, le circuit à 1400 ft — pas de conflit d'altitude.",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 550, y: 100, label: 'F-TZ', heading: 90 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-ML', type: 'transit', x: 370, y: 35, label: 'F-ML', heading: 180 },
     ],
     showPattern: true,
   },
   {
-    id: 25,
+    id: 27,
     time: '08:52:00',
     speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'circuit' },
     message: 'F-XN, je quitte la fréquence, au parking',
@@ -413,31 +428,31 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 175, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 570, y: 100, label: 'F-TZ', heading: 90 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-ML', type: 'transit', x: 370, y: 155, label: 'F-ML', heading: 180 },
     ],
     showPattern: true,
   },
   {
-    id: 26,
+    id: 28,
     time: '08:52:30',
     speaker: { role: 'PILOTE', callsign: 'F-YH', color: 'arrival' },
     message:
       'AURIOL Tour, FBXYH, Cessna 172, provenance RODEZ via le Sud-Ouest, aérodrome estimé dans 5 minutes, pour atterrissage',
     expectedResponse:
-      'F-YH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, trafic du Nord vers vertical Tobago, rappelez vertical tour',
+      'FBXYH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, trafic du Nord vers vertical Tobago, rappelez vertical tour',
     teaching:
-      "F-YH arrive du Sud-Ouest → vertical tour obligatoire. F-ML (Tobago) converge vers le vertical depuis le Nord — info trafic donnée. Strip bleu (arrivée).",
+      "Première communication — on répond avec le callsign complet (FBXYH). F-YH arrive du Sud-Ouest → vertical tour obligatoire. F-ML (Tobago) converge vers le vertical depuis le Nord — info trafic donnée. Strip bleu (arrivée).",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 570, y: 100, label: 'F-TZ', heading: 90 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-ML', type: 'transit', x: 370, y: 185, label: 'F-ML', heading: 180 },
       { id: 'F-YH', type: 'arrival', x: 70, y: 375, label: 'F-YH', heading: 45 },
     ],
   },
   {
-    id: 27,
+    id: 29,
     time: '08:52:50',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, vent arrière main droite piste 27',
@@ -447,14 +462,14 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 280, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 605, y: 132, label: 'F-TZ', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-ML', type: 'transit', x: 370, y: 235, label: 'F-ML', heading: 180 },
       { id: 'F-YH', type: 'arrival', x: 160, y: 355, label: 'F-YH', heading: 45 },
     ],
     showPattern: true,
   },
   {
-    id: 28,
+    id: 30,
     time: '08:53:00',
     speaker: { role: 'PILOTE', callsign: 'F-ML', color: 'transit' },
     message: 'F-ML, overhead airfield',
@@ -464,13 +479,13 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 320, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 605, y: 132, label: 'F-TZ', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-ML', type: 'transit', x: 370, y: 260, label: 'F-ML', heading: 180 },
       { id: 'F-YH', type: 'arrival', x: 260, y: 305, label: 'F-YH', heading: 45 },
     ],
   },
   {
-    id: 29,
+    id: 31,
     time: '08:53:30',
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
     message: 'F-TZ, final runway 27 for a touch and go',
@@ -480,12 +495,12 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 380, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 605, y: 132, label: 'F-TZ', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 350, y: 270, label: 'F-YH', heading: 0 },
     ],
   },
   {
-    id: 30,
+    id: 32,
     time: '08:54:00',
     speaker: { role: 'PILOTE', callsign: 'F-ML', color: 'transit' },
     message: 'F-ML, Fleurie, leaving frequency',
@@ -495,12 +510,12 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 430, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 300, y: 132, label: 'F-TZ', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 340, y: 295, label: 'F-YH', heading: 30 },
     ],
   },
   {
-    id: 31,
+    id: 33,
     time: '08:54:20',
     speaker: { role: 'PILOTE', callsign: 'F-YH', color: 'arrival' },
     message: 'F-YH, vertical tour',
@@ -510,13 +525,13 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 460, y: 100, label: 'F-VH', heading: 90 },
       { id: 'F-TZ', type: 'circuit', x: 175, y: 132, label: 'F-TZ', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 370, y: 260, label: 'F-YH', heading: 0 },
     ],
     showPattern: true,
   },
   {
-    id: 32,
+    id: 34,
     time: '08:55:00',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, finale piste 27',
@@ -526,12 +541,12 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 605, y: 132, label: 'F-VH', heading: 270 },
       { id: 'F-TZ', type: 'circuit', x: 130, y: 85, label: 'F-TZ', heading: 45 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 175, y: 100, label: 'F-YH', heading: 90 },
     ],
   },
   {
-    id: 33,
+    id: 35,
     time: '08:55:30',
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
     message: 'F-TZ, leaving frequency, back to Orléans via Saint-Amour',
@@ -540,12 +555,12 @@ const SCENARIO_1_STEPS = [
       "F-TZ a accompli son toucher-roulé-décollage et quitte la fréquence pour rentrer à Orléans via Saint-Amour (NE). Strip archivé avec heure de dernier contact.",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 340, y: 178, label: 'F-VH', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 280, y: 100, label: 'F-YH', heading: 90 },
     ],
   },
   {
-    id: 34,
+    id: 36,
     time: '08:56:00',
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, piste dégagée, demande roulage',
@@ -554,13 +569,13 @@ const SCENARIO_1_STEPS = [
       "F-VH libère la piste. On lui attribue le poste D1 (parking aéroclub). Note Livret 2 : le parking D n'est pas visible depuis la tour — si le pilote avait demandé lui-même « parking D », on n'aurait pas à lui désigner de poste spécifique.",
     aircraft: [
       { id: 'F-VH', type: 'arrival', x: 250, y: 178, label: 'F-VH', heading: 270 },
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 380, y: 100, label: 'F-YH', heading: 90 },
     ],
     showPattern: true,
   },
   {
-    id: 35,
+    id: 37,
     time: '08:57:00',
     speaker: { role: 'PILOTE', callsign: 'F-EP', color: 'departure' },
     message: 'F-EP, prêt, demande remontée piste 27',
@@ -568,13 +583,13 @@ const SCENARIO_1_STEPS = [
     teaching:
       "Verrou de piste piste 27 pour une remontée : la piste est verrouillée dès que l'arrivée passe le travers tour en vent arrière. F-YH est en vent arrière et a dépassé le travers tour → on maintient F-EP au point d'attente avec l'info trafic.",
     aircraft: [
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 430, y: 100, label: 'F-YH', heading: 90 },
     ],
     showPattern: true,
   },
   {
-    id: 36,
+    id: 38,
     time: '08:57:30',
     speaker: { role: 'PILOTE', callsign: 'F-YH', color: 'arrival' },
     message: 'F-YH, vent arrière main droite piste 27',
@@ -582,13 +597,13 @@ const SCENARIO_1_STEPS = [
     teaching:
       "F-YH est seul dans le circuit. Numéro 1, rappel en finale. F-EP reste au point d'attente — le verrou reste actif tant que F-YH n'a pas dégagé la piste.",
     aircraft: [
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 480, y: 100, label: 'F-YH', heading: 90 },
     ],
     showPattern: true,
   },
   {
-    id: 37,
+    id: 39,
     time: '08:58:30',
     speaker: { role: 'PILOTE', callsign: 'F-YH', color: 'arrival' },
     message: 'F-YH, finale piste 27',
@@ -596,12 +611,12 @@ const SCENARIO_1_STEPS = [
     teaching:
       "F-YH est en finale. Piste libre. Atterrissage autorisé. F-EP reste maintenu — on attend que F-YH atterrisse et dégage la piste avant d'autoriser la remontée.",
     aircraft: [
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 605, y: 132, label: 'F-YH', heading: 270 },
     ],
   },
   {
-    id: 38,
+    id: 40,
     time: '08:59:30',
     speaker: { role: 'PILOTE', callsign: 'F-YH', color: 'arrival' },
     message: 'F-YH, piste dégagée, demande roulage',
@@ -609,12 +624,12 @@ const SCENARIO_1_STEPS = [
     teaching:
       "F-YH a libéré la piste — poste C3 attribué (C172 au parking principal). La piste est maintenant disponible pour F-EP. On peut enchaîner immédiatement avec la clairance de remontée.",
     aircraft: [
-      { id: 'F-EP', type: 'departure', x: 383, y: 158, label: 'F-EP', heading: 0 },
+      { id: 'F-EP', type: 'departure', x: 373, y: 158, label: 'F-EP', heading: 0 },
       { id: 'F-YH', type: 'arrival', x: 280, y: 178, label: 'F-YH', heading: 270 },
     ],
   },
   {
-    id: 39,
+    id: 41,
     time: '09:00:00',
     speaker: { role: 'PILOTE', callsign: 'F-EP', color: 'departure' },
     message: 'F-EP, prêt',
