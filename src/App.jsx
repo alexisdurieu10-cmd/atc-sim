@@ -189,7 +189,7 @@ const SCENARIO_1_STEPS = [
     message: 'F-XN, prêt, demande remontée piste 27',
     expectedResponse: 'F-XN, remontez piste 27, alignez-vous, attendez',
     teaching:
-      "G-NC vient de franchir l'extrémité de piste — piste libre. F-XN peut remonter et s'aligner. On donne « attendez » car DA42 est encore en montée initiale et SÉCU est en transit. Strip de F-XN placé sur la barrette piste.",
+      "G-NC vient de franchir l'extrémité de piste — piste libre. F-XN peut remonter et s'aligner. On donne « attendez » car DA42 est encore en montée initiale et SÉCU se dirige vers le point d'attente. Strip de F-XN placé sur la barrette piste.",
     aircraft: [
       { id: 'G-NC', type: 'departure', x: 80, y: 132, label: 'G-NC', heading: 270 },
       { id: 'F-XN', type: 'circuit', x: 373, y: 158, label: 'F-XN', heading: 0 },
@@ -441,7 +441,7 @@ const SCENARIO_1_STEPS = [
     message:
       'AURIOL Tour, FBXYH, Cessna 172, provenance RODEZ via le Sud-Ouest, aérodrome estimé dans 5 minutes, pour atterrissage',
     expectedResponse:
-      'FBXYH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, trafic du Nord vers vertical Tobago, rappelez vertical tour — puis : G-ML, traffic from the South-West towards overhead, Cessna 172',
+      'FBXYH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, trafic du Nord vers vertical, Tobago, rappelez vertical tour — puis : G-ML, traffic from the South-West towards overhead, Cessna 172',
     teaching:
       "Première communication — callsign complet (FBXYH). F-YH arrive du SW → vertical tour obligatoire. G-ML (Tobago) et F-YH convergent tous deux vers le vertical depuis des directions opposées (livret 6, p.29) : chacun doit être informé de l'autre. Donner l'info à F-YH (déjà dans la réponse) ET la réciproque à G-ML. Strip bleu (arrivée).",
     aircraft: [
