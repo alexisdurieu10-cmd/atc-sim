@@ -258,7 +258,7 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 100, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 150, y: 50, label: 'F-VH', heading: 135 },
-      { id: 'F-TZ', type: 'circuit', x: 370, y: 390, label: 'F-TZ', heading: 0 },
+      { id: 'F-TZ', type: 'arrival', x: 370, y: 390, label: 'F-TZ', heading: 0 },
       { id: 'SECU', type: 'vehicle', x: 373, y: 95, label: 'SÉCU' },
     ],
   },
@@ -274,7 +274,7 @@ const SCENARIO_1_STEPS = [
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 260, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 180, y: 90, label: 'F-VH', heading: 135 },
-      { id: 'F-TZ', type: 'circuit', x: 370, y: 320, label: 'F-TZ', heading: 0 },
+      { id: 'F-TZ', type: 'arrival', x: 370, y: 320, label: 'F-TZ', heading: 0 },
     ],
     showPattern: true,
   },
@@ -284,13 +284,13 @@ const SCENARIO_1_STEPS = [
     speaker: { role: 'PILOTE', callsign: 'F-TZ', color: 'circuit' },
     message: 'F-TZ, overhead tower',
     expectedResponse:
-      'F-TZ, report downwind',
+      'F-TZ, trafic de Julienas vers vent arrière, Cessna 172, report downwind — puis : F-VH, trafic de vertical tour vers vent arrière, Transall',
     teaching:
-      "F-TZ passe le vertical tour. On demande le rappel vent arrière — F-TZ sera séquencé à son rappel.",
+      "F-TZ passe le vertical — il n'est pas encore dans le circuit (vent montant puis vent arrière à venir). F-VH (C172 de Julienas) approche depuis le NW : leurs trajectoires se croisent dans le secteur NW. Info trafic obligatoire dans les deux sens (livret 4). Le numéro d'ordre sera donné à son rappel vent arrière.",
     aircraft: [
       { id: 'F-XN', type: 'circuit', x: 350, y: 100, label: 'F-XN', heading: 90 },
       { id: 'F-VH', type: 'arrival', x: 200, y: 100, label: 'F-VH', heading: 90 },
-      { id: 'F-TZ', type: 'circuit', x: 370, y: 260, label: 'F-TZ', heading: 0 },
+      { id: 'F-TZ', type: 'arrival', x: 370, y: 260, label: 'F-TZ', heading: 0 },
     ],
     showPattern: true,
   },
