@@ -284,7 +284,7 @@ const SCENARIO_1_STEPS = [
     speaker: { role: 'PILOTE', callsign: 'G-TZ', color: 'circuit' },
     message: 'G-TZ, overhead tower',
     expectedResponse:
-      'G-TZ, trafic de Julienas vers vent arrière, Cessna 172, report downwind — puis : F-VH, trafic de vertical tour vers vent arrière, Transall',
+      'G-TZ, traffic from Julienas entering downwind, Cessna 172, report downwind — puis : F-VH, trafic de vertical tour vers vent arrière, Transall',
     teaching:
       "G-TZ passe le vertical — il n'est pas encore dans le circuit (vent montant puis vent arrière à venir). F-VH (C172 de Julienas) approche depuis le NW : leurs trajectoires se croisent dans le secteur NW. Info trafic obligatoire dans les deux sens (livret 4). Le numéro d'ordre sera donné à son rappel vent arrière.",
     aircraft: [
@@ -391,7 +391,7 @@ const SCENARIO_1_STEPS = [
     speaker: { role: 'PILOTE', callsign: 'F-VH', color: 'arrival' },
     message: 'F-VH, courte finale',
     expectedResponse:
-      'F-VH, remettez les gaz, rappelez vent arrière piste 27 — puis : G-TZ, Cessna 172 remise de gaz, you are number 1, report final',
+      'F-VH, remettez les gaz, rappelez vent arrière piste 27 — puis : G-TZ, Cessna 172 going around, you are number 1, report final',
     teaching:
       "F-XN n'a pas encore franchi l'extrémité de piste — piste toujours occupée. On commande la remise de gaz. F-VH perd son numéro au seuil de piste. L'heure RMG est notée avec une flèche (→) sur le strip. G-TZ devient n°1 : on l'informe immédiatement dans la foulée, sans attendre qu'il rappelle.",
     aircraft: [
@@ -441,7 +441,7 @@ const SCENARIO_1_STEPS = [
     message:
       'AURIOL Tour, FBXYH, Cessna 172, provenance RODEZ via le Sud-Ouest, aérodrome estimé dans 5 minutes, pour atterrissage',
     expectedResponse:
-      'FBXYH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, trafic du Nord vers vertical Tobago, rappelez vertical tour — puis : G-ML, trafic du Sud-Ouest vers vertical, Cessna 172',
+      'FBXYH, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27 via vertical tour, trafic du Nord vers vertical Tobago, rappelez vertical tour — puis : G-ML, traffic from the South-West towards overhead, Cessna 172',
     teaching:
       "Première communication — callsign complet (FBXYH). F-YH arrive du SW → vertical tour obligatoire. G-ML (Tobago) et F-YH convergent tous deux vers le vertical depuis des directions opposées (livret 6, p.29) : chacun doit être informé de l'autre. Donner l'info à F-YH (déjà dans la réponse) ET la réciproque à G-ML. Strip bleu (arrivée).",
     aircraft: [
