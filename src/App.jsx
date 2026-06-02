@@ -2690,7 +2690,7 @@ const SCENARIOS = [
   },
   {
     id: 'scenario_2',
-    title: '@alextoledozo version pro max ~ 30min',
+    title: '@alextoledozo version pro max',
     description:
       "Suite directe du scénario 1. Situations variées inspirées des livrets BASIC TWR.",
     color: '#3b82f6',
@@ -2700,7 +2700,7 @@ const SCENARIOS = [
   },
   {
     id: 'scenario_3',
-    title: 'Simulation n°6 — ~40 min',
+    title: 'Simu sombre de Sonia datant de 2006',
     description:
       "Roulages conflictuels (véhicule, arrivée/départ), info réciproque intersection, changement QNH, mauvais collationnement, alignements conditionnels avec allongement vent arrière, courte finale.",
     color: '#10b981',
