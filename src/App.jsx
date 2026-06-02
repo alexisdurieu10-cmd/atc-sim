@@ -1544,6 +1544,108 @@ const SCENARIO_2_STEPS = [
       { id: 'F-QR', type: 'arrival', x: 350, y: 245, label: 'F-QR', heading: 0 },
     ],
   },
+  {
+    id: 104,
+    time: '09:55:00',
+    speaker: { role: 'PILOTE', callsign: 'F-VS', color: 'arrival' },
+    message: 'F-VS, je quitte la fréquence, au revoir',
+    expectedResponse: 'F-VS, roger, au revoir',
+    teaching: "F-VS (PA28) au parking. Strip archivé.",
+    aircraft: [
+      { id: 'F-VS', type: 'arrival', x: 310, y: 245, label: 'F-VS', heading: 0 },
+      { id: 'F-MR', type: 'departure', x: 80, y: 115, label: 'F-MR', heading: 135 },
+    ],
+  },
+  {
+    id: 105,
+    time: '09:55:30',
+    speaker: { role: 'PILOTE', callsign: 'F-KL', color: 'arrival' },
+    message: 'F-KL, je quitte la fréquence, au revoir',
+    expectedResponse: 'F-KL, roger, au revoir',
+    teaching: "F-KL (TBM7) au parking. Strip archivé.",
+    aircraft: [
+      { id: 'F-KL', type: 'arrival', x: 360, y: 245, label: 'F-KL', heading: 0 },
+    ],
+  },
+  {
+    id: 106,
+    time: '09:56:00',
+    speaker: { role: 'PILOTE', callsign: 'F-MR', color: 'departure' },
+    message: 'F-MR, je quitte la fréquence, au revoir',
+    expectedResponse: 'F-MR, roger, au revoir',
+    teaching: "F-MR (DR400) quitte la zone vers Marseille. Strip archivé. Fréquence libre.",
+    aircraft: [
+      { id: 'F-MR', type: 'departure', x: 560, y: 220, label: 'F-MR', heading: 135 },
+    ],
+  },
+  {
+    id: 107,
+    time: '09:57:00',
+    speaker: { role: 'PILOTE', callsign: 'F-HR', color: 'arrival' },
+    message:
+      "AURIOL Tour, FBCHR, Cessna 172, provenance CLERMONT-FERRAND via Chiroubles, aérodrome estimé dans 5 minutes, pour atterrissage",
+    expectedResponse:
+      "FBCHR, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez vent arrière main droite piste 27, rappelez vent arrière",
+    teaching:
+      "Première communication — callsign complet FBCHR. Chiroubles (Ouest) → vent arrière main droite direct (livret 3). Strip bleu.",
+    aircraft: [
+      { id: 'F-HR', type: 'arrival', x: 75, y: 95, label: 'F-HR', heading: 90 },
+    ],
+  },
+  {
+    id: 108,
+    time: '09:57:30',
+    speaker: { role: 'INFO' },
+    message:
+      "La météo transmet de nouveaux paramètres : QNH 1018, QFE 1006. F-HR est en fréquence.",
+    expectedResponse: "F-HR, nouveaux paramètres QNH 1018",
+    teaching:
+      "Changement de pressions (livret 1 & 2) : 1. Collationner les valeurs auprès de la météo, 2. Modifier l'affichage, 3. Transmettre à chaque aéronef ou véhicule en fréquence. Le QFE n'est transmis que sur demande du pilote.",
+    aircraft: [
+      { id: 'F-HR', type: 'arrival', x: 155, y: 95, label: 'F-HR', heading: 90 },
+    ],
+  },
+  {
+    id: 109,
+    time: '09:58:00',
+    speaker: { role: 'PILOTE', callsign: 'F-HR', color: 'arrival' },
+    message: 'F-HR, vent arrière main droite piste 27',
+    expectedResponse: 'F-HR, numéro 1, rappelez finale',
+    teaching: "F-HR seule en circuit. Numéro 1, rappel finale. QNH 1018 en vigueur.",
+    aircraft: [
+      { id: 'F-HR', type: 'arrival', x: 270, y: 95, label: 'F-HR', heading: 90 },
+    ],
+    showPattern: true,
+  },
+  {
+    id: 110,
+    time: '09:58:30',
+    speaker: { role: 'PILOTE', callsign: 'F-GR', color: 'departure' },
+    message:
+      "AURIOL Tour, FBXGR, DR400, poste A4, destination TOURS via Saint-Amour, demande roulage",
+    expectedResponse:
+      "FBXGR, piste 27 en service, vent 250°/10 kt, QNH 1018, roulez point d'attente piste 27",
+    teaching:
+      "Première communication — callsign complet FBXGR. QNH 1018 transmis (nouveau QNH en vigueur). Strip rouge, route Saint-Amour (NW). Callsign abrégé : F-GR.",
+    aircraft: [
+      { id: 'F-HR', type: 'arrival', x: 390, y: 95, label: 'F-HR', heading: 90 },
+      { id: 'F-GR', type: 'departure', x: 295, y: 245, label: 'F-GR', heading: 0 },
+    ],
+    showPattern: true,
+  },
+  {
+    id: 111,
+    time: '09:59:00',
+    speaker: { role: 'PILOTE', callsign: 'F-HR', color: 'arrival' },
+    message: 'F-HR, finale piste 27',
+    expectedResponse: 'F-HR, piste 27 autorisé atterrissage, vent 250°/10 kt',
+    teaching:
+      "F-HR n°1 en finale. F-GR est en roulage vers H2. Piste libre. Clairance atterrissage. F-GR sera maintenu au point d'attente si F-HR n'a pas encore dégagé quand il sera prêt.",
+    aircraft: [
+      { id: 'F-HR', type: 'arrival', x: 605, y: 132, label: 'F-HR', heading: 270 },
+      { id: 'F-GR', type: 'departure', x: 373, y: 185, label: 'F-GR', heading: 0 },
+    ],
+  },
 ];
 
 const SCENARIOS = [
