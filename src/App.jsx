@@ -1829,10 +1829,858 @@ const SCENARIO_2_STEPS = [
   },
 ];
 
+const SCENARIO_3_STEPS = [
+  {
+    id: 1,
+    time: '16:07:00',
+    speaker: { role: 'INFO' },
+    message:
+      "Situation initiale. Piste 27 en service, vent 250°/10kt, QNH 1009 (QFE 997). En contact : FBVXH (C172, de LFLB via Penent, A/D 16:12, en approche directe, rappelle longue finale). Trois strips impriment du BNIA : ITINE (BE20, DEP 16:10 vers LFLC via Chiroubles), FGFQP (R300, DEP 16:25 vers LFMK via BST), FGBRK (R300, ARR 16:30 de LFSR via Saint-Amour).",
+    expectedResponse: null,
+    teaching: null,
+    aircraft: [
+      { id: 'F-XH', type: 'arrival', x: 720, y: 131, label: 'F-XH', heading: 270 },
+    ],
+  },
+  {
+    id: 2,
+    time: '16:07:00',
+    speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'departure' },
+    message: 'AURIOL Tour, FGBXN, Trinidad, parking D aéroclub, destination BORDEAUX via Chiroubles, demande roulage',
+    expectedResponse: 'FGBXN, piste 27 en service, vent 250°/10kt, QNH 1009, roulez point d\'attente piste 27',
+    teaching:
+      "Première communication — callsign complet FGBXN. Parking D (aéroclub) non visible depuis la tour : on ne confirme pas le poste, on donne directement le roulage. Strip rouge (départ).",
+    aircraft: [
+      { id: 'F-XH', type: 'arrival', x: 700, y: 131, label: 'F-XH', heading: 270 },
+      { id: 'F-XN', type: 'departure', x: 210, y: 224, label: 'F-XN', heading: 0 },
+      { id: 'SECU', type: 'vehicle', x: 515, y: 215, label: 'SÉCU' },
+    ],
+  },
+  {
+    id: 3,
+    time: '16:07:30',
+    speaker: { role: 'SECU', callsign: 'SÉCURITÉ', color: 'vehicle' },
+    message: 'Sécurité, au hangar SSLIA, demande roulage pour la pompe',
+    expectedResponse: 'Sécurité, attendez, trafic au roulage',
+    teaching:
+      "F-XN a appelé en premier (16:07:00) → il est prioritaire. La SÉCU veut aller vers la pompe sur le même taxiway que F-XN : conflit au roulage. On maintient la SÉCU jusqu'au passage du Trinidad.",
+    aircraft: [
+      { id: 'F-XH', type: 'arrival', x: 680, y: 131, label: 'F-XH', heading: 270 },
+      { id: 'F-XN', type: 'departure', x: 230, y: 195, label: 'F-XN', heading: 90 },
+      { id: 'SECU', type: 'vehicle', x: 515, y: 215, label: 'SÉCU' },
+    ],
+  },
+  {
+    id: 4,
+    time: '16:08:10',
+    speaker: { role: 'PILOTE', callsign: 'F-MR', color: 'arrival' },
+    message: 'AURIOL Tour, FGAMR, Twin Otter, provenance LA ROCHELLE, dans l\'ouest du terrain, 3000 pieds QNH en descente, estimons l\'aérodrome dans 5 minutes, demandons intégration',
+    expectedResponse: 'FGAMR, piste 27 en service, vent 250°/10kt, QNH 1009, entrez vent arrière main droite piste 27, rappelez vent arrière',
+    teaching:
+      "Première communication — callsign complet FGAMR. F-MR arrive de l'Ouest (Chiroubles) → intégration directe en vent arrière main droite, pas de vertical tour. Strip bleu (arrivée).",
+    aircraft: [
+      { id: 'F-XH', type: 'arrival', x: 660, y: 131, label: 'F-XH', heading: 270 },
+      { id: 'F-XN', type: 'departure', x: 310, y: 178, label: 'F-XN', heading: 90 },
+      { id: 'F-MR', type: 'arrival', x: 30, y: 131, label: 'F-MR', heading: 90 },
+      { id: 'SECU', type: 'vehicle', x: 515, y: 215, label: 'SÉCU' },
+    ],
+  },
+  {
+    id: 5,
+    time: '16:08:30',
+    speaker: { role: 'INFO' },
+    message: "F-XN vient de dégager la zone du taxiway vers la pompe. La tour prend l'initiative et autorise la SÉCU.",
+    expectedResponse: 'Sécurité, roulez vers la pompe',
+    teaching:
+      "Dès que le conflit est levé (F-XN a passé), on autorise le véhicule sur initiative de la tour. La SÉCU n'a pas besoin de rappeler.",
+    aircraft: [
+      { id: 'F-XH', type: 'arrival', x: 650, y: 131, label: 'F-XH', heading: 270 },
+      { id: 'F-XN', type: 'departure', x: 373, y: 158, label: 'F-XN', heading: 0 },
+      { id: 'F-MR', type: 'arrival', x: 50, y: 131, label: 'F-MR', heading: 90 },
+      { id: 'SECU', type: 'vehicle', x: 460, y: 215, label: 'SÉCU' },
+    ],
+  },
+  {
+    id: 6,
+    time: '16:09:00',
+    speaker: { role: 'PILOTE', callsign: 'F-XH', color: 'arrival' },
+    message: 'F-XH, longue finale piste 27',
+    expectedResponse: 'F-XH, numéro 1, rappelez finale piste 27',
+    teaching:
+      "F-XH rappelle longue finale. Piste libre et circuit libre → n°1. On demande le rappel finale ; la clairance d'atterrissage sera donnée à ce rappel.",
+    aircraft: [
+      { id: 'F-XH', type: 'arrival', x: 645, y: 131, label: 'F-XH', heading: 270 },
+      { id: 'F-XN', type: 'departure', x: 373, y: 158, label: 'F-XN', heading: 0 },
+      { id: 'F-MR', type: 'arrival', x: 70, y: 131, label: 'F-MR', heading: 90 },
+    ],
+  },
+  {
+    id: 7,
+    time: '16:09:10',
+    speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'departure' },
+    message: 'F-XN, prêt au départ de l\'intersection',
+    expectedResponse: 'F-XN, trafic de l\'Ouest vers vent arrière, Twin Otter, alignez-vous, piste 27 autorisé décollage, vent 250°/10kt',
+    teaching:
+      "F-XN décolle vers Chiroubles (Ouest). F-MR arrive de l'Ouest et va intégrer en vent arrière : leurs trajectoires se croisent à l'Ouest. Info trafic réciproque obligatoire avant la clairance décollage.",
+    aircraft: [
+      { id: 'F-XH', type: 'arrival', x: 640, y: 131, label: 'F-XH', heading: 270 },
+      { id: 'F-XN', type: 'departure', x: 373, y: 155, label: 'F-XN', heading: 270 },
+      { id: 'F-MR', type: 'arrival', x: 90, y: 131, label: 'F-MR', heading: 90 },
+    ],
+  },
+  {
+    id: 8,
+    time: '16:09:20',
+    speaker: { role: 'INFO' },
+    message: "F-XN est en train de décoller. La tour donne l'info réciproque à F-MR sur le trafic au départ.",
+    expectedResponse: 'F-MR, trafic au départ vers Chiroubles, Trinidad',
+    teaching:
+      "Info trafic réciproque : après avoir informé F-XN de F-MR, on informe F-MR de F-XN. F-MR ne rappellera pas forcément « trafic en vue » — c'est une information, pas une clairance conditionnelle.",
+    aircraft: [
+      { id: 'F-XH', type: 'arrival', x: 636, y: 131, label: 'F-XH', heading: 270 },
+      { id: 'F-XN', type: 'departure', x: 260, y: 131, label: 'F-XN', heading: 270 },
+      { id: 'F-MR', type: 'arrival', x: 110, y: 131, label: 'F-MR', heading: 90 },
+    ],
+  },
+  {
+    id: 9,
+    time: '16:09:50',
+    speaker: { role: 'SECU', callsign: 'SÉCURITÉ', color: 'vehicle' },
+    message: 'Sécurité, à la pompe, pour quitter la fréquence',
+    expectedResponse: 'Sécurité, roger, au revoir',
+    teaching:
+      "La SÉCU a accompli sa mission et quitte la fréquence. Strip SÉCURITÉ archivé.",
+    aircraft: [
+      { id: 'F-XH', type: 'arrival', x: 630, y: 131, label: 'F-XH', heading: 270 },
+      { id: 'F-XN', type: 'departure', x: 150, y: 115, label: 'F-XN', heading: 270 },
+      { id: 'F-MR', type: 'arrival', x: 130, y: 131, label: 'F-MR', heading: 90 },
+    ],
+  },
+  {
+    id: 10,
+    time: '16:10:00',
+    speaker: { role: 'PILOTE', callsign: 'F-XH', color: 'arrival' },
+    message: 'F-XH, finale piste 27, pour un atterrissage court',
+    expectedResponse: 'F-XH, piste 27 autorisé atterrissage, vent 250°/10kt',
+    teaching:
+      "F-XH est en finale. F-XN a décollé et dégagé la piste (extrémité franchie) → piste libre. Clairance atterrissage avec le vent. La piste est occupée dès cet instant.",
+    aircraft: [
+      { id: 'F-XH', type: 'arrival', x: 595, y: 131, label: 'F-XH', heading: 270 },
+      { id: 'F-MR', type: 'arrival', x: 160, y: 100, label: 'F-MR', heading: 90 },
+    ],
+  },
+  {
+    id: 11,
+    time: '16:10:50',
+    speaker: { role: 'PILOTE', callsign: 'I-NE', color: 'departure' },
+    message: 'AURIOL Tower, ITINE, Beech 200, VFR with flight plan, stand B1, destination CLERMONT FERRAND via CHIROUBLES, requesting taxi',
+    expectedResponse: 'ITINE, runway 27 in use, wind 250°/10kt, QNH 1009, Cessna 172 vacating runway via H2, follow then taxi holding point runway 27',
+    teaching:
+      "ITINE appelle en anglais → réponse en anglais, callsign complet. F-XH dégage en ce moment via H2 et se dirige vers le parking : ITINE (B1→H2) est en conflit de roulage. On fait suivre ITINE derrière F-XH.",
+    aircraft: [
+      { id: 'F-XH', type: 'arrival', x: 430, y: 131, label: 'F-XH', heading: 270 },
+      { id: 'F-MR', type: 'arrival', x: 200, y: 89, label: 'F-MR', heading: 90 },
+      { id: 'I-NE', type: 'departure', x: 340, y: 235, label: 'I-NE', heading: 0 },
+    ],
+  },
+  {
+    id: 12,
+    time: '16:12:30',
+    speaker: { role: 'PILOTE', callsign: 'F-XH', color: 'arrival' },
+    message: 'F-XH, piste dégagée, demande roulage',
+    expectedResponse: 'F-XH, roulez poste C3',
+    teaching:
+      "F-XH a dégagé via H2. On lui attribue le poste C3 (C172 au parking principal). Strip F-XH passe sous la barrette (roulage en cours). ITINE peut maintenant progresser vers H2.",
+    aircraft: [
+      { id: 'F-XH', type: 'arrival', x: 373, y: 175, label: 'F-XH', heading: 180 },
+      { id: 'F-MR', type: 'arrival', x: 260, y: 89, label: 'F-MR', heading: 90 },
+      { id: 'I-NE', type: 'departure', x: 350, y: 210, label: 'I-NE', heading: 90 },
+    ],
+  },
+  {
+    id: 13,
+    time: '16:12:30',
+    speaker: { role: 'PILOTE', callsign: 'F-XN', color: 'departure' },
+    message: 'F-XN, quittons la fréquence, au revoir',
+    expectedResponse: 'F-XN, roger, au revoir',
+    teaching:
+      "F-XN quitte la fréquence TWR pour BORDEAUX. Strip archivé avec heure de décollage.",
+    aircraft: [
+      { id: 'F-MR', type: 'arrival', x: 280, y: 89, label: 'F-MR', heading: 90 },
+      { id: 'I-NE', type: 'departure', x: 355, y: 190, label: 'I-NE', heading: 90 },
+      { id: 'F-XH', type: 'arrival', x: 420, y: 235, label: 'F-XH', heading: 0 },
+    ],
+  },
+  {
+    id: 14,
+    time: '16:12:40',
+    speaker: { role: 'PILOTE', callsign: 'F-MR', color: 'arrival' },
+    message: 'F-MR, vent arrière main droite piste 27',
+    expectedResponse: 'F-MR, numéro 1, rappelez finale piste 27',
+    teaching:
+      "F-MR rappelle vent arrière. Circuit libre, piste libre → n°1. On demande le rappel finale. Strip F-MR descend juste au-dessus de la barrette piste.",
+    aircraft: [
+      { id: 'F-MR', type: 'arrival', x: 310, y: 89, label: 'F-MR', heading: 90 },
+      { id: 'I-NE', type: 'departure', x: 373, y: 162, label: 'I-NE', heading: 0 },
+    ],
+  },
+  {
+    id: 15,
+    time: '16:13:20',
+    speaker: { role: 'PILOTE', callsign: 'F-XH', color: 'arrival' },
+    message: 'F-XH, au parking, pour quitter la fréquence',
+    expectedResponse: 'F-XH, roger, au revoir',
+    teaching:
+      "F-XH est garé au poste C3. Strip archivé avec heure de dernier contact.",
+    aircraft: [
+      { id: 'F-MR', type: 'arrival', x: 350, y: 89, label: 'F-MR', heading: 90 },
+      { id: 'I-NE', type: 'departure', x: 373, y: 162, label: 'I-NE', heading: 0 },
+    ],
+  },
+  {
+    id: 16,
+    time: '16:13:50',
+    speaker: { role: 'PILOTE', callsign: 'I-NE', color: 'departure' },
+    message: 'I-NE, ready to backtrack runway 27',
+    expectedResponse: 'I-NE, hold position, Twin Otter abeam tower on downwind — puis : F-MR, prolongez vent arrière, avion en attente de remonter piste 27',
+    teaching:
+      "F-MR a passé le travers tour (verrou actif pour une remontée). On maintient I-NE ET on fait allonger F-MR pour lui dégager le temps de remonter et décoller avant que F-MR arrive en finale.",
+    aircraft: [
+      { id: 'F-MR', type: 'arrival', x: 390, y: 89, label: 'F-MR', heading: 90 },
+      { id: 'I-NE', type: 'departure', x: 373, y: 162, label: 'I-NE', heading: 0 },
+    ],
+  },
+  {
+    id: 17,
+    time: '16:14:50',
+    speaker: { role: 'PILOTE', callsign: 'F-OL', color: 'arrival' },
+    message: 'AURIOL Tour, FGDOL, Cessna 172, provenance RENNES, estimons JULIENAS à 15, l\'aérodrome à 19, 2000 pieds QNH en descente, demandons intégration',
+    expectedResponse: 'FGDOL, piste 27 en service, vent 250°/10kt, QNH 1009, entrez vent arrière main droite piste 27, rappelez vent arrière',
+    teaching:
+      "F-OL arrive par Julienas (Nord) → intégration directe en vent arrière main droite, pas de vertical tour. Callsign complet FGDOL au premier contact. Strip bleu.",
+    aircraft: [
+      { id: 'F-MR', type: 'arrival', x: 460, y: 89, label: 'F-MR', heading: 90 },
+      { id: 'I-NE', type: 'departure', x: 373, y: 162, label: 'I-NE', heading: 0 },
+      { id: 'F-OL', type: 'arrival', x: 180, y: 30, label: 'F-OL', heading: 180 },
+    ],
+  },
+  {
+    id: 18,
+    time: '16:15:50',
+    speaker: { role: 'PILOTE', callsign: 'I-NE', color: 'departure' },
+    message: 'I-NE, ready for departure',
+    expectedResponse: 'I-NE, runway 27 cleared for takeoff, wind 250°/10kt',
+    teaching:
+      "F-MR a prolongé son vent arrière suffisamment. I-NE a terminé sa remontée et est aligné au seuil 27. Piste libre → clairance décollage sur initiative de la tour (ou sur rappel du pilote comme ici).",
+    aircraft: [
+      { id: 'F-MR', type: 'arrival', x: 520, y: 89, label: 'F-MR', heading: 90 },
+      { id: 'I-NE', type: 'departure', x: 615, y: 131, label: 'I-NE', heading: 270 },
+      { id: 'F-OL', type: 'arrival', x: 180, y: 55, label: 'F-OL', heading: 180 },
+    ],
+  },
+  {
+    id: 19,
+    time: '16:17:00',
+    speaker: { role: 'PILOTE', callsign: 'F-MR', color: 'arrival' },
+    message: 'F-MR, finale piste 27',
+    expectedResponse: 'F-MR, piste 27 autorisé atterrissage, vent 250°/10kt',
+    teaching:
+      "I-NE a franchi l'extrémité de piste → piste libre. F-MR est en finale → clairance atterrissage avec vent. Piste occupée dès cet instant.",
+    aircraft: [
+      { id: 'F-MR', type: 'arrival', x: 590, y: 131, label: 'F-MR', heading: 270 },
+      { id: 'I-NE', type: 'departure', x: 50, y: 110, label: 'I-NE', heading: 270 },
+      { id: 'F-OL', type: 'arrival', x: 180, y: 80, label: 'F-OL', heading: 180 },
+    ],
+  },
+  {
+    id: 20,
+    time: '16:17:20',
+    speaker: { role: 'PILOTE', callsign: 'F-JA', color: 'departure' },
+    message: 'AURIOL Tour, FGFJA, Robin 3000, parking D aéroclub, destination GAP via Fleurie, demande roulage',
+    expectedResponse: 'FGFJA, piste 27 en service, vent 250°/10kt, QNH 1009, laissez passer le Twin Otter de la piste vers le parking, puis roulez point d\'attente piste 27',
+    teaching:
+      "F-JA (parking D) veut rouler vers H2 : même taxiway que F-MR qui va dégage via H2. On fait attendre F-JA jusqu'au passage du Twin Otter. Callsign complet FGFJA. Strip rouge.",
+    aircraft: [
+      { id: 'F-MR', type: 'arrival', x: 450, y: 131, label: 'F-MR', heading: 270 },
+      { id: 'F-JA', type: 'departure', x: 210, y: 224, label: 'F-JA', heading: 0 },
+      { id: 'F-OL', type: 'arrival', x: 180, y: 100, label: 'F-OL', heading: 180 },
+    ],
+  },
+  {
+    id: 21,
+    time: '16:18:00',
+    speaker: { role: 'PILOTE', callsign: 'F-MR', color: 'arrival' },
+    message: 'F-MR, piste dégagée, demande roulage',
+    expectedResponse: 'F-MR, roulez poste A4',
+    teaching:
+      "F-MR dégage via H2. On lui attribue le poste A4 (DHC-6, parking principal). Strip F-MR passe sous la barrette. F-JA peut maintenant rouler.",
+    aircraft: [
+      { id: 'F-MR', type: 'arrival', x: 373, y: 178, label: 'F-MR', heading: 180 },
+      { id: 'F-JA', type: 'departure', x: 230, y: 195, label: 'F-JA', heading: 90 },
+      { id: 'F-OL', type: 'arrival', x: 180, y: 120, label: 'F-OL', heading: 180 },
+    ],
+  },
+  {
+    id: 22,
+    time: '16:18:10',
+    speaker: { role: 'PILOTE', callsign: 'F-OL', color: 'arrival' },
+    message: 'F-OL, vent arrière main droite piste 27',
+    expectedResponse: 'F-OL, numéro 1, rappelez finale piste 27',
+    teaching:
+      "F-MR a atterri, circuit libre → F-OL est n°1. On demande le rappel finale. Strip F-OL descend juste au-dessus de la barrette.",
+    aircraft: [
+      { id: 'F-OL', type: 'arrival', x: 200, y: 89, label: 'F-OL', heading: 90 },
+      { id: 'F-JA', type: 'departure', x: 310, y: 178, label: 'F-JA', heading: 90 },
+    ],
+  },
+  {
+    id: 23,
+    time: '16:18:30',
+    speaker: { role: 'PILOTE', callsign: 'F-KZ', color: 'arrival' },
+    message: 'AURIOL Tour, FGEKZ, Robin 3000, provenance MELUN, passons SAINT-AMOUR, 2500 pieds QNH en descente, l\'aérodrome estimé à 23, demandons intégration',
+    expectedResponse: 'FGEKZ, piste 27 en service, vent 250°/10kt, QNH 1009, entrez vent arrière main droite piste 27, rappelez vent arrière',
+    teaching:
+      "F-KZ passe Saint-Amour (NW) → intégration directe en vent arrière main droite, pas de vertical tour. Callsign complet FGEKZ. Strip bleu.",
+    aircraft: [
+      { id: 'F-OL', type: 'arrival', x: 230, y: 89, label: 'F-OL', heading: 90 },
+      { id: 'F-JA', type: 'departure', x: 360, y: 162, label: 'F-JA', heading: 0 },
+      { id: 'F-KZ', type: 'arrival', x: 60, y: 55, label: 'F-KZ', heading: 135 },
+    ],
+  },
+  {
+    id: 24,
+    time: '16:19:40',
+    speaker: { role: 'PILOTE', callsign: 'I-NE', color: 'departure' },
+    message: 'I-NE, passing CHIROUBLES leaving frequency, good day',
+    expectedResponse: 'I-NE, roger, good day',
+    teaching:
+      "I-NE (ITINE, VFR FPL) quitte la fréquence TWR en passant Chiroubles. Strip archivé ; noter heure décollage pour le service d'alerte du plan de vol.",
+    aircraft: [
+      { id: 'F-OL', type: 'arrival', x: 270, y: 89, label: 'F-OL', heading: 90 },
+      { id: 'F-JA', type: 'departure', x: 373, y: 162, label: 'F-JA', heading: 0 },
+      { id: 'F-KZ', type: 'arrival', x: 80, y: 65, label: 'F-KZ', heading: 135 },
+    ],
+  },
+  {
+    id: 25,
+    time: '16:20:10',
+    speaker: { role: 'INFO' },
+    message: "Appel téléphonique météo : nouveau QNH 1010, QFE 998. À transmettre à tous les aéronefs concernés.",
+    expectedResponse: 'F-OL, nouveaux paramètres : QNH 1010, QFE 998 — F-KZ, nouveaux paramètres : QNH 1010, QFE 998 — F-JA, nouveaux paramètres : QNH 1010, QFE 998',
+    teaching:
+      "Après collation des nouvelles valeurs météo, on transmet IMMÉDIATEMENT à tous les A/C en vol ou au sol dans la zone. Ne pas oublier un seul aéronef en fréquence.",
+    aircraft: [
+      { id: 'F-OL', type: 'arrival', x: 300, y: 89, label: 'F-OL', heading: 90 },
+      { id: 'F-JA', type: 'departure', x: 373, y: 162, label: 'F-JA', heading: 0 },
+      { id: 'F-KZ', type: 'arrival', x: 100, y: 72, label: 'F-KZ', heading: 135 },
+    ],
+  },
+  {
+    id: 26,
+    time: '16:21:50',
+    speaker: { role: 'PILOTE', callsign: 'F-OL', color: 'arrival' },
+    message: 'F-OL, finale piste 27, pour un atterrissage court',
+    expectedResponse: 'F-OL, piste 27 autorisé atterrissage, vent 250°/10kt',
+    teaching:
+      "F-OL est en finale. Piste libre → clairance atterrissage. Piste occupée dès cet instant.",
+    aircraft: [
+      { id: 'F-OL', type: 'arrival', x: 590, y: 131, label: 'F-OL', heading: 270 },
+      { id: 'F-JA', type: 'departure', x: 373, y: 155, label: 'F-JA', heading: 270 },
+      { id: 'F-KZ', type: 'arrival', x: 130, y: 89, label: 'F-KZ', heading: 90 },
+    ],
+  },
+  {
+    id: 27,
+    time: '16:22:10',
+    speaker: { role: 'PILOTE', callsign: 'F-JA', color: 'departure' },
+    message: 'F-JA, prêt au départ de l\'intersection',
+    expectedResponse: 'F-JA, attendez, Cessna 172 en finale',
+    teaching:
+      "F-OL est en finale → verrou actif pour un départ depuis l'intersection (verrou = arrivée en finale). F-JA doit attendre que F-OL dégage avant d'être autorisé.",
+    aircraft: [
+      { id: 'F-OL', type: 'arrival', x: 560, y: 131, label: 'F-OL', heading: 270 },
+      { id: 'F-JA', type: 'departure', x: 373, y: 155, label: 'F-JA', heading: 270 },
+      { id: 'F-KZ', type: 'arrival', x: 160, y: 89, label: 'F-KZ', heading: 90 },
+    ],
+  },
+  {
+    id: 28,
+    time: '16:22:40',
+    speaker: { role: 'PILOTE', callsign: 'F-KZ', color: 'arrival' },
+    message: 'F-KZ, vent arrière main droite piste 27',
+    expectedResponse: 'F-KZ, numéro 1, rappelez finale piste 27',
+    teaching:
+      "F-OL vient d'atterrir (ou est en courte finale) → F-KZ est n°1. Attention : F-OL n'a pas encore dégagé, la piste est toujours occupée. On donne juste le n°1 et le rappel finale.",
+    aircraft: [
+      { id: 'F-OL', type: 'arrival', x: 400, y: 131, label: 'F-OL', heading: 270 },
+      { id: 'F-JA', type: 'departure', x: 373, y: 155, label: 'F-JA', heading: 270 },
+      { id: 'F-KZ', type: 'arrival', x: 200, y: 89, label: 'F-KZ', heading: 90 },
+    ],
+  },
+  {
+    id: 29,
+    time: '16:23:30',
+    speaker: { role: 'PILOTE', callsign: 'F-OL', color: 'arrival' },
+    message: 'F-OL, piste dégagée',
+    expectedResponse: 'F-OL, roulez poste B2 — puis : F-JA, alignez-vous, piste 27 autorisé décollage, vent 250°/10kt',
+    teaching:
+      "Dès que F-OL dégage, on lui attribue un poste ET on initie immédiatement la clairance décollage pour F-JA (qui attendait à l'intersection). Pas besoin que F-JA rappelle : c'est la tour qui prend l'initiative.",
+    aircraft: [
+      { id: 'F-OL', type: 'arrival', x: 373, y: 178, label: 'F-OL', heading: 180 },
+      { id: 'F-JA', type: 'departure', x: 373, y: 155, label: 'F-JA', heading: 270 },
+      { id: 'F-KZ', type: 'arrival', x: 250, y: 89, label: 'F-KZ', heading: 90 },
+    ],
+  },
+  {
+    id: 30,
+    time: '16:25:20',
+    speaker: { role: 'PILOTE', callsign: 'F-YU', color: 'departure' },
+    message: 'AURIOL Tour, FBTYU, Cessna 310, parking principal C1, destination RENNES via Julienas, demandons roulage',
+    expectedResponse: 'FBTYU, piste 27 en service, vent 250°/10kt, QNH 1010, roulez point d\'attente piste 27',
+    teaching:
+      "Première communication — callsign complet FBTYU. Le QNH est maintenant 1010 (mis à jour à 16:20). Attendre que le pilote collationne.",
+    aircraft: [
+      { id: 'F-KZ', type: 'arrival', x: 330, y: 89, label: 'F-KZ', heading: 90 },
+      { id: 'F-JA', type: 'departure', x: 140, y: 115, label: 'F-JA', heading: 270 },
+      { id: 'F-YU', type: 'departure', x: 380, y: 235, label: 'F-YU', heading: 0 },
+    ],
+  },
+  {
+    id: 31,
+    time: '16:25:30',
+    speaker: { role: 'PILOTE', callsign: 'F-YU', color: 'departure' },
+    message: 'QNH 1006, F-YU',
+    expectedResponse: 'F-YU, négatif, QNH 1010, collationnez',
+    teaching:
+      "Le pilote a collationné QNH 1006 au lieu de 1010 : erreur grave de collationnement. Correction immédiate obligatoire : « négatif » + valeur correcte + demande de re-collation. Ne jamais laisser passer un mauvais QNH.",
+    aircraft: [
+      { id: 'F-KZ', type: 'arrival', x: 360, y: 89, label: 'F-KZ', heading: 90 },
+      { id: 'F-YU', type: 'departure', x: 380, y: 235, label: 'F-YU', heading: 0 },
+    ],
+  },
+  {
+    id: 32,
+    time: '16:26:30',
+    speaker: { role: 'PILOTE', callsign: 'F-KZ', color: 'arrival' },
+    message: 'F-KZ, finale piste 27',
+    expectedResponse: 'F-KZ, piste 27 autorisé atterrissage, vent 250°/10kt',
+    teaching:
+      "F-KZ rappelle finale. F-JA est parti, piste libre → clairance atterrissage. Piste occupée dès cet instant.",
+    aircraft: [
+      { id: 'F-KZ', type: 'arrival', x: 590, y: 131, label: 'F-KZ', heading: 270 },
+      { id: 'F-YU', type: 'departure', x: 373, y: 162, label: 'F-YU', heading: 0 },
+    ],
+  },
+  {
+    id: 33,
+    time: '16:26:50',
+    speaker: { role: 'PILOTE', callsign: 'F-YU', color: 'departure' },
+    message: 'F-YU, prêt à remonter piste 27',
+    expectedResponse: 'F-YU, maintenez avant point d\'attente piste 27, Robin 3000 en finale, rappelez en vue',
+    teaching:
+      "F-KZ est en finale → verrou actif pour une remontée. Phase 1 de l'alignement conditionnel : maintien + demande de rappel en vue pour identifier visuellement le trafic de référence.",
+    aircraft: [
+      { id: 'F-KZ', type: 'arrival', x: 560, y: 131, label: 'F-KZ', heading: 270 },
+      { id: 'F-YU', type: 'departure', x: 373, y: 162, label: 'F-YU', heading: 0 },
+    ],
+  },
+  {
+    id: 34,
+    time: '16:27:00',
+    speaker: { role: 'PILOTE', callsign: 'F-YU', color: 'departure' },
+    message: 'Robin 3000 en vue, F-YU',
+    expectedResponse: 'F-YU, derrière le Robin 3000 en finale, remontez piste 27, alignez-vous et attendez derrière',
+    teaching:
+      "Phase 2 de l'alignement conditionnel : le pilote a confirmé le visuel sur F-KZ. La clairance conditionnelle précise l'ordre exact : « derrière le [type] en [situation] ». F-YU peut entrer sur la piste dans le sillage de F-KZ.",
+    aircraft: [
+      { id: 'F-KZ', type: 'arrival', x: 530, y: 131, label: 'F-KZ', heading: 270 },
+      { id: 'F-YU', type: 'departure', x: 373, y: 162, label: 'F-YU', heading: 0 },
+    ],
+  },
+  {
+    id: 35,
+    time: '16:27:30',
+    speaker: { role: 'PILOTE', callsign: 'F-BC', color: 'arrival' },
+    message: 'AURIOL Tour, FBUBC, Cessna 172, provenance BREST, dans le nord-ouest du terrain, estimé dans 6 minutes, 2500 pieds QNH en descente, demandons intégration',
+    expectedResponse: 'FBUBC, piste 27 en service, vent 250°/10kt, QNH 1010, entrez vent arrière main droite piste 27, rappelez vent arrière',
+    teaching:
+      "F-BC arrive du NW (LFRB). Callsign complet FBUBC. NW → vent arrière main droite directement, pas de vertical tour. Strip bleu.",
+    aircraft: [
+      { id: 'F-KZ', type: 'arrival', x: 450, y: 131, label: 'F-KZ', heading: 270 },
+      { id: 'F-YU', type: 'departure', x: 540, y: 131, label: 'F-YU', heading: 270 },
+      { id: 'F-BC', type: 'arrival', x: 60, y: 55, label: 'F-BC', heading: 135 },
+    ],
+  },
+  {
+    id: 36,
+    time: '16:28:00',
+    speaker: { role: 'PILOTE', callsign: 'F-KZ', color: 'arrival' },
+    message: 'F-KZ, piste dégagée, demandons le parking aéroclub',
+    expectedResponse: 'F-KZ, roulez parking D',
+    teaching:
+      "Le pilote demande lui-même le parking D (aéroclub) → on dit simplement « roulez parking D » sans numéro de poste, car le parking D n'est pas visible depuis la tour. Strip archivé.",
+    aircraft: [
+      { id: 'F-KZ', type: 'arrival', x: 373, y: 178, label: 'F-KZ', heading: 180 },
+      { id: 'F-YU', type: 'departure', x: 615, y: 131, label: 'F-YU', heading: 270 },
+      { id: 'F-BC', type: 'arrival', x: 80, y: 68, label: 'F-BC', heading: 135 },
+    ],
+  },
+  {
+    id: 37,
+    time: '16:29:00',
+    speaker: { role: 'PILOTE', callsign: 'F-QP', color: 'departure' },
+    message: 'AURIOL Tour, FGFQP, Robin 3000, VFR avec plan de vol, parking D aéroclub, destination CARCASSONNE via BST, demande roulage',
+    expectedResponse: 'FGFQP, piste 27 en service, vent 250°/10kt, QNH 1010, laissez passer le Robin 3000 vers le parking D, puis roulez point d\'attente piste 27',
+    teaching:
+      "F-QP (parking D sortant) croise F-KZ (parking D entrant) sur le même taxiway. Callsign complet FGFQP. Strip rouge (départ VFR FPL = bord orange/strip imprimé).",
+    aircraft: [
+      { id: 'F-KZ', type: 'arrival', x: 240, y: 195, label: 'F-KZ', heading: 270 },
+      { id: 'F-YU', type: 'departure', x: 615, y: 131, label: 'F-YU', heading: 270 },
+      { id: 'F-BC', type: 'arrival', x: 100, y: 79, label: 'F-BC', heading: 135 },
+      { id: 'F-QP', type: 'departure', x: 210, y: 224, label: 'F-QP', heading: 0 },
+    ],
+  },
+  {
+    id: 38,
+    time: '16:29:50',
+    speaker: { role: 'PILOTE', callsign: 'F-YU', color: 'departure' },
+    message: 'F-YU, prêt au départ',
+    expectedResponse: 'F-YU, trafic du Nord-Ouest vers vent arrière, Cessna 172, piste 27 autorisé décollage, vent 250°/10kt — puis : F-BC, trafic au départ vers Julienas, Cessna 310',
+    teaching:
+      "F-YU décolle vers Julienas (N). F-BC arrive du NW et va entrer en vent arrière : les trajectoires se croisent au NW. Info réciproque obligatoire dans les deux sens avant et après décollage.",
+    aircraft: [
+      { id: 'F-YU', type: 'departure', x: 615, y: 131, label: 'F-YU', heading: 270 },
+      { id: 'F-BC', type: 'arrival', x: 120, y: 89, label: 'F-BC', heading: 90 },
+      { id: 'F-QP', type: 'departure', x: 230, y: 195, label: 'F-QP', heading: 90 },
+    ],
+  },
+  {
+    id: 39,
+    time: '16:31:00',
+    speaker: { role: 'PILOTE', callsign: 'F-JA', color: 'departure' },
+    message: 'F-JA, quittons la fréquence, au revoir',
+    expectedResponse: 'F-JA, roger, au revoir',
+    teaching:
+      "F-JA quitte la fréquence TWR pour GAP via Fleurie. Strip archivé.",
+    aircraft: [
+      { id: 'F-BC', type: 'arrival', x: 155, y: 89, label: 'F-BC', heading: 90 },
+      { id: 'F-QP', type: 'departure', x: 310, y: 178, label: 'F-QP', heading: 90 },
+    ],
+  },
+  {
+    id: 40,
+    time: '16:32:10',
+    speaker: { role: 'PILOTE', callsign: 'F-BC', color: 'arrival' },
+    message: 'F-BC, vent arrière main droite piste 27',
+    expectedResponse: 'F-BC, numéro 1, rappelez finale piste 27',
+    teaching:
+      "F-YU est parti, circuit libre → F-BC n°1. Strip F-BC juste au-dessus de la barrette.",
+    aircraft: [
+      { id: 'F-BC', type: 'arrival', x: 200, y: 89, label: 'F-BC', heading: 90 },
+      { id: 'F-QP', type: 'departure', x: 360, y: 162, label: 'F-QP', heading: 0 },
+    ],
+  },
+  {
+    id: 41,
+    time: '16:32:20',
+    speaker: { role: 'PILOTE', callsign: 'F-QP', color: 'departure' },
+    message: 'F-QP, prêt au départ de l\'intersection',
+    expectedResponse: 'F-QP, trafic du Sud vers vertical, Beech 200, alignez-vous, piste 27 autorisé décollage, vent 250°/10kt',
+    teaching:
+      "F-BC est en vent arrière mais n'a pas encore passé le travers tour → verrou non actif pour l'intersection. F-QP peut décoller. H-JN arrive du sud (BST = Morgon) : info trafic réciproque F-QP/H-JN obligatoire.",
+    aircraft: [
+      { id: 'F-BC', type: 'arrival', x: 230, y: 89, label: 'F-BC', heading: 90 },
+      { id: 'F-QP', type: 'departure', x: 373, y: 155, label: 'F-QP', heading: 270 },
+    ],
+  },
+  {
+    id: 42,
+    time: '16:32:40',
+    speaker: { role: 'PILOTE', callsign: 'H-JN', color: 'arrival' },
+    message: 'AURIOL Tower, HBEJN, Beech 200, from PERPIGNAN, passing BST, airfield estimated in 5 minutes, 3500 feet QNH descending, requesting joining instructions',
+    expectedResponse: 'HBEJN, runway 27 in use, wind 250°/10kt, QNH 1010, join right hand downwind runway 27 via overhead tower, report overhead tower — then : H-JN, traffic departing to the south, Robin 300',
+    teaching:
+      "Pilote anglais → réponse en anglais, callsign complet HBEJN. BST (Bastié VOR) est au sud : arrivée par le sud → vertical tour obligatoire. Info réciproque H-JN/F-QP (deux trafics convergeant vers le secteur sud).",
+    aircraft: [
+      { id: 'F-BC', type: 'arrival', x: 260, y: 89, label: 'F-BC', heading: 90 },
+      { id: 'F-QP', type: 'departure', x: 260, y: 131, label: 'F-QP', heading: 270 },
+      { id: 'H-JN', type: 'arrival', x: 370, y: 390, label: 'H-JN', heading: 0 },
+    ],
+  },
+  {
+    id: 43,
+    time: '16:34:00',
+    speaker: { role: 'PILOTE', callsign: 'F-YU', color: 'departure' },
+    message: 'F-YU, passons JULIENAS, quittons la fréquence, au revoir',
+    expectedResponse: 'F-YU, roger, au revoir',
+    teaching:
+      "F-YU (FBTYU, VFR FPL) quitte la fréquence en passant Julienas. Strip archivé avec heure décollage pour le service d'alerte.",
+    aircraft: [
+      { id: 'F-BC', type: 'arrival', x: 320, y: 89, label: 'F-BC', heading: 90 },
+      { id: 'F-QP', type: 'departure', x: 100, y: 131, label: 'F-QP', heading: 270 },
+      { id: 'H-JN', type: 'arrival', x: 370, y: 320, label: 'H-JN', heading: 0 },
+    ],
+  },
+  {
+    id: 44,
+    time: '16:34:50',
+    speaker: { role: 'PILOTE', callsign: 'F-QP', color: 'departure' },
+    message: 'F-QP, quittons la fréquence, au revoir',
+    expectedResponse: 'F-QP, roger, au revoir',
+    teaching:
+      "F-QP (FGFQP, VFR FPL) quitte la fréquence. Strip archivé avec heure décollage.",
+    aircraft: [
+      { id: 'F-BC', type: 'arrival', x: 360, y: 89, label: 'F-BC', heading: 90 },
+      { id: 'H-JN', type: 'arrival', x: 370, y: 260, label: 'H-JN', heading: 0 },
+    ],
+  },
+  {
+    id: 45,
+    time: '16:35:00',
+    speaker: { role: 'PILOTE', callsign: 'F-RK', color: 'arrival' },
+    message: 'AURIOL Tour, FGBRK, Robin 3000, VFR avec plan de vol, provenance REIMS, via SAINT-AMOUR, 3000 pieds QNH en descente, l\'aérodrome estimé à 41, demandons intégration',
+    expectedResponse: 'FGBRK, piste 27 en service, vent 250°/10kt, QNH 1010, entrez vent arrière main droite piste 27, rappelez vent arrière',
+    teaching:
+      "F-RK (FGBRK, VFR FPL) arrive de Saint-Amour (NW). Callsign complet. NW → vent arrière directement. Strip bleu (fond orange car FPL imprimé).",
+    aircraft: [
+      { id: 'F-BC', type: 'arrival', x: 390, y: 89, label: 'F-BC', heading: 90 },
+      { id: 'H-JN', type: 'arrival', x: 370, y: 200, label: 'H-JN', heading: 0 },
+      { id: 'F-RK', type: 'arrival', x: 60, y: 55, label: 'F-RK', heading: 135 },
+    ],
+  },
+  {
+    id: 46,
+    time: '16:35:50',
+    speaker: { role: 'PILOTE', callsign: 'F-BC', color: 'arrival' },
+    message: 'F-BC, finale piste 27',
+    expectedResponse: 'F-BC, piste 27 autorisé atterrissage, vent 250°/10kt',
+    teaching:
+      "F-BC rappelle finale. Piste libre → clairance atterrissage.",
+    aircraft: [
+      { id: 'F-BC', type: 'arrival', x: 590, y: 131, label: 'F-BC', heading: 270 },
+      { id: 'H-JN', type: 'arrival', x: 370, y: 160, label: 'H-JN', heading: 0 },
+      { id: 'F-RK', type: 'arrival', x: 80, y: 68, label: 'F-RK', heading: 135 },
+    ],
+  },
+  {
+    id: 47,
+    time: '16:36:00',
+    speaker: { role: 'PILOTE', callsign: 'H-JN', color: 'arrival' },
+    message: 'H-JN, overhead tower',
+    expectedResponse: 'H-JN, report right hand downwind runway 27',
+    teaching:
+      "H-JN est au vertical aérodrome (vertical tour). On lui demande de rappeler vent arrière pour l'intégrer dans la séquence.",
+    aircraft: [
+      { id: 'F-BC', type: 'arrival', x: 500, y: 131, label: 'F-BC', heading: 270 },
+      { id: 'H-JN', type: 'arrival', x: 370, y: 135, label: 'H-JN', heading: 90 },
+      { id: 'F-RK', type: 'arrival', x: 100, y: 79, label: 'F-RK', heading: 135 },
+    ],
+  },
+  {
+    id: 48,
+    time: '16:36:50',
+    speaker: { role: 'PILOTE', callsign: 'D-KW', color: 'transit' },
+    message: 'AURIOL Tower, DISKW, Piper Aztec, VFR transit, from MONTPELLIER to STRASBOURG, 3000 feet QNH, via MORGON, over airfield time 43, northeast of airfield next',
+    expectedResponse: 'DISKW, runway 27 in use, QNH 1010, report overhead airfield',
+    teaching:
+      "Transit → piste en service + QNH uniquement (pas de vent). Callsign complet DISKW. On demande le rappel au vertical aérodrome.",
+    aircraft: [
+      { id: 'F-BC', type: 'arrival', x: 350, y: 131, label: 'F-BC', heading: 270 },
+      { id: 'H-JN', type: 'arrival', x: 540, y: 89, label: 'H-JN', heading: 90 },
+      { id: 'F-RK', type: 'arrival', x: 130, y: 89, label: 'F-RK', heading: 90 },
+      { id: 'D-KW', type: 'transit', x: 370, y: 320, label: 'D-KW', heading: 0 },
+    ],
+  },
+  {
+    id: 49,
+    time: '16:37:50',
+    speaker: { role: 'PILOTE', callsign: 'F-BC', color: 'arrival' },
+    message: 'F-BC, piste dégagée',
+    expectedResponse: 'F-BC, roulez poste B2',
+    teaching:
+      "F-BC dégage via H2. On lui attribue le poste B2 (C172, parking principal). Strip archivé.",
+    aircraft: [
+      { id: 'F-BC', type: 'arrival', x: 373, y: 178, label: 'F-BC', heading: 180 },
+      { id: 'H-JN', type: 'arrival', x: 480, y: 89, label: 'H-JN', heading: 90 },
+      { id: 'F-RK', type: 'arrival', x: 170, y: 89, label: 'F-RK', heading: 90 },
+      { id: 'D-KW', type: 'transit', x: 370, y: 240, label: 'D-KW', heading: 0 },
+    ],
+  },
+  {
+    id: 50,
+    time: '16:38:30',
+    speaker: { role: 'PILOTE', callsign: 'F-MS', color: 'departure' },
+    message: 'AURIOL Tour, FBTMS, Piper Aztec, parking C3, destination TOULOUSE via BST, demande roulage',
+    expectedResponse: 'FBTMS, piste 27 en service, vent 250°/10kt, QNH 1010, roulez point d\'attente piste 27',
+    teaching:
+      "Première communication — callsign complet FBTMS. F-MS (PA27, C3) roule vers H2. Strip rouge.",
+    aircraft: [
+      { id: 'H-JN', type: 'arrival', x: 420, y: 89, label: 'H-JN', heading: 90 },
+      { id: 'F-RK', type: 'arrival', x: 210, y: 89, label: 'F-RK', heading: 90 },
+      { id: 'D-KW', type: 'transit', x: 370, y: 180, label: 'D-KW', heading: 0 },
+      { id: 'F-MS', type: 'departure', x: 430, y: 235, label: 'F-MS', heading: 0 },
+    ],
+  },
+  {
+    id: 51,
+    time: '16:39:40',
+    speaker: { role: 'PILOTE', callsign: 'H-JN', color: 'arrival' },
+    message: 'H-JN, right hand downwind runway 27',
+    expectedResponse: 'H-JN, number 1, report final',
+    teaching:
+      "H-JN rappelle vent arrière après vertical tour. F-BC a atterri, circuit libre → H-JN n°1. On demande le rappel finale.",
+    aircraft: [
+      { id: 'H-JN', type: 'arrival', x: 360, y: 89, label: 'H-JN', heading: 90 },
+      { id: 'F-RK', type: 'arrival', x: 250, y: 89, label: 'F-RK', heading: 90 },
+      { id: 'D-KW', type: 'transit', x: 370, y: 131, label: 'D-KW', heading: 90 },
+      { id: 'F-MS', type: 'departure', x: 373, y: 162, label: 'F-MS', heading: 0 },
+    ],
+  },
+  {
+    id: 52,
+    time: '16:41:00',
+    speaker: { role: 'PILOTE', callsign: 'D-KW', color: 'transit' },
+    message: 'D-KW, over airfield',
+    expectedResponse: 'D-KW, report MORGON',
+    teaching:
+      "D-KW est au vertical aérodrome. On lui demande de rappeler au point de sortie (Morgon, cap NE). Le transit est à 3000ft QNH : aucun conflit avec le circuit (1400ft) ni les remises de gaz.",
+    aircraft: [
+      { id: 'H-JN', type: 'arrival', x: 290, y: 89, label: 'H-JN', heading: 90 },
+      { id: 'F-RK', type: 'arrival', x: 300, y: 89, label: 'F-RK', heading: 90 },
+      { id: 'D-KW', type: 'transit', x: 370, y: 89, label: 'D-KW', heading: 90 },
+      { id: 'F-MS', type: 'departure', x: 373, y: 162, label: 'F-MS', heading: 0 },
+    ],
+  },
+  {
+    id: 53,
+    time: '16:41:40',
+    speaker: { role: 'PILOTE', callsign: 'F-RK', color: 'arrival' },
+    message: 'F-RK, vent arrière main droite piste 27',
+    expectedResponse: 'F-RK, numéro 2, suivez un Beech 200 en vent arrière, rappelez finale',
+    teaching:
+      "H-JN est n°1 en vent arrière. F-RK devient n°2. On donne le suivez et on demande le rappel finale.",
+    aircraft: [
+      { id: 'H-JN', type: 'arrival', x: 230, y: 89, label: 'H-JN', heading: 90 },
+      { id: 'F-RK', type: 'arrival', x: 340, y: 89, label: 'F-RK', heading: 90 },
+      { id: 'D-KW', type: 'transit', x: 500, y: 89, label: 'D-KW', heading: 90 },
+      { id: 'F-MS', type: 'departure', x: 373, y: 162, label: 'F-MS', heading: 0 },
+    ],
+  },
+  {
+    id: 54,
+    time: '16:42:40',
+    speaker: { role: 'PILOTE', callsign: 'H-JN', color: 'arrival' },
+    message: 'H-JN, final runway 27',
+    expectedResponse: 'H-JN, runway 27 cleared to land, wind 250°/10kt',
+    teaching:
+      "H-JN rappelle finale. Piste libre → clairance atterrissage en anglais. La piste est occupée dès cet instant.",
+    aircraft: [
+      { id: 'H-JN', type: 'arrival', x: 590, y: 131, label: 'H-JN', heading: 270 },
+      { id: 'F-RK', type: 'arrival', x: 180, y: 89, label: 'F-RK', heading: 90 },
+      { id: 'F-MS', type: 'departure', x: 373, y: 162, label: 'F-MS', heading: 0 },
+    ],
+  },
+  {
+    id: 55,
+    time: '16:42:50',
+    speaker: { role: 'PILOTE', callsign: 'F-MS', color: 'departure' },
+    message: 'F-MS, prêt à remonter piste 27',
+    expectedResponse: 'F-MS, maintenez avant point d\'attente piste 27, Beech 200 en finale, rappelez en vue — puis : F-RK, prolongez vent arrière, avion en attente de remonter piste 27',
+    teaching:
+      "H-JN est en finale → verrou actif pour remontée. Phase 1 conditionnel pour F-MS : maintien + rappelez en vue. Simultanément, faire allonger F-RK (vent arrière n°2) pour lui dégager la finale après que F-MS aura décollé.",
+    aircraft: [
+      { id: 'H-JN', type: 'arrival', x: 560, y: 131, label: 'H-JN', heading: 270 },
+      { id: 'F-RK', type: 'arrival', x: 155, y: 89, label: 'F-RK', heading: 90 },
+      { id: 'F-MS', type: 'departure', x: 373, y: 162, label: 'F-MS', heading: 0 },
+    ],
+  },
+  {
+    id: 56,
+    time: '16:43:00',
+    speaker: { role: 'PILOTE', callsign: 'F-MS', color: 'departure' },
+    message: 'Beech 200 en vue, F-MS',
+    expectedResponse: 'F-MS, derrière le Beech 200 en finale, remontez piste 27, alignez-vous et attendez derrière',
+    teaching:
+      "F-MS a le visuel sur H-JN → phase 2 de l'alignement conditionnel. F-MS entre sur la piste derrière H-JN et attend la clairance décollage.",
+    aircraft: [
+      { id: 'H-JN', type: 'arrival', x: 520, y: 131, label: 'H-JN', heading: 270 },
+      { id: 'F-RK', type: 'arrival', x: 140, y: 89, label: 'F-RK', heading: 90 },
+      { id: 'F-MS', type: 'departure', x: 373, y: 162, label: 'F-MS', heading: 0 },
+    ],
+  },
+  {
+    id: 57,
+    time: '16:43:40',
+    speaker: { role: 'PILOTE', callsign: 'H-JN', color: 'arrival' },
+    message: 'H-JN, apron to leave frequency',
+    expectedResponse: 'H-JN, roger, good day',
+    teaching:
+      "H-JN a atterri, dégage et annonce quitter la fréquence depuis l'aire de trafic. Strip archivé.",
+    aircraft: [
+      { id: 'H-JN', type: 'arrival', x: 373, y: 178, label: 'H-JN', heading: 180 },
+      { id: 'F-RK', type: 'arrival', x: 130, y: 89, label: 'F-RK', heading: 90 },
+      { id: 'F-MS', type: 'departure', x: 540, y: 131, label: 'F-MS', heading: 270 },
+    ],
+  },
+  {
+    id: 58,
+    time: '16:44:10',
+    speaker: { role: 'PILOTE', callsign: 'D-KW', color: 'transit' },
+    message: 'D-KW, MORGON, leaving frequency, good day',
+    expectedResponse: 'D-KW, roger, good day',
+    teaching:
+      "D-KW passe Morgon et quitte la fréquence. Strip transit archivé.",
+    aircraft: [
+      { id: 'F-RK', type: 'arrival', x: 130, y: 89, label: 'F-RK', heading: 90 },
+      { id: 'F-MS', type: 'departure', x: 615, y: 131, label: 'F-MS', heading: 270 },
+    ],
+  },
+  {
+    id: 59,
+    time: '16:45:10',
+    speaker: { role: 'PILOTE', callsign: 'F-MS', color: 'departure' },
+    message: 'F-MS, prêt au départ',
+    expectedResponse: 'F-MS, piste 27 autorisé décollage, vent 250°/10kt',
+    teaching:
+      "H-JN a dégagé, piste libre. F-RK est en vent arrière étendu (suffisamment loin). Clairance décollage pour F-MS. Surveiller l'extrémité de piste pour l'autorisation d'atterrissage à F-RK.",
+    aircraft: [
+      { id: 'F-RK', type: 'arrival', x: 130, y: 89, label: 'F-RK', heading: 90 },
+      { id: 'F-MS', type: 'departure', x: 615, y: 131, label: 'F-MS', heading: 270 },
+    ],
+    showPattern: true,
+  },
+  {
+    id: 60,
+    time: '16:45:30',
+    speaker: { role: 'PILOTE', callsign: 'F-RK', color: 'arrival' },
+    message: 'F-RK, finale piste 27, pour un atterrissage court',
+    expectedResponse: null,
+    teaching:
+      "F-RK rappelle finale. F-MS est encore en roulement ou vient de décoller mais n'a PAS encore franchi l'extrémité de piste → ne pas donner la clairance atterrissage maintenant. Attendre que F-MS franchisse l'extrémité.",
+    aircraft: [
+      { id: 'F-RK', type: 'arrival', x: 590, y: 131, label: 'F-RK', heading: 270 },
+      { id: 'F-MS', type: 'departure', x: 200, y: 131, label: 'F-MS', heading: 270 },
+    ],
+  },
+  {
+    id: 61,
+    time: '16:46:00',
+    speaker: { role: 'INFO' },
+    message: "F-MS franchit l'extrémité de piste (seuil 09) et amorce son virage. F-RK est en courte finale. Piste libre.",
+    expectedResponse: 'F-RK, numéro 1, piste 27 autorisé atterrissage, vent 250°/10kt',
+    teaching:
+      "Dès que F-MS franchit l'extrémité de piste, la piste est libre et on autorise F-RK. Report courte finale : F-RK était en finale courte — la clairance était retenue jusqu'ici pour s'assurer que F-MS avait bien dégagé. Fin du scénario.",
+    aircraft: [
+      { id: 'F-RK', type: 'arrival', x: 560, y: 131, label: 'F-RK', heading: 270 },
+      { id: 'F-MS', type: 'departure', x: 80, y: 120, label: 'F-MS', heading: 270 },
+    ],
+  },
+];
+
 const SCENARIOS = [
   {
     id: 'scenario_1',
-    title: 'Matinée chargée — 40 min',
+    title: 'Scénario alextoledozo ~ 10 min',
     description:
       "Scénario long combinant approche directe, laissez-passer, backtrack, remise de gaz, tour de piste, transit et verrou de piste. Pilotes anglais et français.",
     color: '#8b5cf6',
@@ -1842,13 +2690,23 @@ const SCENARIOS = [
   },
   {
     id: 'scenario_2',
-    title: 'Matinée chargée — Suite',
+    title: '@alextoledozo version pro max ~ 30min',
     description:
       "Suite directe du scénario 1. Situations variées inspirées des livrets BASIC TWR.",
     color: '#3b82f6',
     icon: 'layers',
     setup: { wind: '250°/10 kt', qnh: '1020', rwy: '27' },
     steps: SCENARIO_2_STEPS,
+  },
+  {
+    id: 'scenario_3',
+    title: 'Simulation n°6 — ~40 min',
+    description:
+      "Roulages conflictuels (véhicule, arrivée/départ), info réciproque intersection, changement QNH, mauvais collationnement, alignements conditionnels avec allongement vent arrière, courte finale.",
+    color: '#10b981',
+    icon: 'layers',
+    setup: { wind: '250°/10 kt', qnh: '1009→1010', rwy: '27' },
+    steps: SCENARIO_3_STEPS,
   },
 ];
 
@@ -2168,7 +3026,7 @@ export default function ATCSimulator() {
         </div>
 
         <div className="flex items-center gap-3 text-xs">
-          <span className="text-slate-500 font-mono">
+          <span className="text-slate-500 font-mono shrink-0">
             {String(step + 1).padStart(2, '0')} / {String(steps.length).padStart(2, '0')}
           </span>
           <div className="flex-1 h-1 bg-slate-800 rounded-full overflow-hidden">
@@ -2177,6 +3035,21 @@ export default function ATCSimulator() {
               style={{ width: ((step + 1) / steps.length) * 100 + '%' }}
             />
           </div>
+          <select
+            value={step}
+            onChange={(e) => {
+              setStep(Number(e.target.value));
+              setUserResponse('');
+              setRevealed(false);
+            }}
+            className="shrink-0 bg-slate-800 border border-slate-600 text-slate-300 rounded px-2 py-0.5 font-mono text-xs focus:outline-none focus:border-amber-400 cursor-pointer"
+          >
+            {steps.map((s, i) => (
+              <option key={i} value={i}>
+                {String(i + 1).padStart(2, '0')} · {s.time.slice(0, 5)} · {s.speaker.role === 'INFO' ? 'INFO' : s.speaker.callsign}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="space-y-3">
