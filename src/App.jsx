@@ -1379,9 +1379,9 @@ const SCENARIO_2_STEPS = [
     speaker: { role: 'PILOTE', callsign: 'F-VS', color: 'arrival' },
     message:
       "AURIOL Tour, FGCVS, Piper Cherokee, provenance CHAMBÉRY via Penent, pour atterrissage, demande approche semi-directe piste 27",
-    expectedResponse: "FGCVS, entrez base main droite piste 27, rappelez base",
+    expectedResponse: "FGCVS, piste 27 en service, vent 250°/10 kt, QNH 1020, entrez base main droite piste 27, rappelez base",
     teaching:
-      "Approche semi-directe (livret 2, §4) : FGCVS arrive du NE et demande à entrer en base. Condition remplie — aucun avion dans le circuit (GBVKL est sur approche directe, pas encore en circuit). Le numéro d'ordre sera donné quand FGCVS rappellera 'base'. Strip bleu.",
+      "Approche semi-directe (livret 2, §4) : FGCVS arrive du NE et demande à entrer en base. Premier contact → piste + vent + QNH transmis. Condition remplie — aucun avion dans le circuit (GBVKL est sur approche directe, pas encore en circuit). Le numéro d'ordre sera donné quand FGCVS rappellera 'base'. Strip bleu.",
     aircraft: [
       { id: 'G-KL', type: 'arrival', x: 690, y: 132, label: 'G-KL', heading: 270 },
       { id: 'F-VS', type: 'arrival', x: 620, y: 50, label: 'F-VS', heading: 225 },
