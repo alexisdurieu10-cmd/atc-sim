@@ -15,6 +15,7 @@ import {
   Shuffle,
   AlertTriangle,
   Layers,
+  ShieldCheck,
 } from 'lucide-react';
 
 const COLORS = {
@@ -3569,26 +3570,29 @@ const SCENARIOS = [
       "Roulages conflictuels (véhicule, arrivée/départ), info réciproque intersection, changement QNH, mauvais collationnement, alignements conditionnels avec allongement vent arrière, courte finale.",
     color: '#10b981',
     icon: 'layers',
+    official: true,
     setup: { wind: '250°/10 kt', qnh: '1009→1010', rwy: '27' },
     steps: SCENARIO_3_STEPS,
   },
   {
     id: 'scenario_4',
-    title: 'Piste 09 — Arrivée du Sud, Alignement conditionnel, TdP',
+    title: 'Simu Mehiti',
     description:
       "Piste 09 en service (sens inversé). Arrivée du Sud via Morgon (vertical tour obligatoire), tour de piste anglophone, roulage conflictuel véhicule, alignement conditionnel.",
     color: '#f59e0b',
     icon: 'layers',
+    official: true,
     setup: { wind: '080°/10 kt', qnh: '1020', rwy: '09' },
     steps: SCENARIO_4_STEPS,
   },
   {
     id: 'scenario_5',
-    title: 'Mini simu ANNA — IFR, VFR PLN, Transit, Mauvais collationnement',
+    title: 'Simu Anna',
     description:
       "Départ IFR avec coordination BASTIÉ, départ VFR avec plan de vol et mauvais collationnement QNH, transit TBM700, roulage véhicule.",
     color: '#ef4444',
     icon: 'layers',
+    official: true,
     setup: { wind: '250°/12 kt', qnh: '1015', rwy: '27' },
     steps: SCENARIO_5_STEPS,
   },
@@ -3782,6 +3786,14 @@ function ScenarioMenu({ onSelect }) {
                         Scénario {idx + 1}/{SCENARIOS.length}
                       </span>
                     </div>
+                    {scenario.official && (
+                      <div className="flex items-center gap-1.5 mb-2">
+                        <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                        <span className="text-xs text-amber-400 font-semibold tracking-wide uppercase">
+                          Simulation officielle — valeur de référence
+                        </span>
+                      </div>
+                    )}
                     <p className="text-sm text-slate-400 leading-relaxed mb-4">{scenario.description}</p>
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-mono text-slate-500">
                       <span>RWY {scenario.setup.rwy}</span>
