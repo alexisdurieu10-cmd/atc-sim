@@ -2872,34 +2872,34 @@ function ScenarioMenu({ onSelect }) {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-5">
           {SCENARIOS.map((scenario, idx) => {
             const Icon = getIconForScenario(scenario.icon);
             return (
               <button
                 key={scenario.id}
                 onClick={() => onSelect(idx)}
-                className="text-left bg-slate-800 border border-slate-700 rounded-lg p-5 hover:border-amber-400/40 hover:bg-slate-800/80 transition-colors"
+                className="text-left bg-slate-800 border border-slate-700 rounded-xl p-7 hover:border-amber-400/40 hover:bg-slate-800/80 transition-colors"
               >
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-5">
                   <div
-                    className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center border"
+                    className="flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center border"
                     style={{ backgroundColor: scenario.color + '20', borderColor: scenario.color + '60' }}
                   >
-                    <Icon className="w-5 h-5" style={{ color: scenario.color }} />
+                    <Icon className="w-8 h-8" style={{ color: scenario.color }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2 mb-1">
-                      <h2 className="font-semibold text-slate-100 truncate">{scenario.title}</h2>
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <h2 className="text-lg font-semibold text-slate-100 truncate">{scenario.title}</h2>
                       <span
-                        className="text-xs px-2 py-0.5 rounded font-medium flex-shrink-0"
+                        className="text-sm px-3 py-1 rounded-lg font-medium flex-shrink-0"
                         style={{ backgroundColor: scenario.color + '20', color: scenario.color }}
                       >
                         Scénario {idx + 1}/{SCENARIOS.length}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-400 leading-relaxed mb-3">{scenario.description}</p>
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-slate-500">
+                    <p className="text-sm text-slate-400 leading-relaxed mb-4">{scenario.description}</p>
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-mono text-slate-500">
                       <span>RWY {scenario.setup.rwy}</span>
                       <span>{scenario.setup.wind}</span>
                       <span>QNH {scenario.setup.qnh}</span>
