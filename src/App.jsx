@@ -1646,6 +1646,76 @@ const SCENARIO_2_STEPS = [
       { id: 'F-GR', type: 'departure', x: 373, y: 185, label: 'F-GR', heading: 0 },
     ],
   },
+  {
+    id: 112,
+    time: '09:59:30',
+    speaker: { role: 'PILOTE', callsign: 'F-HR', color: 'arrival' },
+    message: 'F-HR, piste dégagée, demande roulage',
+    expectedResponse: 'F-HR, roulez poste A3',
+    teaching: "F-HR libère la piste. Poste A3 attribué. F-GR peut progresser vers H2.",
+    aircraft: [
+      { id: 'F-HR', type: 'arrival', x: 373, y: 165, label: 'F-HR', heading: 180 },
+      { id: 'F-GR', type: 'departure', x: 373, y: 158, label: 'F-GR', heading: 0 },
+    ],
+  },
+  {
+    id: 113,
+    time: '10:00:00',
+    speaker: { role: 'PILOTE', callsign: 'F-KR', color: 'departure' },
+    message:
+      "AURIOL Tour, FBTKR, TBM7, poste C3, destination CAEN via Saint-Amour, demande roulage",
+    expectedResponse:
+      "FBTKR, piste 27 en service, vent 250°/10 kt, QNH 1018, roulez point d'attente piste 27",
+    teaching:
+      "Première communication — callsign complet FBTKR. Poste C3, pas de conflit de roulage. Strip rouge, route Saint-Amour (NW). Même sortie que FBXGR (F-GR) — à noter sur les strips.",
+    aircraft: [
+      { id: 'F-GR', type: 'departure', x: 373, y: 158, label: 'F-GR', heading: 0 },
+      { id: 'F-KR', type: 'departure', x: 405, y: 245, label: 'F-KR', heading: 0 },
+      { id: 'F-HR', type: 'arrival', x: 295, y: 205, label: 'F-HR', heading: 90 },
+    ],
+  },
+  {
+    id: 114,
+    time: '10:01:00',
+    speaker: { role: 'PILOTE', callsign: 'F-GR', color: 'departure' },
+    message: "F-GR, prêt, demande départ de l'intersection",
+    expectedResponse:
+      "F-GR, trafic au départ vers vent arrière, TBM7 via Saint-Amour, alignez-vous, piste 27 autorisé décollage, vent 250°/10 kt",
+    teaching:
+      "Deux départs même sortie (livret 5, §4) : FBXGR (DR400) et FBTKR (TBM7) partent tous deux via Saint-Amour (NW). En comparant les strips, le contrôleur détecte la même sortie → info trafic obligatoire. F-GR décolle en premier (arrivé au PA avant F-KR). On informe F-GR du TBM7 qui suivra sur le même axe.",
+    aircraft: [
+      { id: 'F-GR', type: 'departure', x: 373, y: 158, label: 'F-GR', heading: 0 },
+      { id: 'F-KR', type: 'departure', x: 373, y: 180, label: 'F-KR', heading: 0 },
+    ],
+  },
+  {
+    id: 115,
+    time: '10:01:30',
+    speaker: { role: 'PILOTE', callsign: 'F-KR', color: 'departure' },
+    message: "F-KR, prêt, demande départ de l'intersection",
+    expectedResponse:
+      "F-KR, trafic au départ vers vent arrière, DR400 via Saint-Amour, alignez-vous, piste 27 autorisé décollage, vent 250°/10 kt",
+    teaching:
+      "Info trafic réciproque (livret 5, §4) : F-KR (TBM7) est informé du DR400 parti devant lui sur le même axe. Le TBM7 est plus rapide — risque de rattrapage en montée initiale si la séparation est insuffisante. L'info trafic dans les deux sens est obligatoire dès que deux avions partagent le même point de sortie.",
+    aircraft: [
+      { id: 'F-GR', type: 'departure', x: 373, y: 132, label: 'F-GR', heading: 270 },
+      { id: 'F-KR', type: 'departure', x: 373, y: 158, label: 'F-KR', heading: 0 },
+    ],
+  },
+  {
+    id: 116,
+    time: '10:02:00',
+    speaker: { role: 'PILOTE', callsign: 'F-HR', color: 'arrival' },
+    message: 'F-HR, je quitte la fréquence, au revoir',
+    expectedResponse: 'F-HR, roger, au revoir',
+    teaching:
+      "F-HR (C172) au parking A3. Strip archivé. F-GR et F-KR sont tous deux en montée initiale vers Saint-Amour.",
+    aircraft: [
+      { id: 'F-GR', type: 'departure', x: 80, y: 115, label: 'F-GR', heading: 315 },
+      { id: 'F-KR', type: 'departure', x: 373, y: 132, label: 'F-KR', heading: 270 },
+      { id: 'F-HR', type: 'arrival', x: 295, y: 245, label: 'F-HR', heading: 0 },
+    ],
+  },
 ];
 
 const SCENARIOS = [
