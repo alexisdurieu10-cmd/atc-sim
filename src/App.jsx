@@ -1261,7 +1261,7 @@ const SCENARIO_2_STEPS = [
     teaching:
       "G-QR passe le vertical (depuis SW). CTM4321 monte depuis Morgon (S) vers le vent arrière → trajectoires croisées au NW. Info trafic dans les deux sens.",
     aircraft: [
-      { id: 'CTM4321', type: 'circuit', x: 245, y: 115, label: 'CTM', heading: 0 },
+      { id: 'CTM4321', type: 'circuit', x: 370, y: 165, label: 'CTM', heading: 0 },
       { id: 'G-QR', type: 'arrival', x: 370, y: 262, label: 'G-QR', heading: 0 },
       { id: 'F-GE', type: 'arrival', x: 373, y: 168, label: 'F-GE', heading: 180 },
     ],
@@ -1456,7 +1456,7 @@ const SCENARIO_2_STEPS = [
       "Première communication — callsign complet FBAMR. Poste B2, pas de conflit. Destination Marseille via Fleurie (SE). Callsign abrégé : F-MR.",
     aircraft: [
       { id: 'G-KL', type: 'arrival', x: 575, y: 132, label: 'G-KL', heading: 270 },
-      { id: 'F-VS', type: 'arrival', x: 545, y: 118, label: 'F-VS', heading: 200 },
+      { id: 'F-VS', type: 'arrival', x: 510, y: 132, label: 'F-VS', heading: 270 },
       { id: 'F-MR', type: 'departure', x: 350, y: 245, label: 'F-MR', heading: 0 },
       { id: 'F-HT', type: 'transit', x: 430, y: 330, label: 'F-HT', heading: 170 },
     ],
@@ -1798,7 +1798,7 @@ const SCENARIO_2_STEPS = [
       "Le QFE n'est transmis que sur demande du pilote (livret 1). Ici QFE 1006 cohérent avec QNH 1018 (piste à ~350ft). Ordre de la réponse : piste → vent → QNH → QFE (si demandé) → instruction d'intégration. On ne donne jamais le QFE spontanément.",
     aircraft: [
       { id: 'F-NR', type: 'arrival', x: 130, y: 30, label: 'F-NR', heading: 135 },
-      { id: 'F-HV', type: 'departure', x: 60, y: 115, label: 'F-HV', heading: 45 },
+      { id: 'F-HV', type: 'departure', x: 60, y: 115, label: 'F-HV', heading: 270 },
     ],
   },
   {
@@ -1812,7 +1812,7 @@ const SCENARIO_2_STEPS = [
       "Collationnement erroné : F-NR a répété QNH 1020 (ancien QNH) au lieu de 1018. Le contrôleur doit corriger immédiatement avec 'négatif' + valeur correcte + 'confirmer'. Cette correction est prioritaire : une erreur de QNH génère une erreur d'altitude et peut créer un conflit avec le circuit (1400ft QNH).",
     aircraft: [
       { id: 'F-NR', type: 'arrival', x: 175, y: 60, label: 'F-NR', heading: 135 },
-      { id: 'F-HV', type: 'departure', x: 30, y: 90, label: 'F-HV', heading: 45 },
+      { id: 'F-HV', type: 'departure', x: 30, y: 90, label: 'F-HV', heading: 270 },
     ],
   },
   {
