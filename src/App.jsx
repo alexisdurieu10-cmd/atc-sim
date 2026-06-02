@@ -789,7 +789,7 @@ const SCENARIO_2_STEPS = [
     teaching:
       "F-LN intègre le vent arrière. G-HC (n°1) est déjà en finale devant lui. Séquencement : numéro 2, suivre le C172 visuellement, rappel finale.",
     aircraft: [
-      { id: 'G-HC', type: 'arrival', x: 570, y: 132, label: 'G-HC', heading: 270 },
+      { id: 'G-HC', type: 'arrival', x: 605, y: 132, label: 'G-HC', heading: 270 },
       { id: 'F-LN', type: 'arrival', x: 230, y: 95, label: 'F-LN', heading: 90 },
     ],
     showPattern: true,
@@ -803,7 +803,7 @@ const SCENARIO_2_STEPS = [
     teaching:
       "F-LN est en vent arrière (n°2). Piste libre. Atterrissage autorisé pour G-HC.",
     aircraft: [
-      { id: 'G-HC', type: 'arrival', x: 605, y: 132, label: 'G-HC', heading: 270 },
+      { id: 'G-HC', type: 'arrival', x: 570, y: 132, label: 'G-HC', heading: 270 },
       { id: 'F-LN', type: 'arrival', x: 395, y: 95, label: 'F-LN', heading: 90 },
     ],
     showPattern: true,
@@ -1411,7 +1411,7 @@ const SCENARIO_2_STEPS = [
     teaching:
       "Approche directe : le numéro d'ordre est transmis en longue finale (livret 2, §5). F-VS est en route vers la base mais pas encore 'en base' — GBVKL est n°1. Rappel finale pour la clairance d'atterrissage.",
     aircraft: [
-      { id: 'G-KL', type: 'arrival', x: 700, y: 132, label: 'G-KL', heading: 270 },
+      { id: 'G-KL', type: 'arrival', x: 625, y: 132, label: 'G-KL', heading: 270 },
       { id: 'F-VS', type: 'arrival', x: 545, y: 100, label: 'F-VS', heading: 225 },
       { id: 'F-HT', type: 'transit', x: 540, y: 155, label: 'F-HT', heading: 200 },
     ],
@@ -1470,8 +1470,8 @@ const SCENARIO_2_STEPS = [
     teaching:
       "F-VS est en base/virage finale (n°2). Piste libre. Clairance atterrissage pour G-KL (TBM7). Notez l'heure d'atterrissage — F-VS sera actualisée n°1 au toucher.",
     aircraft: [
-      { id: 'G-KL', type: 'arrival', x: 605, y: 132, label: 'G-KL', heading: 270 },
-      { id: 'F-VS', type: 'arrival', x: 545, y: 132, label: 'F-VS', heading: 270 },
+      { id: 'G-KL', type: 'arrival', x: 545, y: 132, label: 'G-KL', heading: 270 },
+      { id: 'F-VS', type: 'arrival', x: 510, y: 132, label: 'F-VS', heading: 270 },
       { id: 'F-MR', type: 'departure', x: 373, y: 185, label: 'F-MR', heading: 0 },
     ],
   },
