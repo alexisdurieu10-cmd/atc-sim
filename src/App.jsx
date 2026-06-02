@@ -1716,6 +1716,117 @@ const SCENARIO_2_STEPS = [
       { id: 'F-HR', type: 'arrival', x: 295, y: 245, label: 'F-HR', heading: 0 },
     ],
   },
+
+  // ── Phraséologie ───────────────────────────────────────────────────────────
+
+  {
+    id: 117,
+    time: '10:03:00',
+    speaker: { role: 'PILOTE', callsign: 'F-HV', color: 'departure' },
+    message:
+      "AURIOL Tour, FGCHV, Beech 200, poste B2, IFR destination MARSEILLE, demande mise en route, heure estimée de départ 10",
+    expectedResponse: "F-HV, roger, je vous rappelle",
+    teaching:
+      "Départ IFR (livret 5, §1) : un strip IFR (fond orange, imprimé par le BNIA) est déjà sur le tableau d'attente avec ETD 10h10. Au premier contact IFR, le pilote donne callsign complet, type, poste, destination et ETD. La réponse est systématiquement 'roger, je vous rappelle' — le contrôleur doit d'abord appeler BASTIÉ avant de répondre.",
+    aircraft: [
+      { id: 'F-HV', type: 'departure', x: 345, y: 245, label: 'F-HV', heading: 0 },
+    ],
+  },
+  {
+    id: 118,
+    time: '10:04:00',
+    speaker: { role: 'INFO' },
+    message:
+      "Le contrôleur appelle BASTIÉ : « Bonjour, AURIOL Tour, demande de mise en route IFR, FGCHV, destination LFML, départ prévu à 10h10. » BASTIÉ répond : « Mise en route approuvée FGCHV, départ à 10h10, rappelez-moi pour la clairance. »",
+    expectedResponse:
+      "FGCHV, mise en route approuvée pour un départ à 10h10, piste 27 en service, vent 250°/10 kt, QNH 1018, rappelez prêt à rouler",
+    teaching:
+      "Coordination BASTIÉ (livret 5, §1) : 1. Appel BASTIÉ avec callsign + destination + ETD. 2. BASTIÉ approuve avec ETD confirmée. 3. Transmission au pilote : mise en route approuvée + piste + vent + QNH + instruction 'rappelez prêt à rouler'. On attend le roulage effectif avant de rappeler BASTIÉ pour la clairance (LOA BASTIÉ, tolérance ±1 → +3 min).",
+    aircraft: [
+      { id: 'F-HV', type: 'departure', x: 345, y: 245, label: 'F-HV', heading: 0 },
+    ],
+  },
+  {
+    id: 119,
+    time: '10:08:00',
+    speaker: { role: 'PILOTE', callsign: 'F-HV', color: 'departure' },
+    message: "F-HV, demande roulage",
+    expectedResponse:
+      "F-HV, roulez point d'attente piste 27, je vous rappelle pour la clairance",
+    teaching:
+      "F-HV est prêt à rouler. Clairance de roulage standard. La formule 'je vous rappelle pour la clairance' prévient le pilote : ne pas attendre de clairance IFR maintenant. Le contrôleur appelle BASTIÉ dès que F-HV commence à rouler.",
+    aircraft: [
+      { id: 'F-HV', type: 'departure', x: 373, y: 185, label: 'F-HV', heading: 0 },
+    ],
+  },
+  {
+    id: 120,
+    time: '10:09:00',
+    speaker: { role: 'INFO' },
+    message:
+      "F-HV est en roulage. Le contrôleur rappelle BASTIÉ : « AURIOL Tour, demande de clairance départ IFR du FGCHV. » BASTIÉ répond : « FGCHV : LSE, 4000 pieds QNH 1018, transpondeur 1401, fréquence 136.080. »",
+    expectedResponse:
+      "F-HV, rejoignez LSE, 4000 pieds QNH 1018, transpondeur 1401, BASTIÉ Approche en standby 136.080",
+    teaching:
+      "Clairance IFR transmise élément par élément (livret 5, §1) : balise de sortie (LSE), niveau (4000ft QNH), squawk (transpondeur 1401), fréquence suivante (BASTIÉ Approche 136.080). Chaque élément collationnement par le pilote est souligné sur le strip. Formule type : 'rejoignez [balise], [niveau], transpondeur [code], [organisme] en standby [fréquence]'.",
+    aircraft: [
+      { id: 'F-HV', type: 'departure', x: 373, y: 158, label: 'F-HV', heading: 0 },
+    ],
+  },
+  {
+    id: 121,
+    time: '10:10:00',
+    speaker: { role: 'PILOTE', callsign: 'F-HV', color: 'departure' },
+    message: "F-HV correct, prêt",
+    expectedResponse:
+      "F-HV, alignez-vous, piste 27 autorisé décollage, vent 250°/10 kt",
+    teaching:
+      "'Correct' signifie que le pilote a collationnement tous les éléments de la clairance IFR. Piste libre → clairance décollage immédiate. On peut aussi combiner remontée + alignement + décollage si nécessaire.",
+    aircraft: [
+      { id: 'F-HV', type: 'departure', x: 615, y: 132, label: 'F-HV', heading: 270 },
+    ],
+  },
+  {
+    id: 122,
+    time: '10:11:00',
+    speaker: { role: 'PILOTE', callsign: 'F-NR', color: 'arrival' },
+    message:
+      "AURIOL Tour, FBQNR, Cessna 172, provenance MÂCON via Julienas, pour atterrissage — QFE s'il vous plaît",
+    expectedResponse:
+      "FBQNR, piste 27 en service, vent 250°/10 kt, QNH 1018, QFE 1006, entrez vent arrière main droite piste 27, rappelez vent arrière",
+    teaching:
+      "Le QFE n'est transmis que sur demande du pilote (livret 1). Ici QFE 1006 cohérent avec QNH 1018 (piste à ~350ft). Ordre de la réponse : piste → vent → QNH → QFE (si demandé) → instruction d'intégration. On ne donne jamais le QFE spontanément.",
+    aircraft: [
+      { id: 'F-NR', type: 'arrival', x: 130, y: 30, label: 'F-NR', heading: 135 },
+      { id: 'F-HV', type: 'departure', x: 60, y: 115, label: 'F-HV', heading: 45 },
+    ],
+  },
+  {
+    id: 123,
+    time: '10:11:30',
+    speaker: { role: 'PILOTE', callsign: 'F-NR', color: 'arrival' },
+    message:
+      "Piste 27, QNH 1020, je m'intègre vent arrière, F-NR",
+    expectedResponse: "F-NR, négatif, QNH 1018, confirmer",
+    teaching:
+      "Collationnement erroné : F-NR a répété QNH 1020 (ancien QNH) au lieu de 1018. Le contrôleur doit corriger immédiatement avec 'négatif' + valeur correcte + 'confirmer'. Cette correction est prioritaire : une erreur de QNH génère une erreur d'altitude et peut créer un conflit avec le circuit (1400ft QNH).",
+    aircraft: [
+      { id: 'F-NR', type: 'arrival', x: 175, y: 60, label: 'F-NR', heading: 135 },
+      { id: 'F-HV', type: 'departure', x: 30, y: 90, label: 'F-HV', heading: 45 },
+    ],
+  },
+  {
+    id: 124,
+    time: '10:12:00',
+    speaker: { role: 'PILOTE', callsign: 'F-HV', color: 'departure' },
+    message: "F-HV, je quitte la fréquence, bonjour BASTIÉ",
+    expectedResponse: "F-HV, roger, au revoir",
+    teaching:
+      "F-HV (BE20 IFR) quitte la fréquence TWR pour contacter BASTIÉ Approche (136.080). Strip archivé avec heure de dernier contact. On note également l'heure de décollage pour le service d'alerte (plan de vol actif).",
+    aircraft: [
+      { id: 'F-NR', type: 'arrival', x: 220, y: 85, label: 'F-NR', heading: 90 },
+    ],
+  },
 ];
 
 const SCENARIOS = [
