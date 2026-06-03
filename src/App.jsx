@@ -3361,9 +3361,9 @@ const SCENARIO_5_STEPS = [
     teaching: null,
     aircraft: [
       { id: 'F-HI', type: 'departure', x: 345, y: 245, label: 'F-HI', heading: 0 },
-      { id: 'T-RE', type: 'departure', x: 373, y: 185, label: 'T-RE', heading: 0 },
+      { id: 'T-RE', type: 'departure', x: 373, y: 200, label: 'T-RE', heading: 0 },
       { id: 'G-SS', type: 'transit', x: 100, y: 25, label: 'G-SS', heading: 135 },
-      { id: 'FLYCO', type: 'vehicle', x: 460, y: 180, label: 'FLYCO' },
+      { id: 'FLYCO', type: 'vehicle', x: 480, y: 180, label: 'FLYCO' },
     ],
   },
   {
@@ -3378,7 +3378,7 @@ const SCENARIO_5_STEPS = [
     aircraft: [
       { id: 'F-HI', type: 'departure', x: 345, y: 245, label: 'F-HI', heading: 0 },
       { id: 'T-RE', type: 'departure', x: 373, y: 185, label: 'T-RE', heading: 0 },
-      { id: 'G-SS', type: 'transit', x: 100, y: 25, label: 'G-SS', heading: 135 },
+      { id: 'G-SS', type: 'transit', x: 110, y: 35, label: 'G-SS', heading: 135 },
       { id: 'FLYCO', type: 'vehicle', x: 460, y: 180, label: 'FLYCO' },
     ],
   },
@@ -3423,8 +3423,8 @@ const SCENARIO_5_STEPS = [
     teaching:
       "Info trafic réciproque : après avoir informé T-HERE de G-CASS, on informe G-CASS du départ T-HERE. C'est une information, pas une clairance conditionnelle.",
     aircraft: [
-      { id: 'T-RE', type: 'departure', x: 80, y: 132, label: 'T-RE', heading: 270 },
-      { id: 'G-SS', type: 'transit', x: 300, y: 175, label: 'G-SS', heading: 135 },
+      { id: 'T-RE', type: 'departure', x: 320, y: 132, label: 'T-RE', heading: 270 },
+      { id: 'G-SS', type: 'transit', x: 220, y: 135, label: 'G-SS', heading: 135 },
       { id: 'F-HI', type: 'departure', x: 373, y: 190, label: 'F-HI', heading: 0 },
       { id: 'FLYCO', type: 'vehicle', x: 373, y: 160, label: 'FLYCO' },
     ],
@@ -3440,7 +3440,7 @@ const SCENARIO_5_STEPS = [
     teaching:
       "Activation PLN VFR (livret 5, §2) : après le décollage d'un avion avec plan de vol VFR, le contrôleur informe le BNIA pour activer le plan de vol et déclencher le service d'alerte.",
     aircraft: [
-      { id: 'T-RE', type: 'departure', x: 80, y: 132, label: 'T-RE', heading: 270 },
+      { id: 'T-RE', type: 'departure', x: 40, y: 125, label: 'T-RE', heading: 270 },
       { id: 'G-SS', type: 'transit', x: 300, y: 175, label: 'G-SS', heading: 135 },
       { id: 'F-HI', type: 'departure', x: 373, y: 190, label: 'F-HI', heading: 0 },
       { id: 'FLYCO', type: 'vehicle', x: 373, y: 160, label: 'FLYCO' },
@@ -3455,8 +3455,8 @@ const SCENARIO_5_STEPS = [
     teaching:
       "T-HERE vient de décoller et a dépassé l'extrémité de piste. F-HI roule vers le point d'attente mais n'a pas atteint la piste. Traversée autorisée pour Flyco.",
     aircraft: [
-      { id: 'T-RE', type: 'departure', x: 60, y: 120, label: 'T-RE', heading: 270 },
-      { id: 'G-SS', type: 'transit', x: 320, y: 215, label: 'G-SS', heading: 135 },
+      { id: 'T-RE', type: 'departure', x: 20, y: 120, label: 'T-RE', heading: 270 },
+      { id: 'G-SS', type: 'transit', x: 305, y: 180, label: 'G-SS', heading: 135 },
       { id: 'F-HI', type: 'departure', x: 373, y: 190, label: 'F-HI', heading: 0 },
       { id: 'FLYCO', type: 'vehicle', x: 373, y: 160, label: 'FLYCO' },
     ],
@@ -3471,9 +3471,9 @@ const SCENARIO_5_STEPS = [
       "AURIOL Tour, demande clairance de départ IFR, F-MEHI",
     teaching: null,
     aircraft: [
-      { id: 'G-SS', type: 'transit', x: 430, y: 330, label: 'G-SS', heading: 145 },
+      { id: 'G-SS', type: 'transit', x: 310, y: 185, label: 'G-SS', heading: 135 },
       { id: 'F-HI', type: 'departure', x: 373, y: 158, label: 'F-HI', heading: 0 },
-      { id: 'FLYCO', type: 'vehicle', x: 373, y: 95, label: 'FLYCO' },
+      { id: 'FLYCO', type: 'vehicle', x: 373, y: 105, label: 'FLYCO' },
     ],
   },
   {
@@ -3487,7 +3487,7 @@ const SCENARIO_5_STEPS = [
     teaching:
       "Le contrôleur collationne la clairance IFR reçue de BASTIÉ en la répétant mot pour mot, avant de la transmettre au pilote.",
     aircraft: [
-      { id: 'G-SS', type: 'transit', x: 430, y: 330, label: 'G-SS', heading: 145 },
+      { id: 'G-SS', type: 'transit', x: 315, y: 190, label: 'G-SS', heading: 135 },
       { id: 'F-HI', type: 'departure', x: 373, y: 158, label: 'F-HI', heading: 0 },
       { id: 'FLYCO', type: 'vehicle', x: 373, y: 95, label: 'FLYCO' },
     ],
@@ -3500,7 +3500,7 @@ const SCENARIO_5_STEPS = [
     expectedResponse: 'F-MEHI, rappelez prête à copier la clairance',
     teaching: null,
     aircraft: [
-      { id: 'G-SS', type: 'transit', x: 430, y: 330, label: 'G-SS', heading: 145 },
+      { id: 'G-SS', type: 'transit', x: 320, y: 195, label: 'G-SS', heading: 135 },
       { id: 'F-HI', type: 'departure', x: 373, y: 158, label: 'F-HI', heading: 0 },
     ],
   },
@@ -3514,7 +3514,7 @@ const SCENARIO_5_STEPS = [
     teaching:
       "Clairance IFR transmise élément par élément : balise de sortie (LSE), niveau (5000ft QNH), squawk (1878), fréquence suivante (Bastié App 136.080). Chaque élément doit être collationnement souligné sur le strip.",
     aircraft: [
-      { id: 'G-SS', type: 'transit', x: 490, y: 350, label: 'G-SS', heading: 145 },
+      { id: 'G-SS', type: 'transit', x: 325, y: 202, label: 'G-SS', heading: 135 },
       { id: 'F-HI', type: 'departure', x: 373, y: 158, label: 'F-HI', heading: 0 },
     ],
   },
@@ -3527,7 +3527,7 @@ const SCENARIO_5_STEPS = [
     teaching:
       "Le pilote collationne intégralement la clairance IFR. La réponse est 'correct'. Chaque élément doit avoir été souligné sur le strip.",
     aircraft: [
-      { id: 'G-SS', type: 'transit', x: 510, y: 370, label: 'G-SS', heading: 145 },
+      { id: 'G-SS', type: 'transit', x: 330, y: 210, label: 'G-SS', heading: 135 },
       { id: 'F-HI', type: 'departure', x: 373, y: 158, label: 'F-HI', heading: 0 },
     ],
   },
@@ -3540,7 +3540,7 @@ const SCENARIO_5_STEPS = [
     teaching:
       "G-CASS (TBM700) passe la verticale aérodrome à 2500ft. Pour un transit, la réponse au vertical est 'report leaving frequency' : on garde le contact jusqu'à ce que l'avion sorte de la zone.",
     aircraft: [
-      { id: 'G-SS', type: 'transit', x: 370, y: 260, label: 'G-SS', heading: 145 },
+      { id: 'G-SS', type: 'transit', x: 370, y: 260, label: 'G-SS', heading: 135 },
       { id: 'F-HI', type: 'departure', x: 373, y: 158, label: 'F-HI', heading: 0 },
     ],
   },
@@ -3555,7 +3555,7 @@ const SCENARIO_5_STEPS = [
       "F-HI est prête au départ. On donne la clairance de remontée et d'alignement en attente — PAS encore la clairance décollage. Le décollage sera autorisé séparément.",
     aircraft: [
       { id: 'F-HI', type: 'departure', x: 373, y: 158, label: 'F-HI', heading: 0 },
-      { id: 'G-SS', type: 'transit', x: 530, y: 400, label: 'G-SS', heading: 145 },
+      { id: 'G-SS', type: 'transit', x: 450, y: 340, label: 'G-SS', heading: 135 },
     ],
   },
   {
@@ -3568,7 +3568,7 @@ const SCENARIO_5_STEPS = [
       "G-CASS quitte la fréquence TWR vers Fleurie. Accusé de réception sobre. Strip transit archivé.",
     aircraft: [
       { id: 'F-HI', type: 'departure', x: 615, y: 131, label: 'F-HI', heading: 270 },
-      { id: 'G-SS', type: 'transit', x: 600, y: 420, label: 'G-SS', heading: 145 },
+      { id: 'G-SS', type: 'transit', x: 500, y: 390, label: 'G-SS', heading: 135 },
     ],
   },
   {
