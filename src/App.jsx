@@ -802,7 +802,7 @@ const SCENARIO_2_STEPS = [
     message:
       "F-NI est aligné au seuil 27 en attente. Pas de trafic en finale. G-HC (C172 de Julienas) s'approche depuis le Nord-Ouest — sa trajectoire et celle de F-NI au départ vers Saint-Amour se croisent au NW. C'est à la tour d'initier la clairance décollage.",
     expectedResponse:
-      "F-NI, trafic de Julienas vers vent arrière, Cessna 172, piste 27 autorisé décollage, vent 250°/10 kt, rappelez vent arrière main droite piste 27 — puis : G-HC, traffic departing towards Saint-Amour, DR400",
+      "F-NI, trafic de Julienas vers vent arrière, Cessna 172, piste 27 autorisé décollage, vent 250°/10 kt — puis : G-HC, traffic departing towards Saint-Amour, DR400",
     teaching:
       "La tour initie après « alignez-vous, attendez ». Trajectoires croisées au NW entre F-NI (départ Saint-Amour) et G-HC (arrivée Julienas) → info trafic réciproque obligatoire. Même situation que l'étape 14 du scénario 1.",
     aircraft: [
@@ -1335,7 +1335,7 @@ const SCENARIO_2_STEPS = [
     message:
       "G-NP (PA28) est au point d'attente H2, prêt pour un départ de l'intersection. F-GE (C172 de Julienas) est en vent arrière. Leurs trajectoires se croisent au NW — G-NP part vers Saint-Amour, F-GE arrive de Julienas. C'est à la tour d'initier la clairance décollage.",
     expectedResponse:
-      "G-NP, traffic from Julienas entering downwind, Cessna 172, runway 27 cleared for takeoff, wind 250°/10 kt, report right hand downwind runway 27 — puis : F-GE, trafic au départ vers Saint-Amour, Piper Cherokee",
+      "G-NP, traffic from Julienas entering downwind, Cessna 172, runway 27 cleared for takeoff, wind 250°/10 kt — puis : F-GE, trafic au départ vers Saint-Amour, Piper Cherokee",
     teaching:
       "Départ intersection H2 + info trafic réciproque G-NP/F-GE (même schéma étapes 14, 48, 79). La tour initie dès que la piste est libre et le trafic le permet.",
     aircraft: [
@@ -1384,9 +1384,9 @@ const SCENARIO_2_STEPS = [
     speaker: { role: 'INFO' },
     message:
       "F-GE (C172, n°1) vient de toucher les roues — heure d'atterrissage notée. CTM4321 est entre le vertical et le vent arrière. C'est le moment d'actualiser le numéro d'ordre.",
-    expectedResponse: 'CTM4321, numéro 1, rappelez finale',
+    expectedResponse: 'CTM4321, numéro 1, rappelez vent arrière',
     teaching:
-      "Actualisation du numéro d'ordre au toucher des roues (livret 4, §8). CTM4321 n'avait pas encore de numéro — il devient automatiquement n°1. Transmission proactive, sans attendre son rappel vent arrière.",
+      "Actualisation du numéro d'ordre au toucher des roues (livret 4, §8). CTM4321 n'avait pas encore de numéro — il devient automatiquement n°1. Transmission proactive : CTM4321 est en vent traversier → prochain rappel attendu = vent arrière.",
     aircraft: [
       { id: 'F-GE', type: 'arrival', x: 225, y: 132, label: 'F-GE', heading: 270 },
       { id: 'CTM4321', type: 'circuit', x: 285, y: 145, label: 'CTM', heading: 0 },
@@ -1562,16 +1562,16 @@ const SCENARIO_2_STEPS = [
   {
     id: 60,
     time: '09:49:30',
-    speaker: { role: 'PILOTE', callsign: 'F-HT', color: 'transit' },
+    speaker: { role: 'PILOTE', callsign: 'G-HT', color: 'transit' },
     message:
-      "AURIOL Tower, FBHQT, Cessna 172, transit from DIJON to NICE, 2500 ft QNH, over airfield estimated in 4 minutes, exit via Fleurie",
-    expectedResponse: "FBHQT, runway 27 in use, QNH 1020, report overhead airfield",
+      "AURIOL Tower, GBHQT, Cessna 172, transit from DIJON to NICE, 2500 ft QNH, over airfield estimated in 4 minutes, exit via Fleurie",
+    expectedResponse: "GBHQT, runway 27 in use, QNH 1020, report overhead airfield",
     teaching:
       "Transit VFR : piste en service + QNH uniquement (pas de vent). Altitude 2500ft >> 1400ft circuit → aucun conflit d'altitude possible. Strip sans couleur (transit). Pilote anglophone → réponse en anglais.",
     aircraft: [
       { id: 'G-KL', type: 'arrival', x: 655, y: 132, label: 'G-KL', heading: 270 },
       { id: 'F-VS', type: 'arrival', x: 575, y: 80, label: 'F-VS', heading: 225 },
-      { id: 'F-HT', type: 'transit', x: 640, y: 85, label: 'F-HT', heading: 200 },
+      { id: 'G-HT', type: 'transit', x: 640, y: 85, label: 'G-HT', heading: 200 },
     ],
   },
   {
@@ -1585,7 +1585,7 @@ const SCENARIO_2_STEPS = [
     aircraft: [
       { id: 'G-KL', type: 'arrival', x: 625, y: 132, label: 'G-KL', heading: 270 },
       { id: 'F-VS', type: 'arrival', x: 545, y: 100, label: 'F-VS', heading: 225 },
-      { id: 'F-HT', type: 'transit', x: 540, y: 155, label: 'F-HT', heading: 200 },
+      { id: 'G-HT', type: 'transit', x: 540, y: 155, label: 'G-HT', heading: 200 },
     ],
   },
   {
@@ -1599,21 +1599,21 @@ const SCENARIO_2_STEPS = [
     aircraft: [
       { id: 'G-KL', type: 'arrival', x: 640, y: 132, label: 'G-KL', heading: 270 },
       { id: 'F-VS', type: 'arrival', x: 545, y: 115, label: 'F-VS', heading: 180 },
-      { id: 'F-HT', type: 'transit', x: 460, y: 215, label: 'F-HT', heading: 200 },
+      { id: 'G-HT', type: 'transit', x: 460, y: 215, label: 'G-HT', heading: 200 },
     ],
   },
   {
     id: 63,
     time: '09:51:00',
-    speaker: { role: 'PILOTE', callsign: 'F-HT', color: 'transit' },
-    message: 'F-HT, overhead airfield',
-    expectedResponse: 'F-HT, report Fleurie',
+    speaker: { role: 'PILOTE', callsign: 'G-HT', color: 'transit' },
+    message: 'G-HT, overhead airfield',
+    expectedResponse: 'G-HT, report Fleurie',
     teaching:
       "Transit au vertical aérodrome (2500ft). On donne le point de sortie : Fleurie (SE), direction Nice. Le transit ne crée aucun conflit avec le circuit (altitudes différentes).",
     aircraft: [
       { id: 'G-KL', type: 'arrival', x: 605, y: 132, label: 'G-KL', heading: 270 },
       { id: 'F-VS', type: 'arrival', x: 545, y: 132, label: 'F-VS', heading: 270 },
-      { id: 'F-HT', type: 'transit', x: 370, y: 260, label: 'F-HT', heading: 200 },
+      { id: 'G-HT', type: 'transit', x: 370, y: 260, label: 'G-HT', heading: 200 },
     ],
   },
   {
@@ -1630,7 +1630,7 @@ const SCENARIO_2_STEPS = [
       { id: 'G-KL', type: 'arrival', x: 575, y: 132, label: 'G-KL', heading: 270 },
       { id: 'F-VS', type: 'arrival', x: 510, y: 132, label: 'F-VS', heading: 270 },
       { id: 'F-MR', type: 'departure', x: 350, y: 245, label: 'F-MR', heading: 0 },
-      { id: 'F-HT', type: 'transit', x: 430, y: 330, label: 'F-HT', heading: 170 },
+      { id: 'G-HT', type: 'transit', x: 430, y: 330, label: 'G-HT', heading: 170 },
     ],
   },
   {
@@ -1679,14 +1679,14 @@ const SCENARIO_2_STEPS = [
   {
     id: 68,
     time: '09:53:30',
-    speaker: { role: 'PILOTE', callsign: 'F-HT', color: 'transit' },
-    message: 'F-HT, Fleurie, leaving frequency',
-    expectedResponse: 'F-HT, roger, goodbye',
+    speaker: { role: 'PILOTE', callsign: 'G-HT', color: 'transit' },
+    message: 'G-HT, Fleurie, leaving frequency',
+    expectedResponse: 'G-HT, roger, goodbye',
     teaching:
-      "F-HT (transit) passe Fleurie et quitte la fréquence vers Nice. Strip archivé avec heure de dernier contact.",
+      "G-HT (transit) passe Fleurie et quitte la fréquence vers Nice. Strip archivé avec heure de dernier contact.",
     aircraft: [
       { id: 'F-VS', type: 'arrival', x: 310, y: 132, label: 'F-VS', heading: 270 },
-      { id: 'F-HT', type: 'transit', x: 510, y: 375, label: 'F-HT', heading: 170 },
+      { id: 'G-HT', type: 'transit', x: 510, y: 375, label: 'G-HT', heading: 170 },
       { id: 'F-MR', type: 'departure', x: 373, y: 158, label: 'F-MR', heading: 0 },
     ],
   },
